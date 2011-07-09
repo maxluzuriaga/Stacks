@@ -1,0 +1,418 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		501EA60413C8C803006DE75D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501EA60313C8C803006DE75D /* UIKit.framework */; };
+		501EA60613C8C803006DE75D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501EA60513C8C803006DE75D /* Foundation.framework */; };
+		501EA60813C8C803006DE75D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501EA60713C8C803006DE75D /* CoreGraphics.framework */; };
+		501EA60A13C8C803006DE75D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501EA60913C8C803006DE75D /* CoreData.framework */; };
+		501EA61013C8C803006DE75D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 501EA60E13C8C803006DE75D /* InfoPlist.strings */; };
+		501EA61213C8C803006DE75D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA61113C8C803006DE75D /* main.m */; };
+		501EA61913C8C803006DE75D /* Stacks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 501EA61713C8C803006DE75D /* Stacks.xcdatamodeld */; };
+		501EA62313C8C803006DE75D /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501EA62113C8C803006DE75D /* RootViewController.xib */; };
+		501EA62613C8C803006DE75D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501EA62413C8C803006DE75D /* DetailViewController.xib */; };
+		501EA63513C8C89E006DE75D /* Stacks.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 501EA63413C8C89E006DE75D /* Stacks.entitlements */; };
+		501EA64E13C8C8CA006DE75D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA64913C8C8CA006DE75D /* DetailViewController.m */; };
+		501EA64F13C8C8CA006DE75D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA64B13C8C8CA006DE75D /* RootViewController.m */; };
+		501EA65013C8C8CA006DE75D /* StacksAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA64D13C8C8CA006DE75D /* StacksAppDelegate.m */; };
+		501EA65613C8CA4F006DE75D /* STCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA65513C8CA4F006DE75D /* STCard.m */; };
+		501EA65913C8CA4F006DE75D /* STStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA65813C8CA4F006DE75D /* STStack.m */; };
+		501EA68813C8CDF3006DE75D /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 501EA68413C8CDF3006DE75D /* Icon-Small.png */; };
+		501EA68A13C8CDF3006DE75D /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 501EA68613C8CDF3006DE75D /* Icon-Small@2x.png */; };
+		501EA68C13C8CE0B006DE75D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 501EA68B13C8CE0B006DE75D /* Icon.png */; };
+		501EA68E13C8CE0F006DE75D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 501EA68D13C8CE0F006DE75D /* Icon@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		501EA5FF13C8C803006DE75D /* Stacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		501EA60313C8C803006DE75D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		501EA60513C8C803006DE75D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		501EA60713C8C803006DE75D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		501EA60913C8C803006DE75D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		501EA60D13C8C803006DE75D /* Stacks-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Stacks-Info.plist"; sourceTree = "<group>"; };
+		501EA60F13C8C803006DE75D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		501EA61113C8C803006DE75D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		501EA61313C8C803006DE75D /* Stacks-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stacks-Prefix.pch"; sourceTree = "<group>"; };
+		501EA61813C8C803006DE75D /* Stacks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stacks.xcdatamodel; sourceTree = "<group>"; };
+		501EA62213C8C803006DE75D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		501EA62513C8C803006DE75D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
+		501EA63413C8C89E006DE75D /* Stacks.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Stacks.entitlements; path = ../../../Stuff/Development/ios/Stacks/Stacks/Stacks/Stacks.entitlements; sourceTree = "<group>"; };
+		501EA64813C8C8CA006DE75D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		501EA64913C8C8CA006DE75D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		501EA64A13C8C8CA006DE75D /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		501EA64B13C8C8CA006DE75D /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		501EA64C13C8C8CA006DE75D /* StacksAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StacksAppDelegate.h; sourceTree = "<group>"; };
+		501EA64D13C8C8CA006DE75D /* StacksAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StacksAppDelegate.m; sourceTree = "<group>"; };
+		501EA65413C8CA4F006DE75D /* STCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCard.h; sourceTree = "<group>"; };
+		501EA65513C8CA4F006DE75D /* STCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCard.m; sourceTree = "<group>"; };
+		501EA65713C8CA4F006DE75D /* STStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStack.h; sourceTree = "<group>"; };
+		501EA65813C8CA4F006DE75D /* STStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStack.m; sourceTree = "<group>"; };
+		501EA68413C8CDF3006DE75D /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		501EA68613C8CDF3006DE75D /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		501EA68B13C8CE0B006DE75D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		501EA68D13C8CE0F006DE75D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		501EA5FC13C8C803006DE75D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				501EA60413C8C803006DE75D /* UIKit.framework in Frameworks */,
+				501EA60613C8C803006DE75D /* Foundation.framework in Frameworks */,
+				501EA60813C8C803006DE75D /* CoreGraphics.framework in Frameworks */,
+				501EA60A13C8C803006DE75D /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		501EA5F413C8C803006DE75D = {
+			isa = PBXGroup;
+			children = (
+				501EA60B13C8C803006DE75D /* Stacks */,
+				501EA60213C8C803006DE75D /* Frameworks */,
+				501EA60013C8C803006DE75D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		501EA60013C8C803006DE75D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				501EA5FF13C8C803006DE75D /* Stacks.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		501EA60213C8C803006DE75D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				501EA60313C8C803006DE75D /* UIKit.framework */,
+				501EA60513C8C803006DE75D /* Foundation.framework */,
+				501EA60713C8C803006DE75D /* CoreGraphics.framework */,
+				501EA60913C8C803006DE75D /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		501EA60B13C8C803006DE75D /* Stacks */ = {
+			isa = PBXGroup;
+			children = (
+				501EA68B13C8CE0B006DE75D /* Icon.png */,
+				501EA68D13C8CE0F006DE75D /* Icon@2x.png */,
+				501EA68413C8CDF3006DE75D /* Icon-Small.png */,
+				501EA68613C8CDF3006DE75D /* Icon-Small@2x.png */,
+				501EA63413C8C89E006DE75D /* Stacks.entitlements */,
+				501EA61713C8C803006DE75D /* Stacks.xcdatamodeld */,
+				501EA64713C8C8CA006DE75D /* Classes */,
+				501EA65113C8C8DD006DE75D /* Resources */,
+				501EA60C13C8C803006DE75D /* Supporting Files */,
+			);
+			path = Stacks;
+			sourceTree = "<group>";
+		};
+		501EA60C13C8C803006DE75D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				501EA60D13C8C803006DE75D /* Stacks-Info.plist */,
+				501EA60E13C8C803006DE75D /* InfoPlist.strings */,
+				501EA61113C8C803006DE75D /* main.m */,
+				501EA61313C8C803006DE75D /* Stacks-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		501EA64713C8C8CA006DE75D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				501EA65C13C8CAA6006DE75D /* Delegates */,
+				501EA65A13C8CA83006DE75D /* Models */,
+				501EA65B13C8CA95006DE75D /* ViewControllers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		501EA65113C8C8DD006DE75D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				501EA66213C8CCC0006DE75D /* Icons */,
+				501EA65213C8C929006DE75D /* Images */,
+				501EA65313C8C937006DE75D /* Nibs */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		501EA65213C8C929006DE75D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		501EA65313C8C937006DE75D /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				501EA62113C8C803006DE75D /* RootViewController.xib */,
+				501EA62413C8C803006DE75D /* DetailViewController.xib */,
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
+		501EA65A13C8CA83006DE75D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				501EA65413C8CA4F006DE75D /* STCard.h */,
+				501EA65513C8CA4F006DE75D /* STCard.m */,
+				501EA65713C8CA4F006DE75D /* STStack.h */,
+				501EA65813C8CA4F006DE75D /* STStack.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		501EA65B13C8CA95006DE75D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				501EA64813C8C8CA006DE75D /* DetailViewController.h */,
+				501EA64913C8C8CA006DE75D /* DetailViewController.m */,
+				501EA64A13C8C8CA006DE75D /* RootViewController.h */,
+				501EA64B13C8C8CA006DE75D /* RootViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		501EA65C13C8CAA6006DE75D /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				501EA64C13C8C8CA006DE75D /* StacksAppDelegate.h */,
+				501EA64D13C8C8CA006DE75D /* StacksAppDelegate.m */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		501EA66213C8CCC0006DE75D /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		501EA5FE13C8C803006DE75D /* Stacks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 501EA62913C8C803006DE75D /* Build configuration list for PBXNativeTarget "Stacks" */;
+			buildPhases = (
+				501EA5FB13C8C803006DE75D /* Sources */,
+				501EA5FC13C8C803006DE75D /* Frameworks */,
+				501EA5FD13C8C803006DE75D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Stacks;
+			productName = Stacks;
+			productReference = 501EA5FF13C8C803006DE75D /* Stacks.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		501EA5F613C8C803006DE75D /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 501EA5F913C8C803006DE75D /* Build configuration list for PBXProject "Stacks" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 501EA5F413C8C803006DE75D;
+			productRefGroup = 501EA60013C8C803006DE75D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				501EA5FE13C8C803006DE75D /* Stacks */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		501EA5FD13C8C803006DE75D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				501EA61013C8C803006DE75D /* InfoPlist.strings in Resources */,
+				501EA62313C8C803006DE75D /* RootViewController.xib in Resources */,
+				501EA62613C8C803006DE75D /* DetailViewController.xib in Resources */,
+				501EA63513C8C89E006DE75D /* Stacks.entitlements in Resources */,
+				501EA68813C8CDF3006DE75D /* Icon-Small.png in Resources */,
+				501EA68A13C8CDF3006DE75D /* Icon-Small@2x.png in Resources */,
+				501EA68C13C8CE0B006DE75D /* Icon.png in Resources */,
+				501EA68E13C8CE0F006DE75D /* Icon@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		501EA5FB13C8C803006DE75D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				501EA61213C8C803006DE75D /* main.m in Sources */,
+				501EA61913C8C803006DE75D /* Stacks.xcdatamodeld in Sources */,
+				501EA64E13C8C8CA006DE75D /* DetailViewController.m in Sources */,
+				501EA64F13C8C8CA006DE75D /* RootViewController.m in Sources */,
+				501EA65013C8C8CA006DE75D /* StacksAppDelegate.m in Sources */,
+				501EA65613C8CA4F006DE75D /* STCard.m in Sources */,
+				501EA65913C8CA4F006DE75D /* STStack.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		501EA60E13C8C803006DE75D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				501EA60F13C8C803006DE75D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		501EA62113C8C803006DE75D /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				501EA62213C8C803006DE75D /* en */,
+			);
+			name = RootViewController.xib;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		501EA62413C8C803006DE75D /* DetailViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				501EA62513C8C803006DE75D /* en */,
+			);
+			name = DetailViewController.xib;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		501EA62713C8C803006DE75D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		501EA62813C8C803006DE75D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		501EA62A13C8C803006DE75D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ../../Stuff/Development/ios/Stacks/Stacks/Stacks/Stacks.entitlements;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Stacks/Stacks-Prefix.pch";
+				INFOPLIST_FILE = "Stacks/Stacks-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		501EA62B13C8C803006DE75D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ../../Stuff/Development/ios/Stacks/Stacks/Stacks/Stacks.entitlements;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Stacks/Stacks-Prefix.pch";
+				INFOPLIST_FILE = "Stacks/Stacks-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		501EA5F913C8C803006DE75D /* Build configuration list for PBXProject "Stacks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				501EA62713C8C803006DE75D /* Debug */,
+				501EA62813C8C803006DE75D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		501EA62913C8C803006DE75D /* Build configuration list for PBXNativeTarget "Stacks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				501EA62A13C8C803006DE75D /* Debug */,
+				501EA62B13C8C803006DE75D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		501EA61713C8C803006DE75D /* Stacks.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				501EA61813C8C803006DE75D /* Stacks.xcdatamodel */,
+			);
+			currentVersion = 501EA61813C8C803006DE75D /* Stacks.xcdatamodel */;
+			path = Stacks.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 501EA5F613C8C803006DE75D /* Project object */;
+}

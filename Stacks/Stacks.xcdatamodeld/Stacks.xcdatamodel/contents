@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="844" systemVersion="10K540" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="STCard" representedClassName="STCard">
+        <attribute name="backText" attributeType="String"/>
+        <attribute name="createdDate" attributeType="Date"/>
+        <attribute name="frontText" attributeType="String"/>
+        <relationship name="stack" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STStack" inverseName="cards" inverseEntity="STStack"/>
+    </entity>
+    <entity name="STStack" representedClassName="STStack">
+        <attribute name="createdDate" attributeType="Date"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="STCard" inverseName="stack" inverseEntity="STCard"/>
+    </entity>
+    <elements>
+        <element name="STCard" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="STStack" positionX="-90" positionY="225" width="128" height="90"/>
+    </elements>
+</model>
