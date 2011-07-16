@@ -16,16 +16,18 @@
 		501EA61913C8C803006DE75D /* Stacks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 501EA61713C8C803006DE75D /* Stacks.xcdatamodeld */; };
 		501EA62313C8C803006DE75D /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501EA62113C8C803006DE75D /* RootViewController.xib */; };
 		501EA62613C8C803006DE75D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501EA62413C8C803006DE75D /* DetailViewController.xib */; };
-		501EA63513C8C89E006DE75D /* Stacks.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 501EA63413C8C89E006DE75D /* Stacks.entitlements */; };
 		501EA64E13C8C8CA006DE75D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA64913C8C8CA006DE75D /* DetailViewController.m */; };
 		501EA64F13C8C8CA006DE75D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA64B13C8C8CA006DE75D /* RootViewController.m */; };
 		501EA65013C8C8CA006DE75D /* StacksAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA64D13C8C8CA006DE75D /* StacksAppDelegate.m */; };
 		501EA65613C8CA4F006DE75D /* STCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA65513C8CA4F006DE75D /* STCard.m */; };
 		501EA65913C8CA4F006DE75D /* STStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA65813C8CA4F006DE75D /* STStack.m */; };
-		501EA68813C8CDF3006DE75D /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 501EA68413C8CDF3006DE75D /* Icon-Small.png */; };
-		501EA68A13C8CDF3006DE75D /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 501EA68613C8CDF3006DE75D /* Icon-Small@2x.png */; };
-		501EA68C13C8CE0B006DE75D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 501EA68B13C8CE0B006DE75D /* Icon.png */; };
-		501EA68E13C8CE0F006DE75D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 501EA68D13C8CE0F006DE75D /* Icon@2x.png */; };
+		502BCB0013CABA9000A0D9C7 /* Stacks.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 502BCAFF13CABA9000A0D9C7 /* Stacks.entitlements */; };
+		50FD6FCB13CBF7EC00D6229B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD6FC713CBF7EC00D6229B /* Icon.png */; };
+		50FD6FCC13CBF7EC00D6229B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD6FC813CBF7EC00D6229B /* Icon@2x.png */; };
+		50FD6FCD13CBF7EC00D6229B /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD6FC913CBF7EC00D6229B /* Icon-Small.png */; };
+		50FD6FCE13CBF7EC00D6229B /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD6FCA13CBF7EC00D6229B /* Icon-Small@2x.png */; };
+		50FD6FD113CBF7FD00D6229B /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD6FCF13CBF7FD00D6229B /* Icon-72.png */; };
+		50FD6FD213CBF7FD00D6229B /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD6FD013CBF7FD00D6229B /* Icon-Small-50.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +43,6 @@
 		501EA61813C8C803006DE75D /* Stacks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stacks.xcdatamodel; sourceTree = "<group>"; };
 		501EA62213C8C803006DE75D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
 		501EA62513C8C803006DE75D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
-		501EA63413C8C89E006DE75D /* Stacks.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Stacks.entitlements; path = ../../../Stuff/Development/ios/Stacks/Stacks/Stacks/Stacks.entitlements; sourceTree = "<group>"; };
 		501EA64813C8C8CA006DE75D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		501EA64913C8C8CA006DE75D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		501EA64A13C8C8CA006DE75D /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -52,10 +53,14 @@
 		501EA65513C8CA4F006DE75D /* STCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCard.m; sourceTree = "<group>"; };
 		501EA65713C8CA4F006DE75D /* STStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStack.h; sourceTree = "<group>"; };
 		501EA65813C8CA4F006DE75D /* STStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStack.m; sourceTree = "<group>"; };
-		501EA68413C8CDF3006DE75D /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
-		501EA68613C8CDF3006DE75D /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
-		501EA68B13C8CE0B006DE75D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
-		501EA68D13C8CE0F006DE75D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		502BCAFF13CABA9000A0D9C7 /* Stacks.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Stacks.entitlements; sourceTree = "<group>"; };
+		50B55F2813CBD44100DBB00A /* STCommonDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCommonDefinitions.h; sourceTree = "<group>"; };
+		50FD6FC713CBF7EC00D6229B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = SOURCE_ROOT; };
+		50FD6FC813CBF7EC00D6229B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = SOURCE_ROOT; };
+		50FD6FC913CBF7EC00D6229B /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "Stacks/Icon-Small.png"; sourceTree = SOURCE_ROOT; };
+		50FD6FCA13CBF7EC00D6229B /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "Stacks/Icon-Small@2x.png"; sourceTree = SOURCE_ROOT; };
+		50FD6FCF13CBF7FD00D6229B /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Stacks/Icon-72.png"; sourceTree = SOURCE_ROOT; };
+		50FD6FD013CBF7FD00D6229B /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "Stacks/Icon-Small-50.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,12 +109,6 @@
 		501EA60B13C8C803006DE75D /* Stacks */ = {
 			isa = PBXGroup;
 			children = (
-				501EA68B13C8CE0B006DE75D /* Icon.png */,
-				501EA68D13C8CE0F006DE75D /* Icon@2x.png */,
-				501EA68413C8CDF3006DE75D /* Icon-Small.png */,
-				501EA68613C8CDF3006DE75D /* Icon-Small@2x.png */,
-				501EA63413C8C89E006DE75D /* Stacks.entitlements */,
-				501EA61713C8C803006DE75D /* Stacks.xcdatamodeld */,
 				501EA64713C8C8CA006DE75D /* Classes */,
 				501EA65113C8C8DD006DE75D /* Resources */,
 				501EA60C13C8C803006DE75D /* Supporting Files */,
@@ -120,6 +119,8 @@
 		501EA60C13C8C803006DE75D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				502BCAFF13CABA9000A0D9C7 /* Stacks.entitlements */,
+				501EA61713C8C803006DE75D /* Stacks.xcdatamodeld */,
 				501EA60D13C8C803006DE75D /* Stacks-Info.plist */,
 				501EA60E13C8C803006DE75D /* InfoPlist.strings */,
 				501EA61113C8C803006DE75D /* main.m */,
@@ -141,6 +142,7 @@
 		501EA65113C8C8DD006DE75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				50B55F2813CBD44100DBB00A /* STCommonDefinitions.h */,
 				501EA66213C8CCC0006DE75D /* Icons */,
 				501EA65213C8C929006DE75D /* Images */,
 				501EA65313C8C937006DE75D /* Nibs */,
@@ -151,6 +153,12 @@
 		501EA65213C8C929006DE75D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				50FD6FC713CBF7EC00D6229B /* Icon.png */,
+				50FD6FC813CBF7EC00D6229B /* Icon@2x.png */,
+				50FD6FC913CBF7EC00D6229B /* Icon-Small.png */,
+				50FD6FCA13CBF7EC00D6229B /* Icon-Small@2x.png */,
+				50FD6FCF13CBF7FD00D6229B /* Icon-72.png */,
+				50FD6FD013CBF7FD00D6229B /* Icon-Small-50.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -252,11 +260,13 @@
 				501EA61013C8C803006DE75D /* InfoPlist.strings in Resources */,
 				501EA62313C8C803006DE75D /* RootViewController.xib in Resources */,
 				501EA62613C8C803006DE75D /* DetailViewController.xib in Resources */,
-				501EA63513C8C89E006DE75D /* Stacks.entitlements in Resources */,
-				501EA68813C8CDF3006DE75D /* Icon-Small.png in Resources */,
-				501EA68A13C8CDF3006DE75D /* Icon-Small@2x.png in Resources */,
-				501EA68C13C8CE0B006DE75D /* Icon.png in Resources */,
-				501EA68E13C8CE0F006DE75D /* Icon@2x.png in Resources */,
+				502BCB0013CABA9000A0D9C7 /* Stacks.entitlements in Resources */,
+				50FD6FCB13CBF7EC00D6229B /* Icon.png in Resources */,
+				50FD6FCC13CBF7EC00D6229B /* Icon@2x.png in Resources */,
+				50FD6FCD13CBF7EC00D6229B /* Icon-Small.png in Resources */,
+				50FD6FCE13CBF7EC00D6229B /* Icon-Small@2x.png in Resources */,
+				50FD6FD113CBF7FD00D6229B /* Icon-72.png in Resources */,
+				50FD6FD213CBF7FD00D6229B /* Icon-Small-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +325,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Max Luzuriaga (D5ZJZ6EL5H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -330,6 +341,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "FABF7D36-4638-438E-A154-28E9F8FC6247";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -340,6 +352,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Max Luzuriaga (D5ZJZ6EL5H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -349,6 +362,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "FABF7D36-4638-438E-A154-28E9F8FC6247";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -357,7 +371,7 @@
 		501EA62A13C8C803006DE75D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ../../Stuff/Development/ios/Stacks/Stacks/Stacks/Stacks.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Stacks/Stacks.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stacks/Stacks-Prefix.pch";
 				INFOPLIST_FILE = "Stacks/Stacks-Info.plist";
@@ -369,7 +383,7 @@
 		501EA62B13C8C803006DE75D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ../../Stuff/Development/ios/Stacks/Stacks/Stacks/Stacks.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Stacks/Stacks.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stacks/Stacks-Prefix.pch";
 				INFOPLIST_FILE = "Stacks/Stacks-Info.plist";

@@ -9,6 +9,7 @@
 #import "StacksAppDelegate.h"
 
 #import "RootViewController.h"
+#import "STCommonDefinitions.h"
 
 #define UBIQUITY_CONTAINER_IDENTIFIER @"KA3366Q756.com.maxluzuriaga.Stacks"
 #define PERSISTENT_STORE_FILE_NAME @"Stacks.sqlite"
@@ -20,12 +21,14 @@
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 @synthesize navigationController = _navigationController;
+@synthesize ubiquitousQuery;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     RootViewController *controller = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(persistentStoreAdded) name:kPersistentStoreCoordinatorDidAddPersistentStoreNotification object:self];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
@@ -101,11 +104,19 @@
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    
     if (coordinator != nil)
     {
-        __managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [__managedObjectContext setPersistentStoreCoordinator:coordinator];
+        NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        
+        [moc performBlockAndWait:^{
+            // even the post initialization needs to be done within the Block
+            [moc setPersistentStoreCoordinator: coordinator];
+            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(mergeChangesFromiCloud:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:coordinator];
+        }];
+        __managedObjectContext = moc;
     }
+    
     return __managedObjectContext;
 }
 
@@ -124,61 +135,10 @@
     return __managedObjectModel;
 }
 
-/**
- Returns the persistent store coordinator for the application.
- If the coordinator doesn't already exist, it is created and the application's store added to it.
- */
-//- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-//{
-//    if (__persistentStoreCoordinator != nil)
-//    {
-//        return __persistentStoreCoordinator;
-//    }
-//    
-//    NSURL *storeURL;
-//    NSDictionary *storeOptions;
-//    
-//#if (TARGET_IPHONE_SIMULATOR)
-//    
-//    storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:PERSISTENT_STORE_FILE_NAME];
-//    storeOptions = nil;
-//    
-//#else
-//    
-//    NSURL *iCloudURL = [[[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:UBIQUITY_CONTAINER_IDENTIFIER] URLByAppendingPathComponent:@"Documents"];
-//    
-//    if (iCloudURL != nil) {
-//        // iCloud is set up correctly
-//        NSFileManager *fileManager = [NSFileManager defaultManager];
-//        if (![fileManager fileExistsAtPath:[iCloudURL path]]) {
-//            // Either the first time launching the app with iCloud already enabled
-//            // or the first time launching the app after enabling iCloud (where data has already been stored in a different location)
-//            [fileManager createDirectoryAtURL:iCloudURL withIntermediateDirectories:YES attributes:nil error:nil];
-//        }
-//        
-//        storeURL = [iCloudURL URLByAppendingPathComponent:PERSISTENT_STORE_FILE_NAME];
-//        
-//        NSLog(@"NSPersistentStoreUbiquitousContentURLKey is %@", iCloudURL);
-//        
-//        storeOptions = [NSDictionary dictionaryWithObjectsAndKeys:UBIQUITY_CONTAINER_IDENTIFIER, NSPersistentStoreUbiquitousContentNameKey, iCloudURL, NSPersistentStoreUbiquitousContentURLKey, nil];
-//    } else {
-//        // iCloud is not enabled on this device
-//        storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:PERSISTENT_STORE_FILE_NAME];
-//        storeOptions = nil;
-//    }
-//    
-//#endif
-//    
-//    NSError *error = nil;
-//    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-//    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:storeOptions error:&error])
-//    {
-//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//        abort();
-//    }    
-//    
-//    return __persistentStoreCoordinator;
-//}
+- (void)mergeChangesFromiCloud:(NSNotification *)notification
+{
+    NSLog(@"mergeChangesFromiCloud:");
+}
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     if (__persistentStoreCoordinator != nil) {
@@ -191,7 +151,7 @@
     // so it's possible to bring up the UI and then fill in the results later
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
     
-    NSPersistentStoreCoordinator* psc = __persistentStoreCoordinator;
+    NSPersistentStoreCoordinator *psc = __persistentStoreCoordinator;
     
     // prep the store path and bundle stuff here since -mainBundle isn't totally thread safe
     NSString *storePath = [[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:@"Stacks.sqlite"];
@@ -205,6 +165,9 @@
         
         // this needs to match the entitlements and provisioning profile
         NSURL *cloudURL = [fileManager URLForUbiquityContainerIdentifier:UBIQUITY_CONTAINER_IDENTIFIER];
+        
+        // Build in error checking to see if iCloud is enabled, k?
+        
         NSString *coreDataCloudContent = [[cloudURL path] stringByAppendingPathComponent:@"stacksCloudSync"];
         
         cloudURL = [NSURL fileURLWithPath:coreDataCloudContent];
@@ -212,9 +175,8 @@
         // here you add the API to turn on Core Data iCloud support
         NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:UBIQUITY_CONTAINER_IDENTIFIER, NSPersistentStoreUbiquitousContentNameKey, cloudURL, NSPersistentStoreUbiquitousContentURLKey, [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,nil];
         
-        
         // Needed on iOS seed 3, but not Mac OS X
-//        [self workaround_weakpackages_9653904:options];
+        [self workaround_weakpackages_9653904:options];
         
         NSError *error = nil;
         [psc lock];
@@ -237,19 +199,77 @@
         // NSFetchedResultsController to -performFetch again now there is a real store
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"asynchronously added persistent store!");
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefetchAllDatabaseData" object:self userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kPersistentStoreCoordinatorDidAddPersistentStoreNotification object:self userInfo:nil];
         });
     });
     
     return __persistentStoreCoordinator;
 }
 
-
 #pragma mark - Application's Documents directory
 
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - Needed in iOS seed 3 as a workaround for known issues
+
+static dispatch_queue_t polling_queue;
+
+- (void)workaround_weakpackages_9653904:(NSDictionary*)options {
+#if 1
+    
+    NSURL* cloudURL = [options objectForKey:NSPersistentStoreUbiquitousContentURLKey];
+    NSString* name = [options objectForKey:NSPersistentStoreUbiquitousContentNameKey];
+    NSString* cloudPath = [cloudURL path];
+    
+    NSMetadataQuery *query = [[NSMetadataQuery alloc] init];
+    [query setSearchScopes:[NSArray arrayWithObjects:NSMetadataQueryUbiquitousDataScope, NSMetadataQueryUbiquitousDocumentsScope, nil]];
+    [query setPredicate:[NSPredicate predicateWithFormat:@"kMDItemFSName == '*'"]]; // Just get everything.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pollnewfiles_weakpackages:) name:NSMetadataQueryGatheringProgressNotification object:query];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pollnewfiles_weakpackages:) name:NSMetadataQueryDidUpdateNotification object:query];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pollnewfiles_weakpackages:) name:NSMetadataQueryDidFinishGatheringNotification object:query];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pollnewfiles_weakpackages:) name:NSMetadataQueryDidStartGatheringNotification object:query];
+    
+    // May also register for NSMetadataQueryDidFinishGatheringNotification if you want to update any user interface items when the initial result-gathering phase of the query is complete.
+    
+    self.ubiquitousQuery = query;
+    
+    polling_queue = dispatch_queue_create("workaround_weakpackages_9653904", DISPATCH_QUEUE_SERIAL);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (![query startQuery]) {
+            NSLog(@"NSMetadataQuery failed to start!");
+        } else {
+            NSLog(@"started NSMetadataQuery!");
+        };
+    });
+    
+#endif
+}
+
+- (void)pollnewfiles_weakpackages:(NSNotification*)note {
+    [self.ubiquitousQuery disableUpdates];
+    NSArray *results = [self.ubiquitousQuery results];
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSFileCoordinator* fc = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
+    
+    for (NSMetadataItem *item in results) {
+        NSURL* itemurl = [item valueForAttribute:NSMetadataItemURLKey];
+        
+        NSString* filepath = [itemurl path];
+        if (![fm fileExistsAtPath:filepath]) {
+            dispatch_async(polling_queue, ^(void) {
+//                NSLog(@"coordinated reading of URL '%@'", itemurl);
+                [fc coordinateReadingItemAtURL:itemurl options:0 error:nil byAccessor:^(NSURL* url) { }];
+            });
+        }
+    }
+    
+    [self.ubiquitousQuery enableUpdates];
+    
 }
 
 @end
