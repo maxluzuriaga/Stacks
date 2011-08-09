@@ -17,6 +17,5 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)persistentStoreAdded;
-- (void)addNewStack;
 
 @end

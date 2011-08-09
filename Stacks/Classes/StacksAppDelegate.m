@@ -11,6 +11,8 @@
 #import "RootViewController.h"
 #import "STCommonDefinitions.h"
 
+#import "STStack.h"
+
 #define UBIQUITY_CONTAINER_IDENTIFIER @"KA3366Q756.com.maxluzuriaga.Stacks"
 #define PERSISTENT_STORE_FILE_NAME @"Stacks.sqlite"
 
@@ -25,13 +27,35 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    application.statusBarStyle = UIStatusBarStyleBlackOpaque;
+    
+    [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"barBackground"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+    
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"barBackground"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIFont fontWithName:@"FreestyleScriptEF-Reg" size:30] forKey:UITextAttributeFont]];
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:3 forBarMetrics:UIBarMetricsDefault];
+    
+    UIImage *backButtonImage = [[UIImage imageNamed:@"backBarButtonItemBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+    UIImage *barButtonImage = [[UIImage imageNamed:@"barButtonItemBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+    
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackgroundImage:barButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        
+    [[UIBarButtonItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, 1) forBarMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, 1) forBarMetrics:UIBarMetricsDefault];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     RootViewController *controller = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(persistentStoreAdded) name:kPersistentStoreCoordinatorDidAddPersistentStoreNotification object:self];
+    
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    self.navigationController.toolbarHidden = NO;
+    
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -277,6 +301,36 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - Accessed from different view controllers
+
+- (void)addNewStack
+{
+    // Create a new instance of the entity managed by the fetched results controller.
+//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    STStack *newStack = [NSEntityDescription insertNewObjectForEntityForName:@"STStack" inManagedObjectContext:self.managedObjectContext];
+    
+    newStack.createdDate = [NSDate date];
+    newStack.name = @"Test Stack";
+    
+    // Save the context.
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error])
+    {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
+
+- (void)showSettings
+{
+    NSLog(@"Show the settings");
 }
 
 @end

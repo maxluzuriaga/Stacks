@@ -22,6 +22,17 @@
 		501EA65613C8CA4F006DE75D /* STCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA65513C8CA4F006DE75D /* STCard.m */; };
 		501EA65913C8CA4F006DE75D /* STStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA65813C8CA4F006DE75D /* STStack.m */; };
 		502BCB0013CABA9000A0D9C7 /* Stacks.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 502BCAFF13CABA9000A0D9C7 /* Stacks.entitlements */; };
+		504A3E1513F1D75000465C64 /* barBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E1313F1D75000465C64 /* barBackground.png */; };
+		504A3E1613F1D75000465C64 /* barBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E1413F1D75000465C64 /* barBackground@2x.png */; };
+		504A3E1913F1D81300465C64 /* backBarButtonItemBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E1713F1D81300465C64 /* backBarButtonItemBackground@2x.png */; };
+		504A3E1A13F1D81300465C64 /* barButtonItemBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E1813F1D81300465C64 /* barButtonItemBackground@2x.png */; };
+		504A3E1D13F1DA1000465C64 /* backBarButtonItemBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E1B13F1DA1000465C64 /* backBarButtonItemBackground.png */; };
+		504A3E1E13F1DA1000465C64 /* barButtonItemBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E1C13F1DA1000465C64 /* barButtonItemBackground.png */; };
+		504A3E2013F1DAB000465C64 /* FreestyleScriptEF-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E1F13F1DAB000465C64 /* FreestyleScriptEF-Reg.ttf */; };
+		504A3E2813F1DC7600465C64 /* barButtonItemHighlightedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E2713F1DC7600465C64 /* barButtonItemHighlightedBackground@2x.png */; };
+		504A3E2A13F1E15500465C64 /* barButtonItemHighlightedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E2913F1E15500465C64 /* barButtonItemHighlightedBackground.png */; };
+		504A3E2D13F1E5C500465C64 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E2B13F1E5C500465C64 /* settingsIcon.png */; };
+		504A3E2E13F1E5C500465C64 /* settingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E2C13F1E5C500465C64 /* settingsIcon@2x.png */; };
 		50FD6FCB13CBF7EC00D6229B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD6FC713CBF7EC00D6229B /* Icon.png */; };
 		50FD6FCC13CBF7EC00D6229B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD6FC813CBF7EC00D6229B /* Icon@2x.png */; };
 		50FD6FCD13CBF7EC00D6229B /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD6FC913CBF7EC00D6229B /* Icon-Small.png */; };
@@ -54,6 +65,17 @@
 		501EA65713C8CA4F006DE75D /* STStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStack.h; sourceTree = "<group>"; };
 		501EA65813C8CA4F006DE75D /* STStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStack.m; sourceTree = "<group>"; };
 		502BCAFF13CABA9000A0D9C7 /* Stacks.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Stacks.entitlements; sourceTree = "<group>"; };
+		504A3E1313F1D75000465C64 /* barBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barBackground.png; path = Images/barBackground.png; sourceTree = "<group>"; };
+		504A3E1413F1D75000465C64 /* barBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barBackground@2x.png"; path = "Images/barBackground@2x.png"; sourceTree = "<group>"; };
+		504A3E1713F1D81300465C64 /* backBarButtonItemBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backBarButtonItemBackground@2x.png"; path = "Images/backBarButtonItemBackground@2x.png"; sourceTree = "<group>"; };
+		504A3E1813F1D81300465C64 /* barButtonItemBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonItemBackground@2x.png"; path = "Images/barButtonItemBackground@2x.png"; sourceTree = "<group>"; };
+		504A3E1B13F1DA1000465C64 /* backBarButtonItemBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backBarButtonItemBackground.png; path = Images/backBarButtonItemBackground.png; sourceTree = "<group>"; };
+		504A3E1C13F1DA1000465C64 /* barButtonItemBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonItemBackground.png; path = Images/barButtonItemBackground.png; sourceTree = "<group>"; };
+		504A3E1F13F1DAB000465C64 /* FreestyleScriptEF-Reg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FreestyleScriptEF-Reg.ttf"; sourceTree = "<group>"; };
+		504A3E2713F1DC7600465C64 /* barButtonItemHighlightedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonItemHighlightedBackground@2x.png"; path = "Images/barButtonItemHighlightedBackground@2x.png"; sourceTree = "<group>"; };
+		504A3E2913F1E15500465C64 /* barButtonItemHighlightedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonItemHighlightedBackground.png; path = Images/barButtonItemHighlightedBackground.png; sourceTree = "<group>"; };
+		504A3E2B13F1E5C500465C64 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settingsIcon.png; path = Images/settingsIcon.png; sourceTree = "<group>"; };
+		504A3E2C13F1E5C500465C64 /* settingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settingsIcon@2x.png"; path = "Images/settingsIcon@2x.png"; sourceTree = "<group>"; };
 		50B55F2813CBD44100DBB00A /* STCommonDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCommonDefinitions.h; sourceTree = "<group>"; };
 		50FD6FC713CBF7EC00D6229B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = SOURCE_ROOT; };
 		50FD6FC813CBF7EC00D6229B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -142,6 +164,7 @@
 		501EA65113C8C8DD006DE75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				504A3E1F13F1DAB000465C64 /* FreestyleScriptEF-Reg.ttf */,
 				50B55F2813CBD44100DBB00A /* STCommonDefinitions.h */,
 				501EA66213C8CCC0006DE75D /* Icons */,
 				501EA65213C8C929006DE75D /* Images */,
@@ -153,12 +176,16 @@
 		501EA65213C8C929006DE75D /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				50FD6FC713CBF7EC00D6229B /* Icon.png */,
-				50FD6FC813CBF7EC00D6229B /* Icon@2x.png */,
-				50FD6FC913CBF7EC00D6229B /* Icon-Small.png */,
-				50FD6FCA13CBF7EC00D6229B /* Icon-Small@2x.png */,
-				50FD6FCF13CBF7FD00D6229B /* Icon-72.png */,
-				50FD6FD013CBF7FD00D6229B /* Icon-Small-50.png */,
+				504A3E1B13F1DA1000465C64 /* backBarButtonItemBackground.png */,
+				504A3E1713F1D81300465C64 /* backBarButtonItemBackground@2x.png */,
+				504A3E1C13F1DA1000465C64 /* barButtonItemBackground.png */,
+				504A3E1813F1D81300465C64 /* barButtonItemBackground@2x.png */,
+				504A3E2913F1E15500465C64 /* barButtonItemHighlightedBackground.png */,
+				504A3E2713F1DC7600465C64 /* barButtonItemHighlightedBackground@2x.png */,
+				504A3E1313F1D75000465C64 /* barBackground.png */,
+				504A3E1413F1D75000465C64 /* barBackground@2x.png */,
+				504A3E2B13F1E5C500465C64 /* settingsIcon.png */,
+				504A3E2C13F1E5C500465C64 /* settingsIcon@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -206,6 +233,12 @@
 		501EA66213C8CCC0006DE75D /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				50FD6FD013CBF7FD00D6229B /* Icon-Small-50.png */,
+				50FD6FC713CBF7EC00D6229B /* Icon.png */,
+				50FD6FC813CBF7EC00D6229B /* Icon@2x.png */,
+				50FD6FC913CBF7EC00D6229B /* Icon-Small.png */,
+				50FD6FCA13CBF7EC00D6229B /* Icon-Small@2x.png */,
+				50FD6FCF13CBF7FD00D6229B /* Icon-72.png */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -270,6 +303,17 @@
 				50FD6FCE13CBF7EC00D6229B /* Icon-Small@2x.png in Resources */,
 				50FD6FD113CBF7FD00D6229B /* Icon-72.png in Resources */,
 				50FD6FD213CBF7FD00D6229B /* Icon-Small-50.png in Resources */,
+				504A3E1513F1D75000465C64 /* barBackground.png in Resources */,
+				504A3E1613F1D75000465C64 /* barBackground@2x.png in Resources */,
+				504A3E1913F1D81300465C64 /* backBarButtonItemBackground@2x.png in Resources */,
+				504A3E1A13F1D81300465C64 /* barButtonItemBackground@2x.png in Resources */,
+				504A3E1D13F1DA1000465C64 /* backBarButtonItemBackground.png in Resources */,
+				504A3E1E13F1DA1000465C64 /* barButtonItemBackground.png in Resources */,
+				504A3E2013F1DAB000465C64 /* FreestyleScriptEF-Reg.ttf in Resources */,
+				504A3E2813F1DC7600465C64 /* barButtonItemHighlightedBackground@2x.png in Resources */,
+				504A3E2A13F1E15500465C64 /* barButtonItemHighlightedBackground.png in Resources */,
+				504A3E2D13F1E5C500465C64 /* settingsIcon.png in Resources */,
+				504A3E2E13F1E5C500465C64 /* settingsIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
