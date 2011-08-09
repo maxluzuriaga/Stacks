@@ -235,6 +235,9 @@
 /* Begin PBXProject section */
 		501EA5F613C8C803006DE75D /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 501EA5F913C8C803006DE75D /* Build configuration list for PBXProject "Stacks" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -372,10 +375,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Stacks/Stacks.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Max Luzuriaga (D5ZJZ6EL5H)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stacks/Stacks-Prefix.pch";
 				INFOPLIST_FILE = "Stacks/Stacks-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A62761B4-69EC-4368-B608-8D34FAE43376";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -384,10 +389,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Stacks/Stacks.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Max Luzuriaga (D5ZJZ6EL5H)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Stacks/Stacks-Prefix.pch";
 				INFOPLIST_FILE = "Stacks/Stacks-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A62761B4-69EC-4368-B608-8D34FAE43376";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

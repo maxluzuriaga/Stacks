@@ -22,12 +22,8 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-- (void)mergeiCloudChanged:(NSDictionary *)noteInfo forContext:(NSManagedObjectContext *)moc;
+- (void)mergeiCloudChanges:(NSDictionary *)noteInfo forContext:(NSManagedObjectContext *)moc;
 - (void)mergeChangesFromiCloud:(NSNotification *)notification;
-
-// Needed in iOS beta 3
-- (void)pollnewfiles_weakpackages:(NSNotification*)note;
-- (void)workaround_weakpackages_9653904:(NSDictionary*)options;
 
 @property (strong, nonatomic) UINavigationController *navigationController;
 

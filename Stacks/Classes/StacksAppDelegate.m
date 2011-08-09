@@ -137,7 +137,76 @@
 
 - (void)mergeChangesFromiCloud:(NSNotification *)notification
 {
-    NSLog(@"mergeChangesFromiCloud:");
+    NSLog(@"imported changes");
+    NSDictionary *ui = [notification userInfo];
+	NSManagedObjectContext *moc = [self managedObjectContext];
+    
+    // this only works if you used NSMainQueueConcurrencyType
+    // otherwise use a dispatch_async back to the main thread yourself
+    [moc performBlock:^{
+        [self mergeiCloudChanges:ui forContext:moc];
+    }];
+}
+
+- (void)mergeiCloudChanges:(NSDictionary *)noteInfo forContext:(NSManagedObjectContext *)moc
+{
+//    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    NSMutableDictionary *localUserInfo = [NSMutableDictionary dictionary];
+    
+    NSSet *allInvalidations = [noteInfo objectForKey:NSInvalidatedAllObjectsKey];
+    NSNotification *refreshNotification = nil;
+    
+    if (nil == allInvalidations) {
+        // (1) we always materialize deletions to ensure delete propagation happens correctly, especially with 
+        // more complex scenarios like merge conflicts and undo.  Without this, future echoes may 
+        // erroreously resurrect objects and cause dangling foreign keys
+        // (2) we always materialize insertions to make new entries visible to the UI
+        NSString *materializeKeys[] = { NSDeletedObjectsKey, NSInsertedObjectsKey };
+        int c = (sizeof(materializeKeys) / sizeof(NSString*));
+        for (int i = 0; i < c; i++) {
+            NSSet *set = [noteInfo objectForKey:materializeKeys[i]];
+            if ([set count] > 0) {
+                NSMutableSet *objectSet = [NSMutableSet set];
+                for (NSManagedObjectID *moid in set) {
+                    [objectSet addObject:[moc objectWithID:moid]];
+                }
+                [localUserInfo setObject:objectSet forKey:materializeKeys[i]];
+            }
+        }
+        
+        // (3) we do not materialize updates to objects we are not currently using
+        // (4) we do not materialize refreshes to objects we are not currently using
+        // (5) we do not materialize invalidations to objects we are not currently using
+        NSString *noMaterializeKeys[] = { NSUpdatedObjectsKey, NSRefreshedObjectsKey, NSInvalidatedObjectsKey };
+        c = (sizeof(noMaterializeKeys) / sizeof(NSString*));
+        for (int i = 0; i < 2; i++) {
+            NSSet *set = [noteInfo objectForKey:noMaterializeKeys[i]];
+            if ([set count] > 0) {
+                NSMutableSet *objectSet = [NSMutableSet set];
+                for (NSManagedObjectID *moid in set) {
+                    NSManagedObject *realObj = [moc objectRegisteredForID:moid];
+                    if (realObj) {
+                        [objectSet addObject:realObj];
+                    }
+                }
+                [localUserInfo setObject:objectSet forKey:noMaterializeKeys[i]];
+            }
+        }
+        
+        NSNotification *fakeSave = [NSNotification notificationWithName:NSManagedObjectContextDidSaveNotification object:self userInfo:localUserInfo];
+        [moc mergeChangesFromContextDidSaveNotification:fakeSave]; 
+        
+    } else {
+        [localUserInfo setObject:allInvalidations forKey:NSInvalidatedAllObjectsKey];
+    }
+    
+    [moc processPendingChanges];
+    
+    refreshNotification = [NSNotification notificationWithName:@"RefreshAllViews" object:self  userInfo:localUserInfo];
+    
+    [[NSNotificationCenter defaultCenter] postNotification:refreshNotification];
+//    [pool drain];
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
@@ -175,9 +244,6 @@
         // here you add the API to turn on Core Data iCloud support
         NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:UBIQUITY_CONTAINER_IDENTIFIER, NSPersistentStoreUbiquitousContentNameKey, cloudURL, NSPersistentStoreUbiquitousContentURLKey, [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,nil];
         
-        // Needed on iOS seed 3, but not Mac OS X
-        [self workaround_weakpackages_9653904:options];
-        
         NSError *error = nil;
         [psc lock];
         if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error]) {
@@ -211,65 +277,6 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
-
-#pragma mark - Needed in iOS seed 3 as a workaround for known issues
-
-static dispatch_queue_t polling_queue;
-
-- (void)workaround_weakpackages_9653904:(NSDictionary*)options {
-#if 1
-    
-    NSURL* cloudURL = [options objectForKey:NSPersistentStoreUbiquitousContentURLKey];
-    NSString* name = [options objectForKey:NSPersistentStoreUbiquitousContentNameKey];
-    NSString* cloudPath = [cloudURL path];
-    
-    NSMetadataQuery *query = [[NSMetadataQuery alloc] init];
-    [query setSearchScopes:[NSArray arrayWithObjects:NSMetadataQueryUbiquitousDataScope, NSMetadataQueryUbiquitousDocumentsScope, nil]];
-    [query setPredicate:[NSPredicate predicateWithFormat:@"kMDItemFSName == '*'"]]; // Just get everything.
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pollnewfiles_weakpackages:) name:NSMetadataQueryGatheringProgressNotification object:query];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pollnewfiles_weakpackages:) name:NSMetadataQueryDidUpdateNotification object:query];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pollnewfiles_weakpackages:) name:NSMetadataQueryDidFinishGatheringNotification object:query];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pollnewfiles_weakpackages:) name:NSMetadataQueryDidStartGatheringNotification object:query];
-    
-    // May also register for NSMetadataQueryDidFinishGatheringNotification if you want to update any user interface items when the initial result-gathering phase of the query is complete.
-    
-    self.ubiquitousQuery = query;
-    
-    polling_queue = dispatch_queue_create("workaround_weakpackages_9653904", DISPATCH_QUEUE_SERIAL);
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (![query startQuery]) {
-            NSLog(@"NSMetadataQuery failed to start!");
-        } else {
-            NSLog(@"started NSMetadataQuery!");
-        };
-    });
-    
-#endif
-}
-
-- (void)pollnewfiles_weakpackages:(NSNotification*)note {
-    [self.ubiquitousQuery disableUpdates];
-    NSArray *results = [self.ubiquitousQuery results];
-    NSFileManager* fm = [NSFileManager defaultManager];
-    NSFileCoordinator* fc = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
-    
-    for (NSMetadataItem *item in results) {
-        NSURL* itemurl = [item valueForAttribute:NSMetadataItemURLKey];
-        
-        NSString* filepath = [itemurl path];
-        if (![fm fileExistsAtPath:filepath]) {
-            dispatch_async(polling_queue, ^(void) {
-//                NSLog(@"coordinated reading of URL '%@'", itemurl);
-                [fc coordinateReadingItemAtURL:itemurl options:0 error:nil byAccessor:^(NSURL* url) { }];
-            });
-        }
-    }
-    
-    [self.ubiquitousQuery enableUpdates];
-    
 }
 
 @end
