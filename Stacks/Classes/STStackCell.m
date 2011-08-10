@@ -12,6 +12,8 @@
 
 @implementation STStackCell
 
+@synthesize animationsDisabled = _animationsDisabled;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
@@ -21,8 +23,8 @@
         self.textLabel.textAlignment = UITextAlignmentCenter;
         self.textLabel.font = [UIFont boldSystemFontOfSize:17];
         
-        UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)];
-        backgroundImage.image = [UIImage imageNamed:@"stackCellBackground"];
+        UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stackCellBackground"]];
+//        backgroundImage.image = [UIImage imageNamed:@"stackCellBackground"];
         
         self.backgroundView = backgroundImage;
         
@@ -35,9 +37,7 @@
         disclosureIndicator.image = [UIImage imageNamed:@"disclosureIndicator"];
         
         [self.contentView addSubview:disclosureIndicator];
-        
-        animationsDisabled = NO;
-    }
+        }
     return self;
 }
 
@@ -52,21 +52,27 @@
 {
     [super setEditing:editing animated:animated];
     
-    if (animationsDisabled) return;
+    NSLog(@"setEditing:%@", (self.editing ? @"YES" : @"NO"));
+    
+    if (_animationsDisabled) return;
     
     if (!editing) self.backgroundView.frame = CGRectMake(32, 0, self.backgroundView.frame.size.width, self.backgroundView.frame.size.height);
     
     CGRect oldFrame = self.backgroundView.frame;
     
-    float xOrigin = (editing) ? 32 : 0;
+    float xOrigin = editing ? 32 : 0;
     CGRect frame = CGRectMake(xOrigin, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
+    
+    float disclosureOpacity = editing ? 0.0 : 1.0;
     
     if (animated) {
         [UIView animateWithDuration:0.28 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^(void) {
             self.backgroundView.frame = frame;
+            disclosureIndicator.alpha = disclosureOpacity;
         } completion:nil];
     } else {
         self.backgroundView.frame = frame;
+        disclosureIndicator.alpha = disclosureOpacity;
     }
 }
 
@@ -74,16 +80,18 @@
 {
     [super willTransitionToState:state];
     
-    if (state == UITableViewCellStateShowingDeleteConfirmationMask)
-        animationsDisabled = YES;
+    NSLog(@"editing: %@", (self.editing ? @"Editing" : @"Not editing"));
+    
+    if (self.showingDeleteConfirmation)
+        _animationsDisabled = YES;
 }
 
 - (void)didTransitionToState:(UITableViewCellStateMask)state
 {
     [super didTransitionToState:state];
     
-    if (state == UITableViewCellStateDefaultMask && animationsDisabled == YES)
-        animationsDisabled = NO;
+    if (state == UITableViewCellStateDefaultMask && _animationsDisabled == YES)
+        _animationsDisabled = NO;
 }
 
 @end

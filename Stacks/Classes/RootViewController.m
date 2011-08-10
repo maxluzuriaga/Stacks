@@ -124,6 +124,7 @@
         cell = [[STStackCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
     // Configure the cell.
+    cell.animationsDisabled = NO;
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
