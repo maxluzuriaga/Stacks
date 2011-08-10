@@ -13,6 +13,8 @@
 #import "STStack.h"
 #import "STCard.h"
 
+#import "STStackCell.h"
+
 @implementation RootViewController
 
 @synthesize fetchedResultsController = __fetchedResultsController;
@@ -42,6 +44,9 @@
     [super viewDidLoad];
 	
     self.view.backgroundColor = [UIColor clearColor];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight = 65;
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
@@ -114,11 +119,9 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
+    STStackCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil)
+        cell = [[STStackCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
     // Configure the cell.
     [self configureCell:cell atIndexPath:indexPath];

@@ -53,6 +53,10 @@
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     self.navigationController.toolbarHidden = NO;
     
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    backgroundImageView.image = [UIImage imageNamed:@"backgroundTexture"];
+    [self.window addSubview:backgroundImageView];
+    
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     

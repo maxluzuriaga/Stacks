@@ -33,6 +33,10 @@
 		504A3E2A13F1E15500465C64 /* barButtonItemHighlightedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E2913F1E15500465C64 /* barButtonItemHighlightedBackground.png */; };
 		504A3E2D13F1E5C500465C64 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E2B13F1E5C500465C64 /* settingsIcon.png */; };
 		504A3E2E13F1E5C500465C64 /* settingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E2C13F1E5C500465C64 /* settingsIcon@2x.png */; };
+		505B3DF013F231AC007C4A17 /* STStackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B3DEF13F231AC007C4A17 /* STStackCell.m */; };
+		50FC06A413F2453B00C6C43C /* stackCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */; };
+		50FC06AC13F24CF800C6C43C /* backgroundTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06AA13F24CF700C6C43C /* backgroundTexture.png */; };
+		50FC06AD13F24CF800C6C43C /* backgroundTexture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06AB13F24CF800C6C43C /* backgroundTexture@2x.png */; };
 		50FD6FCB13CBF7EC00D6229B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD6FC713CBF7EC00D6229B /* Icon.png */; };
 		50FD6FCC13CBF7EC00D6229B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD6FC813CBF7EC00D6229B /* Icon@2x.png */; };
 		50FD6FCD13CBF7EC00D6229B /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD6FC913CBF7EC00D6229B /* Icon-Small.png */; };
@@ -76,7 +80,12 @@
 		504A3E2913F1E15500465C64 /* barButtonItemHighlightedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonItemHighlightedBackground.png; path = Images/barButtonItemHighlightedBackground.png; sourceTree = "<group>"; };
 		504A3E2B13F1E5C500465C64 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settingsIcon.png; path = Images/settingsIcon.png; sourceTree = "<group>"; };
 		504A3E2C13F1E5C500465C64 /* settingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settingsIcon@2x.png"; path = "Images/settingsIcon@2x.png"; sourceTree = "<group>"; };
+		505B3DEE13F231AC007C4A17 /* STStackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStackCell.h; sourceTree = "<group>"; };
+		505B3DEF13F231AC007C4A17 /* STStackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStackCell.m; sourceTree = "<group>"; };
 		50B55F2813CBD44100DBB00A /* STCommonDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCommonDefinitions.h; sourceTree = "<group>"; };
+		50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stackCellBackground@2x.png"; path = "Images/stackCellBackground@2x.png"; sourceTree = "<group>"; };
+		50FC06AA13F24CF700C6C43C /* backgroundTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backgroundTexture.png; path = Images/backgroundTexture.png; sourceTree = "<group>"; };
+		50FC06AB13F24CF800C6C43C /* backgroundTexture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backgroundTexture@2x.png"; path = "Images/backgroundTexture@2x.png"; sourceTree = "<group>"; };
 		50FD6FC713CBF7EC00D6229B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = SOURCE_ROOT; };
 		50FD6FC813CBF7EC00D6229B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = SOURCE_ROOT; };
 		50FD6FC913CBF7EC00D6229B /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "Stacks/Icon-Small.png"; sourceTree = SOURCE_ROOT; };
@@ -154,6 +163,7 @@
 		501EA64713C8C8CA006DE75D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				505B3DF213F231B1007C4A17 /* Views */,
 				501EA65C13C8CAA6006DE75D /* Delegates */,
 				501EA65A13C8CA83006DE75D /* Models */,
 				501EA65B13C8CA95006DE75D /* ViewControllers */,
@@ -178,6 +188,8 @@
 			children = (
 				504A3E1B13F1DA1000465C64 /* backBarButtonItemBackground.png */,
 				504A3E1713F1D81300465C64 /* backBarButtonItemBackground@2x.png */,
+				50FC06AA13F24CF700C6C43C /* backgroundTexture.png */,
+				50FC06AB13F24CF800C6C43C /* backgroundTexture@2x.png */,
 				504A3E1C13F1DA1000465C64 /* barButtonItemBackground.png */,
 				504A3E1813F1D81300465C64 /* barButtonItemBackground@2x.png */,
 				504A3E2913F1E15500465C64 /* barButtonItemHighlightedBackground.png */,
@@ -186,6 +198,7 @@
 				504A3E1413F1D75000465C64 /* barBackground@2x.png */,
 				504A3E2B13F1E5C500465C64 /* settingsIcon.png */,
 				504A3E2C13F1E5C500465C64 /* settingsIcon@2x.png */,
+				50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -241,6 +254,15 @@
 				50FD6FCF13CBF7FD00D6229B /* Icon-72.png */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		505B3DF213F231B1007C4A17 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				505B3DEE13F231AC007C4A17 /* STStackCell.h */,
+				505B3DEF13F231AC007C4A17 /* STStackCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +336,9 @@
 				504A3E2A13F1E15500465C64 /* barButtonItemHighlightedBackground.png in Resources */,
 				504A3E2D13F1E5C500465C64 /* settingsIcon.png in Resources */,
 				504A3E2E13F1E5C500465C64 /* settingsIcon@2x.png in Resources */,
+				50FC06A413F2453B00C6C43C /* stackCellBackground@2x.png in Resources */,
+				50FC06AC13F24CF800C6C43C /* backgroundTexture.png in Resources */,
+				50FC06AD13F24CF800C6C43C /* backgroundTexture@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +356,7 @@
 				501EA65013C8C8CA006DE75D /* StacksAppDelegate.m in Sources */,
 				501EA65613C8CA4F006DE75D /* STCard.m in Sources */,
 				501EA65913C8CA4F006DE75D /* STStack.m in Sources */,
+				505B3DF013F231AC007C4A17 /* STStackCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
