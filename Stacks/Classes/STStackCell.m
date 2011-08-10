@@ -25,6 +25,18 @@
         backgroundImage.image = [UIImage imageNamed:@"stackCellBackground"];
         
         self.backgroundView = backgroundImage;
+        
+        UIImageView *selectedBackgroundImage = [[UIImageView alloc] initWithFrame:backgroundImage.frame];
+        selectedBackgroundImage.image = [UIImage imageNamed:@"stackCellSelectedBackground"];
+        
+        self.selectedBackgroundView = selectedBackgroundImage;
+        
+        disclosureIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(283, 27, 9, 14)];
+        disclosureIndicator.image = [UIImage imageNamed:@"disclosureIndicator"];
+        
+        [self.contentView addSubview:disclosureIndicator];
+        
+        animationsDisabled = NO;
     }
     return self;
 }
@@ -32,22 +44,17 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
     self.textLabel.frame = CGRectMake(28, 25, 264, 18);
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected stat
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
     
-    if (!editing)
-        self.backgroundView.frame = CGRectMake(32, 0, self.backgroundView.frame.size.width, self.backgroundView.frame.size.height);
+    if (animationsDisabled) return;
+    
+    if (!editing) self.backgroundView.frame = CGRectMake(32, 0, self.backgroundView.frame.size.width, self.backgroundView.frame.size.height);
     
     CGRect oldFrame = self.backgroundView.frame;
     
@@ -61,6 +68,22 @@
     } else {
         self.backgroundView.frame = frame;
     }
+}
+
+- (void)willTransitionToState:(UITableViewCellStateMask)state
+{
+    [super willTransitionToState:state];
+    
+    if (state == UITableViewCellStateShowingDeleteConfirmationMask)
+        animationsDisabled = YES;
+}
+
+- (void)didTransitionToState:(UITableViewCellStateMask)state
+{
+    [super didTransitionToState:state];
+    
+    if (state == UITableViewCellStateDefaultMask && animationsDisabled == YES)
+        animationsDisabled = NO;
 }
 
 @end

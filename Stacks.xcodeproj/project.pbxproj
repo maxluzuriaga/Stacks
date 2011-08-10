@@ -34,6 +34,9 @@
 		504A3E2D13F1E5C500465C64 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E2B13F1E5C500465C64 /* settingsIcon.png */; };
 		504A3E2E13F1E5C500465C64 /* settingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E2C13F1E5C500465C64 /* settingsIcon@2x.png */; };
 		505B3DF013F231AC007C4A17 /* STStackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B3DEF13F231AC007C4A17 /* STStackCell.m */; };
+		50790B7413F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7313F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png */; };
+		50790B7813F2E98F001C68E9 /* disclosureIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7613F2E98F001C68E9 /* disclosureIndicator.png */; };
+		50790B7913F2E98F001C68E9 /* disclosureIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7713F2E98F001C68E9 /* disclosureIndicator@2x.png */; };
 		50FC06A413F2453B00C6C43C /* stackCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */; };
 		50FC06AC13F24CF800C6C43C /* backgroundTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06AA13F24CF700C6C43C /* backgroundTexture.png */; };
 		50FC06AD13F24CF800C6C43C /* backgroundTexture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06AB13F24CF800C6C43C /* backgroundTexture@2x.png */; };
@@ -82,6 +85,9 @@
 		504A3E2C13F1E5C500465C64 /* settingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settingsIcon@2x.png"; path = "Images/settingsIcon@2x.png"; sourceTree = "<group>"; };
 		505B3DEE13F231AC007C4A17 /* STStackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStackCell.h; sourceTree = "<group>"; };
 		505B3DEF13F231AC007C4A17 /* STStackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStackCell.m; sourceTree = "<group>"; };
+		50790B7313F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stackCellSelectedBackground@2x.png"; path = "Images/stackCellSelectedBackground@2x.png"; sourceTree = "<group>"; };
+		50790B7613F2E98F001C68E9 /* disclosureIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disclosureIndicator.png; path = Images/disclosureIndicator.png; sourceTree = "<group>"; };
+		50790B7713F2E98F001C68E9 /* disclosureIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disclosureIndicator@2x.png"; path = "Images/disclosureIndicator@2x.png"; sourceTree = "<group>"; };
 		50B55F2813CBD44100DBB00A /* STCommonDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCommonDefinitions.h; sourceTree = "<group>"; };
 		50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stackCellBackground@2x.png"; path = "Images/stackCellBackground@2x.png"; sourceTree = "<group>"; };
 		50FC06AA13F24CF700C6C43C /* backgroundTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backgroundTexture.png; path = Images/backgroundTexture.png; sourceTree = "<group>"; };
@@ -190,15 +196,18 @@
 				504A3E1713F1D81300465C64 /* backBarButtonItemBackground@2x.png */,
 				50FC06AA13F24CF700C6C43C /* backgroundTexture.png */,
 				50FC06AB13F24CF800C6C43C /* backgroundTexture@2x.png */,
+				504A3E1313F1D75000465C64 /* barBackground.png */,
+				504A3E1413F1D75000465C64 /* barBackground@2x.png */,
 				504A3E1C13F1DA1000465C64 /* barButtonItemBackground.png */,
 				504A3E1813F1D81300465C64 /* barButtonItemBackground@2x.png */,
 				504A3E2913F1E15500465C64 /* barButtonItemHighlightedBackground.png */,
 				504A3E2713F1DC7600465C64 /* barButtonItemHighlightedBackground@2x.png */,
-				504A3E1313F1D75000465C64 /* barBackground.png */,
-				504A3E1413F1D75000465C64 /* barBackground@2x.png */,
+				50790B7613F2E98F001C68E9 /* disclosureIndicator.png */,
+				50790B7713F2E98F001C68E9 /* disclosureIndicator@2x.png */,
 				504A3E2B13F1E5C500465C64 /* settingsIcon.png */,
 				504A3E2C13F1E5C500465C64 /* settingsIcon@2x.png */,
 				50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */,
+				50790B7313F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -339,6 +348,9 @@
 				50FC06A413F2453B00C6C43C /* stackCellBackground@2x.png in Resources */,
 				50FC06AC13F24CF800C6C43C /* backgroundTexture.png in Resources */,
 				50FC06AD13F24CF800C6C43C /* backgroundTexture@2x.png in Resources */,
+				50790B7413F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png in Resources */,
+				50790B7813F2E98F001C68E9 /* disclosureIndicator.png in Resources */,
+				50790B7913F2E98F001C68E9 /* disclosureIndicator@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,10 @@
 
 @class STStack;
 
-@interface STStackCell : UITableViewCell
+@interface STStackCell : UITableViewCell {
+    UIImageView *disclosureIndicator;
+    
+    BOOL animationsDisabled;
+}
 
 @end
