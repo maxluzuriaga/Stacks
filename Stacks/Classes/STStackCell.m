@@ -42,14 +42,19 @@
 {
     [super layoutSubviews];
     
-    NSLog(@"editing: %@, showingDeleteConfirmation: %@", (self.editing ? @"YES" : @"NO"), (self.showingDeleteConfirmation ? @"YES" : @"NO"));
+    NSLog(@"editing: %@, showingDeleteConfirmation: %@ lastEditing: %@", (self.editing ? @"YES" : @"NO"), (self.showingDeleteConfirmation ? @"YES" : @"NO"), (lastEditing ? @"YES" : @"NO"));
     
     self.textLabel.frame = CGRectMake(28, 25, 264, 18);
     
     float backgroundXOrigin;
     float disclosureOpacity;
     
-    if (self.editing) {
+    BOOL slidingToShowDeleteControl = (self.editing && self.showingDeleteConfirmation && !lastEditing);
+    BOOL enteringEditMode = (self.editing && !self.showingDeleteConfirmation && !lastEditing);
+    BOOL confirmingDeletion = (self.editing && self.showingDeleteConfirmation && lastEditing);
+    BOOL rejectingDeletion = (self.editing && !self.showingDeleteConfirmation && lastEditing);
+    
+    if ((enteringEditMode || confirmingDeletion || rejectingDeletion) && !slidingToShowDeleteControl) {
         backgroundXOrigin = 32;
         disclosureOpacity = 0.0;
     } else {
