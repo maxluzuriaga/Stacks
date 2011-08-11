@@ -309,29 +309,6 @@
 
 #pragma mark - Accessed from different view controllers
 
-- (void)addNewStack
-{
-    // Create a new instance of the entity managed by the fetched results controller.
-//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    STStack *newStack = [NSEntityDescription insertNewObjectForEntityForName:@"STStack" inManagedObjectContext:self.managedObjectContext];
-    
-    newStack.createdDate = [NSDate date];
-    newStack.name = @"Test Stack";
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error])
-    {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-}
-
 - (void)showSettings
 {
     NSLog(@"Show the settings");
