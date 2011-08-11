@@ -43,6 +43,7 @@
 		50790B8313F3A1BD001C68E9 /* blueButtonBackgroundNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7F13F3A1BC001C68E9 /* blueButtonBackgroundNormal@2x.png */; };
 		50790B8413F3A1BD001C68E9 /* blueButtonTappedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B8013F3A1BC001C68E9 /* blueButtonTappedBackground.png */; };
 		50790B8513F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B8113F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png */; };
+		50790B8C13F3A7B3001C68E9 /* STButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 50790B8B13F3A7B3001C68E9 /* STButton.m */; };
 		50FC06A413F2453B00C6C43C /* stackCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */; };
 		50FC06AC13F24CF800C6C43C /* backgroundTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06AA13F24CF700C6C43C /* backgroundTexture.png */; };
 		50FC06AD13F24CF800C6C43C /* backgroundTexture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06AB13F24CF800C6C43C /* backgroundTexture@2x.png */; };
@@ -100,6 +101,8 @@
 		50790B7F13F3A1BC001C68E9 /* blueButtonBackgroundNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blueButtonBackgroundNormal@2x.png"; path = "Images/blueButtonBackgroundNormal@2x.png"; sourceTree = "<group>"; };
 		50790B8013F3A1BC001C68E9 /* blueButtonTappedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blueButtonTappedBackground.png; path = Images/blueButtonTappedBackground.png; sourceTree = "<group>"; };
 		50790B8113F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blueButtonTappedBackground@2x.png"; path = "Images/blueButtonTappedBackground@2x.png"; sourceTree = "<group>"; };
+		50790B8A13F3A7B3001C68E9 /* STButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STButton.h; sourceTree = "<group>"; };
+		50790B8B13F3A7B3001C68E9 /* STButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STButton.m; sourceTree = "<group>"; };
 		50B55F2813CBD44100DBB00A /* STCommonDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCommonDefinitions.h; sourceTree = "<group>"; };
 		50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stackCellBackground@2x.png"; path = "Images/stackCellBackground@2x.png"; sourceTree = "<group>"; };
 		50FC06AA13F24CF700C6C43C /* backgroundTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backgroundTexture.png; path = Images/backgroundTexture.png; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 		505B3DF213F231B1007C4A17 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				50790B8A13F3A7B3001C68E9 /* STButton.h */,
+				50790B8B13F3A7B3001C68E9 /* STButton.m */,
 				505B3DEE13F231AC007C4A17 /* STStackCell.h */,
 				505B3DEF13F231AC007C4A17 /* STStackCell.m */,
 			);
@@ -393,6 +398,7 @@
 				501EA65613C8CA4F006DE75D /* STCard.m in Sources */,
 				501EA65913C8CA4F006DE75D /* STStack.m in Sources */,
 				505B3DF013F231AC007C4A17 /* STStackCell.m in Sources */,
+				50790B8C13F3A7B3001C68E9 /* STButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

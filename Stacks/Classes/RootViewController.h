@@ -18,4 +18,6 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)persistentStoreAdded;
 
+- (NSIndexPath *)indexPathFromIndexPath:(NSIndexPath *)originalIndexPath byAddingRow:(NSInteger)change;
+
 @end

@@ -111,12 +111,18 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+    return [sectionInfo numberOfObjects] + 1;
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        UITableViewCell *viewCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        viewCell.textLabel.text = @"A button";
+        return viewCell;
+    }
+    
     static NSString *CellIdentifier = @"Cell";
     
     STStackCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -128,14 +134,15 @@
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    if ([indexPath row] == 0)
+        return NO;
+    
+    return YES;
+}
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -143,7 +150,7 @@
     {
         // Delete the managed object for the given index path
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:[self indexPathFromIndexPath:indexPath byAddingRow:-1]]];
         
         // Save the context.
         NSError *error = nil;
@@ -168,8 +175,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([indexPath row] == 0)
+        return;
+    
     DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-    NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:[self indexPathFromIndexPath:indexPath byAddingRow:-1]];
     detailViewController.detailItem = selectedObject;    
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
@@ -270,20 +280,20 @@
     {
             
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[self indexPathFromIndexPath:newIndexPath byAddingRow:1]] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[self indexPathFromIndexPath:indexPath byAddingRow:1]] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:[tableView cellForRowAtIndexPath:[self indexPathFromIndexPath:indexPath byAddingRow:1]] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[self indexPathFromIndexPath:indexPath byAddingRow:1]] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[self indexPathFromIndexPath:newIndexPath byAddingRow:1]]withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
@@ -305,8 +315,15 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    STStack *stack = (STStack *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+    STStack *stack = (STStack *)[self.fetchedResultsController objectAtIndexPath:[self indexPathFromIndexPath:indexPath byAddingRow:-1]];
     cell.textLabel.text = stack.name;
+}
+
+- (NSIndexPath *)indexPathFromIndexPath:(NSIndexPath *)originalIndexPath byAddingRow:(NSInteger)change
+{
+    NSInteger newRow = [originalIndexPath row] + change;
+    
+    return [NSIndexPath indexPathForRow:newRow inSection:[originalIndexPath section]];
 }
 
 @end
