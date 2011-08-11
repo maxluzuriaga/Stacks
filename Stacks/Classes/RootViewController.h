@@ -19,6 +19,4 @@
 - (void)persistentStoreAdded;
 - (void)addNewStack;
 
-- (NSIndexPath *)indexPathFromIndexPath:(NSIndexPath *)originalIndexPath byAddingRow:(NSInteger)change;
-
 @end

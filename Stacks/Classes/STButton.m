@@ -81,4 +81,15 @@
     self.titleLabel.frame = CGRectMake(oldFrame.origin.x - 5, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
 }
 
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    
+    float opacity = enabled ? 1.0 : 0.5;
+    
+    [UIView animateWithDuration:0.5 animations:^(void) {
+        self.alpha = opacity;
+    }];
+}
+
 @end

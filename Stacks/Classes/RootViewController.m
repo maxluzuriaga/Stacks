@@ -16,6 +16,8 @@
 #import "STStackCell.h"
 #import "STButton.h"
 
+#define NEW_STACK_BUTTON_TAG 100
+
 @implementation RootViewController
 
 @synthesize fetchedResultsController = __fetchedResultsController;
@@ -44,16 +46,28 @@
 {
     [super viewDidLoad];
 	
-    self.view.backgroundColor = [UIColor clearColor];
-    
+    self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight = 65;
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 67)];
+    
+    STButton *button = [[STButton alloc] initWithFrame:CGRectMake(15, 15, 290, 44) buttonColor:STButtonColorBlue disclosureImageEnabled:NO];
+    [button setTitle:NSLocalizedString(@"+ Add a new Stack", @"+ Add a new Stack") forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(addNewStack) forControlEvents:UIControlEventTouchUpInside];
+    
+    button.tag = NEW_STACK_BUTTON_TAG;
+    
+    [headerView addSubview:button];
+    
+    self.tableView.tableHeaderView = headerView;
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     id delegate = [[UIApplication sharedApplication] delegate];
     
     NSArray *toolbarItems = [[NSArray alloc] initWithObjects:
-                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:delegate action:@selector(addNewStack)], 
+                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewStack)], 
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], 
                              [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settingsIcon"] style:UIBarButtonItemStylePlain target:delegate action:@selector(showSettings)], 
                              nil];
@@ -90,11 +104,11 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-    if (editing) {
+    
+    if (editing)
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemHighlightedBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    } else {
+    else
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -114,34 +128,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects] + 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([indexPath row] == 0)
-        return 67;
-    
-    return 65;
+    return [sectionInfo numberOfObjects];
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        // New Stack button
-        UITableViewCell *buttonCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        buttonCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        STButton *button = [[STButton alloc] initWithFrame:CGRectMake(15, 15, 290, 44) buttonColor:STButtonColorBlue disclosureImageEnabled:NO];
-        [button setTitle:NSLocalizedString(@"+ Add a new Stack", @"+ Add a new Stack") forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(addNewStack) forControlEvents:UIControlEventTouchUpInside];
-        
-        [[buttonCell contentView] addSubview:button];
-        
-        return buttonCell;
-    }
-    
     static NSString *CellIdentifier = @"Cell";
     
     STStackCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -156,10 +148,6 @@
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    if ([indexPath row] == 0)
-        return NO;
-    
     return YES;
 }
 
@@ -169,7 +157,7 @@
     {
         // Delete the managed object for the given index path
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:[self indexPathFromIndexPath:indexPath byAddingRow:-1]]];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         
         // Save the context.
         NSError *error = nil;
@@ -194,11 +182,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath row] == 0)
-        return;
-    
     DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-    NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:[self indexPathFromIndexPath:indexPath byAddingRow:-1]];
+    NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     detailViewController.detailItem = selectedObject;    
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
@@ -299,20 +284,20 @@
     {
             
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[self indexPathFromIndexPath:newIndexPath byAddingRow:1]] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[self indexPathFromIndexPath:indexPath byAddingRow:1]] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:[self indexPathFromIndexPath:indexPath byAddingRow:1]] atIndexPath:indexPath];
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[self indexPathFromIndexPath:indexPath byAddingRow:1]] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[self indexPathFromIndexPath:newIndexPath byAddingRow:1]]withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
@@ -334,7 +319,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    STStack *stack = (STStack *)[self.fetchedResultsController objectAtIndexPath:[self indexPathFromIndexPath:indexPath byAddingRow:-1]];
+    STStack *stack = (STStack *)[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = stack.name;
 }
 
@@ -361,15 +346,6 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-}
-
-#pragma mark - Utility methods
-
-- (NSIndexPath *)indexPathFromIndexPath:(NSIndexPath *)originalIndexPath byAddingRow:(NSInteger)change
-{
-    NSInteger newRow = [originalIndexPath row] + change;
-    
-    return [NSIndexPath indexPathForRow:newRow inSection:[originalIndexPath section]];
 }
 
 @end
