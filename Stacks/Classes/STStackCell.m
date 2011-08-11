@@ -12,32 +12,29 @@
 
 @implementation STStackCell
 
-@synthesize animationsDisabled = _animationsDisabled;
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
+        lastEditing = NO;
+        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         self.textLabel.textAlignment = UITextAlignmentCenter;
         self.textLabel.font = [UIFont boldSystemFontOfSize:17];
+        self.textLabel.highlightedTextColor = [UIColor whiteColor];
         
         UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stackCellBackground"]];
-//        backgroundImage.image = [UIImage imageNamed:@"stackCellBackground"];
-        
         self.backgroundView = backgroundImage;
         
-        UIImageView *selectedBackgroundImage = [[UIImageView alloc] initWithFrame:backgroundImage.frame];
-        selectedBackgroundImage.image = [UIImage imageNamed:@"stackCellSelectedBackground"];
-        
+        UIImageView *selectedBackgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stackCellSelectedBackground"]];
         self.selectedBackgroundView = selectedBackgroundImage;
         
         disclosureIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(283, 27, 9, 14)];
         disclosureIndicator.image = [UIImage imageNamed:@"disclosureIndicator"];
         
         [self.contentView addSubview:disclosureIndicator];
-        }
+    }
     return self;
 }
 
@@ -45,53 +42,39 @@
 {
     [super layoutSubviews];
     
+    NSLog(@"editing: %@, showingDeleteConfirmation: %@", (self.editing ? @"YES" : @"NO"), (self.showingDeleteConfirmation ? @"YES" : @"NO"));
+    
     self.textLabel.frame = CGRectMake(28, 25, 264, 18);
+    
+    float backgroundXOrigin;
+    float disclosureOpacity;
+    
+    if (self.editing) {
+        backgroundXOrigin = 32;
+        disclosureOpacity = 0.0;
+    } else {
+        backgroundXOrigin = 0;
+        disclosureOpacity = 1.0;
+    }
+    
+    CGRect oldBackgroundFrame = self.backgroundView.frame;
+    self.backgroundView.frame = CGRectMake(backgroundXOrigin, oldBackgroundFrame.origin.y, oldBackgroundFrame.size.width, oldBackgroundFrame.size.height);
+    
+    disclosureIndicator.alpha = disclosureOpacity;
+}
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    
+    lastEditing = NO;
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
     
-    NSLog(@"setEditing:%@", (self.editing ? @"YES" : @"NO"));
-    
-    if (_animationsDisabled) return;
-    
-    if (!editing) self.backgroundView.frame = CGRectMake(32, 0, self.backgroundView.frame.size.width, self.backgroundView.frame.size.height);
-    
-    CGRect oldFrame = self.backgroundView.frame;
-    
-    float xOrigin = editing ? 32 : 0;
-    CGRect frame = CGRectMake(xOrigin, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
-    
-    float disclosureOpacity = editing ? 0.0 : 1.0;
-    
-    if (animated) {
-        [UIView animateWithDuration:0.28 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^(void) {
-            self.backgroundView.frame = frame;
-            disclosureIndicator.alpha = disclosureOpacity;
-        } completion:nil];
-    } else {
-        self.backgroundView.frame = frame;
-        disclosureIndicator.alpha = disclosureOpacity;
-    }
-}
-
-- (void)willTransitionToState:(UITableViewCellStateMask)state
-{
-    [super willTransitionToState:state];
-    
-    NSLog(@"editing: %@", (self.editing ? @"Editing" : @"Not editing"));
-    
-    if (self.showingDeleteConfirmation)
-        _animationsDisabled = YES;
-}
-
-- (void)didTransitionToState:(UITableViewCellStateMask)state
-{
-    [super didTransitionToState:state];
-    
-    if (state == UITableViewCellStateDefaultMask && _animationsDisabled == YES)
-        _animationsDisabled = NO;
+    lastEditing = editing;
 }
 
 @end

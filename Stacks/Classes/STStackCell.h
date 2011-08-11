@@ -13,9 +13,7 @@
 @interface STStackCell : UITableViewCell {
     UIImageView *disclosureIndicator;
     
-    BOOL _animationsDisabled;
+    BOOL lastEditing;
 }
-
-@property (nonatomic) BOOL animationsDisabled;
 
 @end
