@@ -10,13 +10,13 @@
 
 @implementation STButton
 
-@synthesize buttonColor = _buttonColor, disclosureImageEnabled = _disclosureImageEnabled;
+@synthesize disclosureImageEnabled = _disclosureImageEnabled;
 
 - (id)initWithFrame:(CGRect)frame buttonColor:(STButtonColor)buttonColor disclosureImageEnabled:(BOOL)disclosureImageEnabled
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.buttonColor = buttonColor;
+        [self setButtonColor:buttonColor];
         
         self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
         self.titleLabel.shadowOffset = CGSizeMake(0, 1);
@@ -70,10 +70,8 @@
 
 - (void)setButtonColor:(STButtonColor)buttonColor
 {
-    if (buttonColor != _buttonColor) {
-        _buttonColor = buttonColor;
-        [self configureButtonColor];
-    }
+    _buttonColor = buttonColor;
+    [self configureButtonColor];
 }
 
 - (void)adjustTextLabelForDisclosureImage

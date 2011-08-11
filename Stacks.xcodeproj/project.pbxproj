@@ -40,7 +40,7 @@
 		50790B7B13F3A1A7001C68E9 /* stackCellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7A13F3A1A7001C68E9 /* stackCellBackground.png */; };
 		50790B7D13F3A1AF001C68E9 /* stackCellSelectedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7C13F3A1AF001C68E9 /* stackCellSelectedBackground.png */; };
 		50790B8213F3A1BD001C68E9 /* blueButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7E13F3A1BC001C68E9 /* blueButtonBackground.png */; };
-		50790B8313F3A1BD001C68E9 /* blueButtonBackgroundNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7F13F3A1BC001C68E9 /* blueButtonBackgroundNormal@2x.png */; };
+		50790B8313F3A1BD001C68E9 /* blueButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7F13F3A1BC001C68E9 /* blueButtonBackground@2x.png */; };
 		50790B8413F3A1BD001C68E9 /* blueButtonTappedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B8013F3A1BC001C68E9 /* blueButtonTappedBackground.png */; };
 		50790B8513F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B8113F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png */; };
 		50790B8C13F3A7B3001C68E9 /* STButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 50790B8B13F3A7B3001C68E9 /* STButton.m */; };
@@ -98,7 +98,7 @@
 		50790B7A13F3A1A7001C68E9 /* stackCellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stackCellBackground.png; path = Images/stackCellBackground.png; sourceTree = "<group>"; };
 		50790B7C13F3A1AF001C68E9 /* stackCellSelectedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stackCellSelectedBackground.png; path = Images/stackCellSelectedBackground.png; sourceTree = "<group>"; };
 		50790B7E13F3A1BC001C68E9 /* blueButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blueButtonBackground.png; path = Images/blueButtonBackground.png; sourceTree = "<group>"; };
-		50790B7F13F3A1BC001C68E9 /* blueButtonBackgroundNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blueButtonBackgroundNormal@2x.png"; path = "Images/blueButtonBackgroundNormal@2x.png"; sourceTree = "<group>"; };
+		50790B7F13F3A1BC001C68E9 /* blueButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blueButtonBackground@2x.png"; path = "Images/blueButtonBackground@2x.png"; sourceTree = "<group>"; };
 		50790B8013F3A1BC001C68E9 /* blueButtonTappedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blueButtonTappedBackground.png; path = Images/blueButtonTappedBackground.png; sourceTree = "<group>"; };
 		50790B8113F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blueButtonTappedBackground@2x.png"; path = "Images/blueButtonTappedBackground@2x.png"; sourceTree = "<group>"; };
 		50790B8A13F3A7B3001C68E9 /* STButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STButton.h; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 				504A3E2913F1E15500465C64 /* barButtonItemHighlightedBackground.png */,
 				504A3E2713F1DC7600465C64 /* barButtonItemHighlightedBackground@2x.png */,
 				50790B7E13F3A1BC001C68E9 /* blueButtonBackground.png */,
-				50790B7F13F3A1BC001C68E9 /* blueButtonBackgroundNormal@2x.png */,
+				50790B7F13F3A1BC001C68E9 /* blueButtonBackground@2x.png */,
 				50790B8013F3A1BC001C68E9 /* blueButtonTappedBackground.png */,
 				50790B8113F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png */,
 				50790B7613F2E98F001C68E9 /* disclosureIndicator.png */,
@@ -377,7 +377,7 @@
 				50790B7B13F3A1A7001C68E9 /* stackCellBackground.png in Resources */,
 				50790B7D13F3A1AF001C68E9 /* stackCellSelectedBackground.png in Resources */,
 				50790B8213F3A1BD001C68E9 /* blueButtonBackground.png in Resources */,
-				50790B8313F3A1BD001C68E9 /* blueButtonBackgroundNormal@2x.png in Resources */,
+				50790B8313F3A1BD001C68E9 /* blueButtonBackground@2x.png in Resources */,
 				50790B8413F3A1BD001C68E9 /* blueButtonTappedBackground.png in Resources */,
 				50790B8513F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png in Resources */,
 			);

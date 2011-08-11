@@ -19,11 +19,11 @@ typedef enum {
     UIImage *disclosureImage;
 }
 
-@property (nonatomic) STButtonColor buttonColor;
 @property (nonatomic) BOOL disclosureImageEnabled;
 
 - (id)initWithFrame:(CGRect)frame buttonColor:(STButtonColor)newColor disclosureImageEnabled:(BOOL)newDisclosureImageEnabled;
 - (void)configureButtonColor;
 - (void)adjustTextLabelForDisclosureImage;
+- (void)setButtonColor:(STButtonColor)buttonColor;
 
 @end

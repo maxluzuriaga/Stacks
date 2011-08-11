@@ -14,6 +14,7 @@
 #import "STCard.h"
 
 #import "STStackCell.h"
+#import "STButton.h"
 
 @implementation RootViewController
 
@@ -46,7 +47,6 @@
     self.view.backgroundColor = [UIColor clearColor];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.rowHeight = 65;
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
@@ -90,10 +90,11 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-    if (editing)
+    if (editing) {
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemHighlightedBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    else
+    } else {
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -116,13 +117,29 @@
     return [sectionInfo numberOfObjects] + 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath row] == 0)
+        return 67;
+    
+    return 65;
+}
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        UITableViewCell *viewCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        viewCell.textLabel.text = @"A button";
-        return viewCell;
+        // New Stack button
+        UITableViewCell *buttonCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        buttonCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        STButton *button = [[STButton alloc] initWithFrame:CGRectMake(15, 15, 290, 44) buttonColor:STButtonColorBlue disclosureImageEnabled:NO];
+        [button setTitle:NSLocalizedString(@"+ Add a new Stack", @"+ Add a new Stack") forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(addNewStack) forControlEvents:UIControlEventTouchUpInside];
+        
+        [[buttonCell contentView] addSubview:button];
+        
+        return buttonCell;
     }
     
     static NSString *CellIdentifier = @"Cell";
