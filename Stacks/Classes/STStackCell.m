@@ -42,8 +42,6 @@
 {
     [super layoutSubviews];
     
-    NSLog(@"editing: %@, showingDeleteConfirmation: %@ lastEditing: %@", (self.editing ? @"YES" : @"NO"), (self.showingDeleteConfirmation ? @"YES" : @"NO"), (lastEditing ? @"YES" : @"NO"));
-    
     self.textLabel.frame = CGRectMake(28, 25, 264, 18);
     
     float backgroundXOrigin;
@@ -66,6 +64,15 @@
     self.backgroundView.frame = CGRectMake(backgroundXOrigin, oldBackgroundFrame.origin.y, oldBackgroundFrame.size.width, oldBackgroundFrame.size.height);
     
     disclosureIndicator.alpha = disclosureOpacity;
+}
+
+- (void)willTransitionToState:(UITableViewCellStateMask)state
+{
+    [super willTransitionToState:state];
+    
+    if ((state == UITableViewCellStateDefaultMask) && lastEditing) {
+        self.backgroundView.frame = CGRectMake(32, 0, self.backgroundView.frame.size.width, self.backgroundView.frame.size.height);
+    }
 }
 
 - (void)prepareForReuse
