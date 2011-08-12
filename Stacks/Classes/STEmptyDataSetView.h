@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface STEmptyDataSetView : UIView
+@interface STEmptyDataSetView : UIView {
+    
+    
+    UIImageView *backgroundImage;
+}
 
 @end
