@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface StacksAppDelegate : UIResponder <UIApplicationDelegate> {
-    @private
+    UIImageView *toolbarGlow;
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -22,6 +22,8 @@
 - (NSURL *)applicationDocumentsDirectory;
 - (void)mergeiCloudChanges:(NSDictionary *)noteInfo forContext:(NSManagedObjectContext *)moc;
 - (void)mergeChangesFromiCloud:(NSNotification *)notification;
+- (void)showToolbarGlow;
+- (void)hideToolbarGlow;
 
 @property (strong, nonatomic) UINavigationController *navigationController;
 

@@ -6,12 +6,20 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+typedef enum {
+    STEmptyDataSetViewStyleOneButton,
+    STEmptyDataSetViewStyleTwoButtons
+} STEmptyDataSetViewStyle;
+
 #import <UIKit/UIKit.h>
 
 @interface STEmptyDataSetView : UIView {
-    
-    
-    UIImageView *backgroundImage;
+    UIImageView *buttonBackground;
+    UIWebView *webView;
 }
+
+- (id)initWithFrame:(CGRect)frame text:(NSString *)text style:(STEmptyDataSetViewStyle)style;
+- (void)setText:(NSString *)text;
+- (void)setStyle:(STEmptyDataSetViewStyle)style;
 
 @end

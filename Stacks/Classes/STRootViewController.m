@@ -9,12 +9,14 @@
 #import "STRootViewController.h"
 
 #import "DetailViewController.h"
+#import "StacksAppDelegate.h"
 
 #import "STStack.h"
 #import "STCard.h"
 
 #import "STStackCell.h"
 #import "STButton.h"
+#import "STEmptyDataSetView.h"
 
 #define NEW_STACK_BUTTON_TAG 100
 
@@ -27,7 +29,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Stacks", @"Stacks");
+        self.title = NSLocalizedString(@"Stacks", nil);
         id delegate = [[UIApplication sharedApplication] delegate];
         self.managedObjectContext = [delegate managedObjectContext];
     }
@@ -53,7 +55,7 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 67)];
     
     STButton *button = [[STButton alloc] initWithFrame:CGRectMake(15, 15, 290, 44) buttonColor:STButtonColorBlue disclosureImageEnabled:NO];
-    [button setTitle:NSLocalizedString(@"+ Add a new Stack", @"+ Add a new Stack") forState:UIControlStateNormal];
+    [button setTitle:NSLocalizedString(@"+ Add a new Stack", nil) forState:UIControlStateNormal];
     [button addTarget:self action:@selector(addNewStack) forControlEvents:UIControlEventTouchUpInside];
     
     button.tag = NEW_STACK_BUTTON_TAG;
@@ -72,6 +74,9 @@
                              [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settingsIcon"] style:UIBarButtonItemStylePlain target:delegate action:@selector(showSettings)], 
                              nil];
     self.toolbarItems = toolbarItems;
+    
+    NSString *text = NSLocalizedString(@"Tap either button to add your first Stack.", nil);
+    emptyDataSetView = [[STEmptyDataSetView alloc] initWithFrame:CGRectMake(0, 0, 320, 261) text:text style:STEmptyDataSetViewStyleOneButton];
 }
 
 - (void)viewDidUnload
@@ -255,6 +260,7 @@
 	}
     
     [self.tableView reloadData];
+    [self presentEmptyDataSetViewIfNeeded];
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
@@ -303,11 +309,17 @@
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
+    
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+    if ([sectionInfo numberOfObjects] == 0) {
+        [self setEditing:NO animated:YES];
+    }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+    [self presentEmptyDataSetViewIfNeeded];
 }
 
 /*
@@ -324,6 +336,34 @@
 {
     STStack *stack = (STStack *)[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = stack.name;
+}
+
+- (void)presentEmptyDataSetViewIfNeeded
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+    BOOL hasStacks = [sectionInfo numberOfObjects] != 0;
+    BOOL shown = [emptyDataSetView superview] != nil;
+    
+    StacksAppDelegate *delegate = (StacksAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if (!hasStacks && !shown) {
+        emptyDataSetView.alpha = 0.0;
+        [self.view addSubview:emptyDataSetView];
+        [self.view sendSubviewToBack:emptyDataSetView];
+        
+        [UIView animateWithDuration:0.5 animations:^(void) {
+            emptyDataSetView.alpha = 1.0;
+        }];
+        
+        [delegate showToolbarGlow];
+    } else if (hasStacks && shown) {
+        [UIView animateWithDuration:0.5 animations:^(void) {
+            emptyDataSetView.alpha = 0.0;
+        }];
+        [emptyDataSetView removeFromSuperview];
+        
+        [delegate hideToolbarGlow];
+    }
 }
 
 #pragma mark - Called from interface elements

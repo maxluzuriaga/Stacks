@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import <CoreData/CoreData.h>
 
-@interface STRootViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@class STEmptyDataSetView;
+
+@interface STRootViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
+    STEmptyDataSetView *emptyDataSetView;
+}
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -18,5 +21,6 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)persistentStoreAdded;
 - (void)addNewStack;
+- (void)presentEmptyDataSetViewIfNeeded;
 
 @end

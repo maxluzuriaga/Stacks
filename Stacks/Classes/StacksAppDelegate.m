@@ -17,6 +17,7 @@
 
 #define UBIQUITY_CONTAINER_IDENTIFIER @"KA3366Q756.com.maxluzuriaga.Stacks"
 #define PERSISTENT_STORE_FILE_NAME @"Stacks.sqlite"
+#define BACKGROUND_IMAGE_TAG 42
 
 @implementation StacksAppDelegate
 
@@ -79,10 +80,14 @@
     
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     backgroundImageView.image = [UIImage imageNamed:@"backgroundTexture"];
+    backgroundImageView.tag = BACKGROUND_IMAGE_TAG;
     [self.window addSubview:backgroundImageView];
     
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
+    
+    toolbarGlow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 365, 160, 71)];
+    toolbarGlow.image = [UIImage imageNamed:@"bottomButtonGlow"];
     
     return YES;
 }
@@ -336,6 +341,23 @@
 - (void)showSettings
 {
     NSLog(@"Show the settings");
+}
+
+- (void)showToolbarGlow
+{
+    toolbarGlow.alpha = 0.0;
+    [self.window addSubview:toolbarGlow];
+    [UIView animateWithDuration:0.5 animations:^(void) {
+        toolbarGlow.alpha = 1.0;
+    }];
+}
+
+- (void)hideToolbarGlow
+{
+    [UIView animateWithDuration:0.5 animations:^(void) {
+        toolbarGlow.alpha = 0.0;
+    }];
+    [toolbarGlow removeFromSuperview];
 }
 
 @end
