@@ -10,7 +10,6 @@
 
 @interface StacksAppDelegate : UIResponder <UIApplicationDelegate> {
     @private
-    NSMetadataQuery *ubiquitousQuery;
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -18,7 +17,6 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (strong, nonatomic) NSMetadataQuery *ubiquitousQuery;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
