@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500E13D713F5C88A00FF2F38 /* STEmptyDataSetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 500E13D613F5C88A00FF2F38 /* STEmptyDataSetView.m */; };
 		501EA60413C8C803006DE75D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501EA60313C8C803006DE75D /* UIKit.framework */; };
 		501EA60613C8C803006DE75D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501EA60513C8C803006DE75D /* Foundation.framework */; };
 		501EA60813C8C803006DE75D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501EA60713C8C803006DE75D /* CoreGraphics.framework */; };
@@ -57,6 +58,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		500E13D513F5C88A00FF2F38 /* STEmptyDataSetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STEmptyDataSetView.h; path = Stacks/Classes/STEmptyDataSetView.h; sourceTree = SOURCE_ROOT; };
+		500E13D613F5C88A00FF2F38 /* STEmptyDataSetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STEmptyDataSetView.m; path = Stacks/Classes/STEmptyDataSetView.m; sourceTree = SOURCE_ROOT; };
 		501EA5FF13C8C803006DE75D /* Stacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		501EA60313C8C803006DE75D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		501EA60513C8C803006DE75D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,7 +74,7 @@
 		501EA62513C8C803006DE75D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
 		501EA64813C8C8CA006DE75D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		501EA64913C8C8CA006DE75D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		501EA64A13C8C8CA006DE75D /* STRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = STRootViewController.h; sourceTree = "<group>"; };
+		501EA64A13C8C8CA006DE75D /* STRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STRootViewController.h; sourceTree = "<group>"; };
 		501EA64B13C8C8CA006DE75D /* STRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STRootViewController.m; sourceTree = "<group>"; };
 		501EA64C13C8C8CA006DE75D /* StacksAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StacksAppDelegate.h; sourceTree = "<group>"; };
 		501EA64D13C8C8CA006DE75D /* StacksAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StacksAppDelegate.m; sourceTree = "<group>"; };
@@ -295,6 +298,8 @@
 			children = (
 				50790B8A13F3A7B3001C68E9 /* STButton.h */,
 				50790B8B13F3A7B3001C68E9 /* STButton.m */,
+				500E13D513F5C88A00FF2F38 /* STEmptyDataSetView.h */,
+				500E13D613F5C88A00FF2F38 /* STEmptyDataSetView.m */,
 				505B3DEE13F231AC007C4A17 /* STStackCell.h */,
 				505B3DEF13F231AC007C4A17 /* STStackCell.m */,
 			);
@@ -403,6 +408,7 @@
 				501EA65913C8CA4F006DE75D /* STStack.m in Sources */,
 				505B3DF013F231AC007C4A17 /* STStackCell.m in Sources */,
 				50790B8C13F3A7B3001C68E9 /* STButton.m in Sources */,
+				500E13D713F5C88A00FF2F38 /* STEmptyDataSetView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
