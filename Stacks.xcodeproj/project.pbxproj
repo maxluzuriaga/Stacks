@@ -14,10 +14,10 @@
 		501EA61013C8C803006DE75D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 501EA60E13C8C803006DE75D /* InfoPlist.strings */; };
 		501EA61213C8C803006DE75D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA61113C8C803006DE75D /* main.m */; };
 		501EA61913C8C803006DE75D /* Stacks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 501EA61713C8C803006DE75D /* Stacks.xcdatamodeld */; };
-		501EA62313C8C803006DE75D /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501EA62113C8C803006DE75D /* RootViewController.xib */; };
+		501EA62313C8C803006DE75D /* STRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501EA62113C8C803006DE75D /* STRootViewController.xib */; };
 		501EA62613C8C803006DE75D /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501EA62413C8C803006DE75D /* DetailViewController.xib */; };
 		501EA64E13C8C8CA006DE75D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA64913C8C8CA006DE75D /* DetailViewController.m */; };
-		501EA64F13C8C8CA006DE75D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA64B13C8C8CA006DE75D /* RootViewController.m */; };
+		501EA64F13C8C8CA006DE75D /* STRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA64B13C8C8CA006DE75D /* STRootViewController.m */; };
 		501EA65013C8C8CA006DE75D /* StacksAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA64D13C8C8CA006DE75D /* StacksAppDelegate.m */; };
 		501EA65613C8CA4F006DE75D /* STCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA65513C8CA4F006DE75D /* STCard.m */; };
 		501EA65913C8CA4F006DE75D /* STStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 501EA65813C8CA4F006DE75D /* STStack.m */; };
@@ -67,12 +67,12 @@
 		501EA61113C8C803006DE75D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		501EA61313C8C803006DE75D /* Stacks-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stacks-Prefix.pch"; sourceTree = "<group>"; };
 		501EA61813C8C803006DE75D /* Stacks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stacks.xcdatamodel; sourceTree = "<group>"; };
-		501EA62213C8C803006DE75D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		501EA62213C8C803006DE75D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/STRootViewController.xib; sourceTree = "<group>"; };
 		501EA62513C8C803006DE75D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
 		501EA64813C8C8CA006DE75D /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		501EA64913C8C8CA006DE75D /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		501EA64A13C8C8CA006DE75D /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		501EA64B13C8C8CA006DE75D /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		501EA64A13C8C8CA006DE75D /* STRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = STRootViewController.h; sourceTree = "<group>"; };
+		501EA64B13C8C8CA006DE75D /* STRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STRootViewController.m; sourceTree = "<group>"; };
 		501EA64C13C8C8CA006DE75D /* StacksAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StacksAppDelegate.h; sourceTree = "<group>"; };
 		501EA64D13C8C8CA006DE75D /* StacksAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StacksAppDelegate.m; sourceTree = "<group>"; };
 		501EA65413C8CA4F006DE75D /* STCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCard.h; sourceTree = "<group>"; };
@@ -240,7 +240,7 @@
 		501EA65313C8C937006DE75D /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
-				501EA62113C8C803006DE75D /* RootViewController.xib */,
+				501EA62113C8C803006DE75D /* STRootViewController.xib */,
 				501EA62413C8C803006DE75D /* DetailViewController.xib */,
 			);
 			name = Nibs;
@@ -262,8 +262,8 @@
 			children = (
 				501EA64813C8C8CA006DE75D /* DetailViewController.h */,
 				501EA64913C8C8CA006DE75D /* DetailViewController.m */,
-				501EA64A13C8C8CA006DE75D /* RootViewController.h */,
-				501EA64B13C8C8CA006DE75D /* RootViewController.m */,
+				501EA64A13C8C8CA006DE75D /* STRootViewController.h */,
+				501EA64B13C8C8CA006DE75D /* STRootViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -352,7 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				501EA61013C8C803006DE75D /* InfoPlist.strings in Resources */,
-				501EA62313C8C803006DE75D /* RootViewController.xib in Resources */,
+				501EA62313C8C803006DE75D /* STRootViewController.xib in Resources */,
 				501EA62613C8C803006DE75D /* DetailViewController.xib in Resources */,
 				502BCB0013CABA9000A0D9C7 /* Stacks.entitlements in Resources */,
 				50FD6FCB13CBF7EC00D6229B /* Icon.png in Resources */,
@@ -397,7 +397,7 @@
 				501EA61213C8C803006DE75D /* main.m in Sources */,
 				501EA61913C8C803006DE75D /* Stacks.xcdatamodeld in Sources */,
 				501EA64E13C8C8CA006DE75D /* DetailViewController.m in Sources */,
-				501EA64F13C8C8CA006DE75D /* RootViewController.m in Sources */,
+				501EA64F13C8C8CA006DE75D /* STRootViewController.m in Sources */,
 				501EA65013C8C8CA006DE75D /* StacksAppDelegate.m in Sources */,
 				501EA65613C8CA4F006DE75D /* STCard.m in Sources */,
 				501EA65913C8CA4F006DE75D /* STStack.m in Sources */,
@@ -417,12 +417,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		501EA62113C8C803006DE75D /* RootViewController.xib */ = {
+		501EA62113C8C803006DE75D /* STRootViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				501EA62213C8C803006DE75D /* en */,
 			);
-			name = RootViewController.xib;
+			name = STRootViewController.xib;
 			path = ..;
 			sourceTree = "<group>";
 		};

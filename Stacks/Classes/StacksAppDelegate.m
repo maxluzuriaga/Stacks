@@ -10,7 +10,7 @@
 
 #import "StacksAppDelegate.h"
 
-#import "RootViewController.h"
+#import "STRootViewController.h"
 #import "STCommonDefinitions.h"
 
 #import "STStack.h"
@@ -47,7 +47,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    RootViewController *controller = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    STRootViewController *controller = [[STRootViewController alloc] initWithNibName:@"STRootViewController" bundle:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(persistentStoreAdded) name:kPersistentStoreCoordinatorDidAddPersistentStoreNotification object:self];
     

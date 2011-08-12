@@ -8,7 +8,7 @@
 
 #import "DetailViewController.h"
 
-#import "RootViewController.h"
+#import "STRootViewController.h"
 
 @interface DetailViewController ()
 - (void)configureView;
