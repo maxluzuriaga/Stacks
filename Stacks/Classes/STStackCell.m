@@ -22,8 +22,8 @@
         
         self.textLabel.textAlignment = UITextAlignmentCenter;
         self.textLabel.font = [UIFont boldSystemFontOfSize:17];
-        self.textLabel.shadowOffset = CGSizeMake(0, 1);
-        self.textLabel.shadowColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
+        
+        [self configureTextLabel];
         
         self.textLabel.highlightedTextColor = [UIColor whiteColor];
         
@@ -46,10 +46,10 @@
 {
     [super layoutSubviews];
     
-    self.textLabel.frame = CGRectMake(28, 25, 264, 18);
+    float offset = 0;
+    float disclosureOpacity = 1.0;
     
-    float backgroundXOrigin;
-    float disclosureOpacity;
+    BOOL adjustTextLabel = NO;
     
     BOOL slidingToShowDeleteControl = (self.editing && self.showingDeleteConfirmation && !lastEditing);
     BOOL enteringEditMode = (self.editing && !self.showingDeleteConfirmation && !lastEditing);
@@ -57,35 +57,57 @@
     BOOL rejectingDeletion = (self.editing && !self.showingDeleteConfirmation && lastEditing);
     
     if ((enteringEditMode || confirmingDeletion || rejectingDeletion) && !slidingToShowDeleteControl) {
-        backgroundXOrigin = 32;
+        offset = 32;
         disclosureOpacity = 0.0;
-    } else {
-        backgroundXOrigin = 0;
-        disclosureOpacity = 1.0;
     }
     
+    if (slidingToShowDeleteControl) {
+        adjustTextLabel = YES;
+        offset = -63;
+        disclosureOpacity = 0.0;
+    }
+    
+    self.textLabel.frame = CGRectMake((adjustTextLabel ? (28 + offset) : 28), 25, 264, 18);
+    
     CGRect oldBackgroundFrame = self.backgroundView.frame;
-    self.backgroundView.frame = CGRectMake(backgroundXOrigin, oldBackgroundFrame.origin.y, oldBackgroundFrame.size.width, oldBackgroundFrame.size.height);
+    self.backgroundView.frame = CGRectMake(oldBackgroundFrame.origin.x + offset, oldBackgroundFrame.origin.y, oldBackgroundFrame.size.width, oldBackgroundFrame.size.height);
     
     disclosureIndicator.alpha = disclosureOpacity;
 }
 
-- (void)willTransitionToState:(UITableViewCellStateMask)state
-{
+- (void)willTransitionToState:(UITableViewCellStateMask)state {
+    
     [super willTransitionToState:state];
     
-    if ((state == UITableViewCellStateDefaultMask) && lastEditing) {
+    if ((state == UITableViewCellStateDefaultMask) && lastEditing)
         self.backgroundView.frame = CGRectMake(32, 0, self.backgroundView.frame.size.width, self.backgroundView.frame.size.height);
-    }
 }
 
 - (void)prepareForReuse
 {
     [super prepareForReuse];
     
+    [self configureTextLabel];
     lastEditing = NO;
-    self.textLabel.shadowOffset = CGSizeMake(0, 1);
-    self.textLabel.shadowColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
+}
+
+- (void)configureTextLabel
+{
+    if (self.highlighted) {
+        self.textLabel.shadowOffset = CGSizeMake(0, -1);
+        self.textLabel.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+    } else {
+        self.textLabel.shadowOffset = CGSizeMake(0, 1);
+        self.textLabel.shadowColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
+    }
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    [super setHighlighted:highlighted animated:animated];
+    
+    [self configureTextLabel];
+    self.alpha = 0.8;
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated

@@ -191,24 +191,6 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"tableView:willSelectRowAtIndexPath:");
-    STStackCell *cell = (STStackCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.shadowOffset = CGSizeMake(0, -1);
-    cell.textLabel.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
-    return indexPath;
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [super tableView:tableView didDeselectRowAtIndexPath:indexPath];
-    
-    STStackCell *cell = (STStackCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.shadowOffset = CGSizeMake(0, -1);
-    cell.textLabel.shadowColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
-}
-
 #pragma mark - Fetched results controller
 
 - (NSFetchedResultsController *)fetchedResultsController

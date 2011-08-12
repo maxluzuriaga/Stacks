@@ -16,4 +16,6 @@
     BOOL lastEditing;
 }
 
+- (void)configureTextLabel;
+
 @end
