@@ -54,6 +54,29 @@
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     self.navigationController.toolbarHidden = NO;
     
+    for (int x = 0; x < 2; x++) {
+        BOOL top = x == 0;
+        
+        CAGradientLayer *shadow = [[CAGradientLayer alloc] init];
+        
+        float y = top ? 64 : 421;
+        CGRect shadowFrame = CGRectMake(0, y, 320, 15);
+        
+        shadow.frame = shadowFrame;
+        
+        CGColorRef darkColor = [[UIColor blackColor] CGColor];
+        CGColorRef transparentColor = [[[UIColor blackColor] colorWithAlphaComponent:0.0] CGColor];
+        
+        shadow.colors = [NSArray arrayWithObjects:
+                         (__bridge id)(top ? darkColor : transparentColor),
+                         (__bridge id)(top ? transparentColor : darkColor),
+                         nil];
+        
+        shadow.opacity = 0.3;
+        
+        [self.navigationController.view.layer insertSublayer:shadow atIndex:2];
+    }
+    
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     backgroundImageView.image = [UIImage imageNamed:@"backgroundTexture"];
     [self.window addSubview:backgroundImageView];
