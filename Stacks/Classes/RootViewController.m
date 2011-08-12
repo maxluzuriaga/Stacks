@@ -13,6 +13,11 @@
 #import "STStack.h"
 #import "STCard.h"
 
+#import "STStackCell.h"
+#import "STButton.h"
+
+#define NEW_STACK_BUTTON_TAG 100
+
 @implementation RootViewController
 
 @synthesize fetchedResultsController = __fetchedResultsController;
@@ -41,14 +46,28 @@
 {
     [super viewDidLoad];
 	
-    self.view.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight = 65;
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 67)];
+    
+    STButton *button = [[STButton alloc] initWithFrame:CGRectMake(15, 15, 290, 44) buttonColor:STButtonColorBlue disclosureImageEnabled:NO];
+    [button setTitle:NSLocalizedString(@"+ Add a new Stack", @"+ Add a new Stack") forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(addNewStack) forControlEvents:UIControlEventTouchUpInside];
+    
+    button.tag = NEW_STACK_BUTTON_TAG;
+    
+    [headerView addSubview:button];
+    
+    self.tableView.tableHeaderView = headerView;
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     id delegate = [[UIApplication sharedApplication] delegate];
     
     NSArray *toolbarItems = [[NSArray alloc] initWithObjects:
-                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:delegate action:@selector(addNewStack)], 
+                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewStack)], 
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], 
                              [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settingsIcon"] style:UIBarButtonItemStylePlain target:delegate action:@selector(showSettings)], 
                              nil];
@@ -85,6 +104,10 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
+    
+    STButton *button = (STButton *)[self.tableView.tableHeaderView viewWithTag:NEW_STACK_BUTTON_TAG];
+    [button setEnabled:!editing];
+    
     if (editing)
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemHighlightedBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     else
@@ -96,6 +119,8 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma mark - UITableViewDelegate and UITableViewDataSource
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -114,25 +139,20 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
+    STStackCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil)
+        cell = [[STStackCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
     // Configure the cell.
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -193,7 +213,7 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdDate" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdDate" ascending:NO];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -304,6 +324,31 @@
 {
     STStack *stack = (STStack *)[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = stack.name;
+}
+
+#pragma mark - Called from interface elements
+
+- (void)addNewStack
+{
+    // Create a new instance of the entity managed by the fetched results controller.
+    //    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    STStack *newStack = [NSEntityDescription insertNewObjectForEntityForName:@"STStack" inManagedObjectContext:self.managedObjectContext];
+    
+    newStack.createdDate = [NSDate date];
+    newStack.name = @"Test Stack";
+    
+    // Save the context.
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error])
+    {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
 }
 
 @end
