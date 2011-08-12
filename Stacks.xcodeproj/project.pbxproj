@@ -44,6 +44,7 @@
 		50790B8413F3A1BD001C68E9 /* blueButtonTappedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B8013F3A1BC001C68E9 /* blueButtonTappedBackground.png */; };
 		50790B8513F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B8113F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png */; };
 		50790B8C13F3A7B3001C68E9 /* STButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 50790B8B13F3A7B3001C68E9 /* STButton.m */; };
+		50CEB51613F5B6D400DF6EC1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50CEB51513F5B6D400DF6EC1 /* QuartzCore.framework */; };
 		50FC06A413F2453B00C6C43C /* stackCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */; };
 		50FC06AC13F24CF800C6C43C /* backgroundTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06AA13F24CF700C6C43C /* backgroundTexture.png */; };
 		50FC06AD13F24CF800C6C43C /* backgroundTexture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06AB13F24CF800C6C43C /* backgroundTexture@2x.png */; };
@@ -104,6 +105,7 @@
 		50790B8A13F3A7B3001C68E9 /* STButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STButton.h; sourceTree = "<group>"; };
 		50790B8B13F3A7B3001C68E9 /* STButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STButton.m; sourceTree = "<group>"; };
 		50B55F2813CBD44100DBB00A /* STCommonDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCommonDefinitions.h; sourceTree = "<group>"; };
+		50CEB51513F5B6D400DF6EC1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stackCellBackground@2x.png"; path = "Images/stackCellBackground@2x.png"; sourceTree = "<group>"; };
 		50FC06AA13F24CF700C6C43C /* backgroundTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backgroundTexture.png; path = Images/backgroundTexture.png; sourceTree = "<group>"; };
 		50FC06AB13F24CF800C6C43C /* backgroundTexture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backgroundTexture@2x.png"; path = "Images/backgroundTexture@2x.png"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50CEB51613F5B6D400DF6EC1 /* QuartzCore.framework in Frameworks */,
 				501EA60413C8C803006DE75D /* UIKit.framework in Frameworks */,
 				501EA60613C8C803006DE75D /* Foundation.framework in Frameworks */,
 				501EA60813C8C803006DE75D /* CoreGraphics.framework in Frameworks */,
@@ -150,6 +153,7 @@
 		501EA60213C8C803006DE75D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50CEB51513F5B6D400DF6EC1 /* QuartzCore.framework */,
 				501EA60313C8C803006DE75D /* UIKit.framework */,
 				501EA60513C8C803006DE75D /* Foundation.framework */,
 				501EA60713C8C803006DE75D /* CoreGraphics.framework */,

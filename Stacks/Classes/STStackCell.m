@@ -107,7 +107,6 @@
     [super setHighlighted:highlighted animated:animated];
     
     [self configureTextLabel];
-    self.alpha = 0.8;
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
