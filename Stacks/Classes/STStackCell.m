@@ -18,16 +18,20 @@
     if (self) {
         lastEditing = NO;
         
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.selectionStyle = UITableViewCellSelectionStyleBlue;
         
         self.textLabel.textAlignment = UITextAlignmentCenter;
         self.textLabel.font = [UIFont boldSystemFontOfSize:17];
+        self.textLabel.shadowOffset = CGSizeMake(0, 1);
+        self.textLabel.shadowColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
+        
         self.textLabel.highlightedTextColor = [UIColor whiteColor];
         
         UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stackCellBackground"]];
         self.backgroundView = backgroundImage;
         
         UIImageView *selectedBackgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stackCellSelectedBackground"]];
+        selectedBackgroundImage.alpha = 0.7;
         self.selectedBackgroundView = selectedBackgroundImage;
         
         disclosureIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(283, 27, 9, 14)];
@@ -80,6 +84,8 @@
     [super prepareForReuse];
     
     lastEditing = NO;
+    self.textLabel.shadowOffset = CGSizeMake(0, 1);
+    self.textLabel.shadowColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated

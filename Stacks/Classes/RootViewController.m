@@ -105,6 +105,9 @@
 {
     [super setEditing:editing animated:animated];
     
+    STButton *button = (STButton *)[self.tableView.tableHeaderView viewWithTag:NEW_STACK_BUTTON_TAG];
+    [button setEnabled:!editing];
+    
     if (editing)
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemHighlightedBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     else
@@ -186,6 +189,24 @@
     NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     detailViewController.detailItem = selectedObject;    
     [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"tableView:willSelectRowAtIndexPath:");
+    STStackCell *cell = (STStackCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.shadowOffset = CGSizeMake(0, -1);
+    cell.textLabel.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+    return indexPath;
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [super tableView:tableView didDeselectRowAtIndexPath:indexPath];
+    
+    STStackCell *cell = (STStackCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.shadowOffset = CGSizeMake(0, -1);
+    cell.textLabel.shadowColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
 }
 
 #pragma mark - Fetched results controller
