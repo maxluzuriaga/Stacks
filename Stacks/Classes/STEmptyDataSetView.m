@@ -14,7 +14,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        buttonBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 132)];
+        self.clipsToBounds = NO;
+        
+        buttonBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, -10, 320, 142)];
         
         webView = [[UIWebView alloc] initWithFrame:CGRectMake(15, 170, 145, 84)];
         webView.userInteractionEnabled = NO;
