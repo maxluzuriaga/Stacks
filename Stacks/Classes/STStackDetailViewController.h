@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface STStackDetailViewController : UITableViewController
+@class STStack;
+
+@interface STStackDetailViewController : UITableViewController {
+    STStack *_stack;
+    NSMutableArray *cards;
+}
+
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) STStack *stack;
+
+- (void)reloadStack:(NSNotification *)note;
+- (void)addNewStack;
+- (void)presentEmptyDataSetViewIfNeeded;
 
 @end

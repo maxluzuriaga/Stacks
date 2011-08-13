@@ -10,11 +10,14 @@
 
 @implementation STStackDetailViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+@synthesize managedObjectContext = __managedObjectContext, stack = _stack;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        id delegate = [[UIApplication sharedApplication] delegate];
+        self.managedObjectContext = [delegate managedObjectContext];
     }
     return self;
 }
