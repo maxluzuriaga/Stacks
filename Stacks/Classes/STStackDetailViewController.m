@@ -8,6 +8,19 @@
 
 #import "STStackDetailViewController.h"
 
+#import "STStackDetailViewController.h"
+#import "StacksAppDelegate.h"
+
+#import "STStack.h"
+#import "STCard.h"
+
+#import "STStackCell.h"
+#import "STButton.h"
+#import "STEmptyDataSetView.h"
+
+#define NEW_CARD_BUTTON_TAG 53
+#define STUDY_BUTTON_TAG 75
+
 @implementation STStackDetailViewController
 
 @synthesize managedObjectContext = __managedObjectContext, stack = _stack;
@@ -22,12 +35,9 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)reloadStack:(NSNotification *)note
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
     
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
@@ -35,39 +45,53 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight = 59;
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 66)];
+    
+    STButton *newCardButton = [[STButton alloc] initWithFrame:CGRectMake(15, 15, 139, 44) buttonColor:STButtonColorBlue disclosureImageEnabled:NO];
+    [newCardButton setTitle:NSLocalizedString(@"+ New Card", nil) forState:UIControlStateNormal];
+    [newCardButton addTarget:self action:@selector(newCard) forControlEvents:UIControlEventTouchUpInside];
+    
+    newCardButton.tag = NEW_CARD_BUTTON_TAG;
+    
+    [headerView addSubview:newCardButton];
+    
+    STButton *studyButton = [[STButton alloc] initWithFrame:CGRectMake(166, 15, 139, 44) buttonColor:STButtonColorGreen disclosureImageEnabled:YES];
+    [studyButton setTitle:NSLocalizedString(@"Study", nil) forState:UIControlStateNormal];
+    [studyButton addTarget:self action:@selector(study) forControlEvents:UIControlEventTouchUpInside];
+    [studyButton adjustTextLabelForDisclosureImage];
+    
+    studyButton.tag = STUDY_BUTTON_TAG;
+    
+    [headerView addSubview:studyButton];
+    
+    self.tableView.tableHeaderView = headerView;
+    
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    id delegate = [[UIApplication sharedApplication] delegate];
+    
+    NSArray *toolbarItems = [[NSArray alloc] initWithObjects:
+                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newCard)],
+                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareStack)],
+                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                             [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settingsIcon"] style:UIBarButtonItemStylePlain target:delegate action:@selector(showSettings)], 
+                             nil];
+//    self.toolbarItems = toolbarItems;
+    [self setToolbarItems:toolbarItems animated:YES];
+    
+    NSString *text = NSLocalizedString(@"Tap either button to add your first Stack.", nil);
+    emptyDataSetView = [[STEmptyDataSetView alloc] initWithFrame:CGRectMake(0, 0, 320, 261) text:text style:STEmptyDataSetViewStyleOneButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -156,6 +180,61 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - Interacting with the Stack
+
+- (void)newCard
+{
+    
+}
+
+- (void)shareStack
+{
+    
+}
+
+- (void)study
+{
+    
+}
+
+#pragma mark - STEmptyDataSetView
+
+- (void)presentEmptyDataSetViewIfNeeded
+{
+    BOOL hasCards = [cards count] != 0;
+    BOOL shown = emptyDataSetView.superview != nil;
+    
+    StacksAppDelegate *delegate = (StacksAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if (!hasCards && !shown) {
+        emptyDataSetView.alpha = 0.0;
+        [self.view addSubview:emptyDataSetView];
+        [self.view sendSubviewToBack:emptyDataSetView];
+        
+        [UIView animateWithDuration:0.5 animations:^(void) {
+            emptyDataSetView.alpha = 1.0;
+        }];
+        
+        [delegate showToolbarGlow];
+        [delegate adjustToolbarGlowForYOffset:self.tableView.contentOffset.y];
+    } else if (hasCards && shown) {
+        [UIView animateWithDuration:0.5 animations:^(void) {
+            emptyDataSetView.alpha = 0.0;
+        }];
+        [emptyDataSetView removeFromSuperview];
+        
+        [delegate hideToolbarGlow];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (emptyDataSetView.superview != nil) {
+        StacksAppDelegate *delegate = (StacksAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [delegate adjustToolbarGlowForYOffset:scrollView.contentOffset.y];
+    }
 }
 
 @end

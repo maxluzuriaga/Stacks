@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    STButtonColorBlue
+    STButtonColorBlue,
+    STButtonColorGreen,
 } STButtonColor;
 
 @interface STButton : UIButton {

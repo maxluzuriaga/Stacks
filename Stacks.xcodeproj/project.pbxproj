@@ -41,6 +41,10 @@
 		505B3DF013F231AC007C4A17 /* STStackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B3DEF13F231AC007C4A17 /* STStackCell.m */; };
 		505C828613F723490003F864 /* STStackDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505C828413F723490003F864 /* STStackDetailViewController.m */; };
 		505C828713F723490003F864 /* STStackDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 505C828513F723490003F864 /* STStackDetailViewController.xib */; };
+		505C828C13F72F660003F864 /* greenButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C828813F72F660003F864 /* greenButtonBackground.png */; };
+		505C828D13F72F660003F864 /* greenButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C828913F72F660003F864 /* greenButtonBackground@2x.png */; };
+		505C828E13F72F660003F864 /* greenButtonTappedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C828A13F72F660003F864 /* greenButtonTappedBackground.png */; };
+		505C828F13F72F660003F864 /* greenButtonTappedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C828B13F72F660003F864 /* greenButtonTappedBackground@2x.png */; };
 		50790B7413F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7313F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png */; };
 		50790B7813F2E98F001C68E9 /* disclosureIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7613F2E98F001C68E9 /* disclosureIndicator.png */; };
 		50790B7913F2E98F001C68E9 /* disclosureIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7713F2E98F001C68E9 /* disclosureIndicator@2x.png */; };
@@ -108,6 +112,10 @@
 		505C828313F723490003F864 /* STStackDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStackDetailViewController.h; sourceTree = "<group>"; };
 		505C828413F723490003F864 /* STStackDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStackDetailViewController.m; sourceTree = "<group>"; };
 		505C828513F723490003F864 /* STStackDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = STStackDetailViewController.xib; path = ../Classes/STStackDetailViewController.xib; sourceTree = "<group>"; };
+		505C828813F72F660003F864 /* greenButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenButtonBackground.png; path = Images/greenButtonBackground.png; sourceTree = "<group>"; };
+		505C828913F72F660003F864 /* greenButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greenButtonBackground@2x.png"; path = "Images/greenButtonBackground@2x.png"; sourceTree = "<group>"; };
+		505C828A13F72F660003F864 /* greenButtonTappedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenButtonTappedBackground.png; path = Images/greenButtonTappedBackground.png; sourceTree = "<group>"; };
+		505C828B13F72F660003F864 /* greenButtonTappedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greenButtonTappedBackground@2x.png"; path = "Images/greenButtonTappedBackground@2x.png"; sourceTree = "<group>"; };
 		50790B7313F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stackCellSelectedBackground@2x.png"; path = "Images/stackCellSelectedBackground@2x.png"; sourceTree = "<group>"; };
 		50790B7613F2E98F001C68E9 /* disclosureIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disclosureIndicator.png; path = Images/disclosureIndicator.png; sourceTree = "<group>"; };
 		50790B7713F2E98F001C68E9 /* disclosureIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disclosureIndicator@2x.png"; path = "Images/disclosureIndicator@2x.png"; sourceTree = "<group>"; };
@@ -248,6 +256,10 @@
 				500E13D913F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground@2x.png */,
 				500E13DA13F5D3B300FF2F38 /* emptyDataSetViewTwoButtonsBackground.png */,
 				500E13DB13F5D3B300FF2F38 /* emptyDataSetViewTwoButtonsBackground@2x.png */,
+				505C828813F72F660003F864 /* greenButtonBackground.png */,
+				505C828913F72F660003F864 /* greenButtonBackground@2x.png */,
+				505C828A13F72F660003F864 /* greenButtonTappedBackground.png */,
+				505C828B13F72F660003F864 /* greenButtonTappedBackground@2x.png */,
 				504A3E2B13F1E5C500465C64 /* settingsIcon.png */,
 				504A3E2C13F1E5C500465C64 /* settingsIcon@2x.png */,
 				50790B7A13F3A1A7001C68E9 /* stackCellBackground.png */,
@@ -413,6 +425,10 @@
 				500E13E213F5F0A000FF2F38 /* bottomButtonGlow.png in Resources */,
 				500E13E313F5F0A000FF2F38 /* bottomButtonGlow@2x.png in Resources */,
 				505C828713F723490003F864 /* STStackDetailViewController.xib in Resources */,
+				505C828C13F72F660003F864 /* greenButtonBackground.png in Resources */,
+				505C828D13F72F660003F864 /* greenButtonBackground@2x.png in Resources */,
+				505C828E13F72F660003F864 /* greenButtonTappedBackground.png in Resources */,
+				505C828F13F72F660003F864 /* greenButtonTappedBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

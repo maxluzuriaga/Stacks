@@ -9,17 +9,22 @@
 #import <UIKit/UIKit.h>
 
 @class STStack;
+@class STEmptyDataSetView;
 
 @interface STStackDetailViewController : UITableViewController {
     STStack *_stack;
     NSMutableArray *cards;
+    
+    STEmptyDataSetView *emptyDataSetView;
 }
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) STStack *stack;
 
 - (void)reloadStack:(NSNotification *)note;
-- (void)addNewStack;
+- (void)newCard;
+- (void)shareStack;
+- (void)study;
 - (void)presentEmptyDataSetViewIfNeeded;
 
 @end

@@ -165,7 +165,7 @@
 {
     STStackDetailViewController *detailViewController = [[STStackDetailViewController alloc] initWithNibName:@"STStackDetailViewController" bundle:nil];
     STStack *selectedStack = (STStack *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
-//    detailViewController.detailItem = selectedObject;    
+    detailViewController.stack = selectedStack;    
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
