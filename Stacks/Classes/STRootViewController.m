@@ -58,6 +58,7 @@
     [button setTitle:NSLocalizedString(@"+ Add a new Stack", nil) forState:UIControlStateNormal];
     [button addTarget:self action:@selector(addNewStack) forControlEvents:UIControlEventTouchUpInside];
     
+    [button setEnabled:NO animated:NO];
     button.tag = NEW_STACK_BUTTON_TAG;
     
     [headerView addSubview:button];
@@ -111,7 +112,7 @@
     [super setEditing:editing animated:animated];
     
     STButton *button = (STButton *)[self.tableView.tableHeaderView viewWithTag:NEW_STACK_BUTTON_TAG];
-    [button setEnabled:!editing];
+    [button setEnabled:!editing animated:YES];
     
     if (editing)
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemHighlightedBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
@@ -260,6 +261,9 @@
 	}
     
     [self.tableView reloadData];
+    
+    STButton *button = (STButton *)[self.tableView.tableHeaderView viewWithTag:NEW_STACK_BUTTON_TAG];
+    [button setEnabled:YES animated:YES];
     [self presentEmptyDataSetViewIfNeeded];
 }
 

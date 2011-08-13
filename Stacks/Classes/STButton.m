@@ -86,10 +86,18 @@
     [super setEnabled:enabled];
     
     float opacity = enabled ? 1.0 : 0.5;
-    
-    [UIView animateWithDuration:0.5 animations:^(void) {
-        self.alpha = opacity;
-    }];
+    self.alpha = opacity;
+}
+
+- (void)setEnabled:(BOOL)enabled animated:(BOOL)animated
+{
+    if (animated) {
+        [UIView animateWithDuration:0.5 animations:^(void) {
+            [self setEnabled:enabled];
+        }];
+    } else {
+        [self setEnabled:enabled];
+    }
 }
 
 @end

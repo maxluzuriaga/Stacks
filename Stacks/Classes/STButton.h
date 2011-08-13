@@ -25,5 +25,6 @@ typedef enum {
 - (void)configureButtonColor;
 - (void)adjustTextLabelForDisclosureImage;
 - (void)setButtonColor:(STButtonColor)buttonColor;
+- (void)setEnabled:(BOOL)enabled animated:(BOOL)animated;
 
 @end
