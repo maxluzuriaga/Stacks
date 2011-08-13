@@ -20,10 +20,13 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+
 - (void)mergeiCloudChanges:(NSDictionary *)noteInfo forContext:(NSManagedObjectContext *)moc;
 - (void)mergeChangesFromiCloud:(NSNotification *)notification;
+
 - (void)showToolbarGlow;
 - (void)hideToolbarGlow;
+- (void)adjustToolbarGlowForYOffset:(float)yOffset;
 
 @property (strong, nonatomic) UINavigationController *navigationController;
 

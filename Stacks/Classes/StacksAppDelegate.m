@@ -360,4 +360,25 @@
     [toolbarGlow removeFromSuperview];
 }
 
+- (void)adjustToolbarGlowForYOffset:(float)yOffset
+{
+    float min = 45;
+    float max = 100;
+    float diff = max - min;
+    
+    float current = -yOffset;
+    float alpha;
+    
+    if (current < min)
+        alpha = 1.0;
+    else if (current > max)
+        alpha = 0.0;
+    else
+        alpha = 1 - ((current - min) / diff);
+    
+    [UIView animateWithDuration:0.01 animations:^(void) {
+        toolbarGlow.alpha = alpha;
+    }];
+}
+
 @end

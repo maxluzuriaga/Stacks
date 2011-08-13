@@ -338,11 +338,13 @@
     cell.textLabel.text = stack.name;
 }
 
+#pragma mark - STEmptyDataSetView
+
 - (void)presentEmptyDataSetViewIfNeeded
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
     BOOL hasStacks = [sectionInfo numberOfObjects] != 0;
-    BOOL shown = [emptyDataSetView superview] != nil;
+    BOOL shown = emptyDataSetView.superview != nil;
     
     StacksAppDelegate *delegate = (StacksAppDelegate *)[[UIApplication sharedApplication] delegate];
     
@@ -363,6 +365,14 @@
         [emptyDataSetView removeFromSuperview];
         
         [delegate hideToolbarGlow];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (emptyDataSetView.superview != nil) {
+        StacksAppDelegate *delegate = (StacksAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [delegate adjustToolbarGlowForYOffset:scrollView.contentOffset.y];
     }
 }
 
