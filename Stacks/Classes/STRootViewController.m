@@ -8,7 +8,7 @@
 
 #import "STRootViewController.h"
 
-#import "DetailViewController.h"
+#import "STStackDetailViewController.h"
 #import "StacksAppDelegate.h"
 
 #import "STStack.h"
@@ -164,9 +164,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-    NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    detailViewController.detailItem = selectedObject;    
+    STStackDetailViewController *detailViewController = [[STStackDetailViewController alloc] initWithNibName:@"STStackDetailViewController" bundle:nil];
+    STStack *selectedStack = (STStack *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
+//    detailViewController.detailItem = selectedObject;    
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
