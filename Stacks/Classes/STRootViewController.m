@@ -362,6 +362,7 @@
         }];
         
         [delegate showToolbarGlow];
+        [delegate adjustToolbarGlowForYOffset:self.tableView.contentOffset.y];
     } else if (hasStacks && shown) {
         [UIView animateWithDuration:0.5 animations:^(void) {
             emptyDataSetView.alpha = 0.0;

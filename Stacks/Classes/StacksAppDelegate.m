@@ -86,7 +86,7 @@
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     
-    toolbarGlow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 365, 160, 71)];
+    toolbarGlow = [[UIImageView alloc] init];
     toolbarGlow.image = [UIImage imageNamed:@"bottomButtonGlow"];
     
     return YES;
@@ -347,6 +347,10 @@
 {
     toolbarGlow.alpha = 0.0;
     [self.window addSubview:toolbarGlow];
+    
+    [self.window sendSubviewToBack:toolbarGlow];
+    [self.window sendSubviewToBack:[self.window viewWithTag:BACKGROUND_IMAGE_TAG]];
+    
     [UIView animateWithDuration:0.5 animations:^(void) {
         toolbarGlow.alpha = 1.0;
     }];
@@ -362,22 +366,25 @@
 
 - (void)adjustToolbarGlowForYOffset:(float)yOffset
 {
-    float min = 45;
+    float min = 40;
     float max = 100;
     float diff = max - min;
     
     float current = -yOffset;
-    float alpha;
+    float multiplier;
     
     if (current < min)
-        alpha = 1.0;
+        multiplier = 1.0;
     else if (current > max)
-        alpha = 0.0;
+        multiplier = 0.0;
     else
-        alpha = 1 - ((current - min) / diff);
+        multiplier = 1 - ((current - min) / diff);
     
     [UIView animateWithDuration:0.01 animations:^(void) {
-        toolbarGlow.alpha = alpha;
+        toolbarGlow.alpha = multiplier;
+        
+        float y = 365 + ((1 - multiplier) * toolbarGlow.frame.size.height);
+        toolbarGlow.frame = CGRectMake(0, y, 160, 71);
     }];
 }
 
