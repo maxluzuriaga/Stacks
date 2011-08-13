@@ -371,19 +371,19 @@
     float diff = max - min;
     
     float current = -yOffset;
-    float multiplier;
+    float alpha;
     
     if (current < min)
-        multiplier = 1.0;
+        alpha = 1.0;
     else if (current > max)
-        multiplier = 0.0;
+        alpha = 0.0;
     else
-        multiplier = 1 - ((current - min) / diff);
+        alpha = 1 - ((current - min) / diff);
     
     [UIView animateWithDuration:0.01 animations:^(void) {
-        toolbarGlow.alpha = multiplier;
+        toolbarGlow.alpha = alpha;
         
-        float y = 365 + ((1 - multiplier) * toolbarGlow.frame.size.height);
+        float y = 365 + ((1 - alpha) * diff);
         toolbarGlow.frame = CGRectMake(0, y, 160, 71);
     }];
 }
