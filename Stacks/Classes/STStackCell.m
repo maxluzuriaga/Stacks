@@ -8,8 +8,6 @@
 
 #import "STStackCell.h"
 
-#import "STStack.h"
-
 @implementation STStackCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -57,11 +55,6 @@
     BOOL confirmingDeletion = (self.editing && self.showingDeleteConfirmation && lastEditing);
     BOOL rejectingDeletion = (self.editing && !self.showingDeleteConfirmation && lastEditing);
     
-    NSLog(@"editing = %@;", (self.editing ? @"YES" : @"NO"));
-    NSLog(@"showingDeleteConfiirmation = %@;", (self.showingDeleteConfirmation ? @"YES" : @"NO"));
-    NSLog(@"lastEditing = %@;", (lastEditing ? @"YES" : @"NO"));
-    NSLog(@"- - -");
-    
     if ((enteringEditMode || confirmingDeletion || rejectingDeletion) && !slidingToShowDeleteControl) {
         offset = 32;
         disclosureOpacity = 0.0;
@@ -82,7 +75,6 @@
 }
 
 - (void)willTransitionToState:(UITableViewCellStateMask)state {
-    
     [super willTransitionToState:state];
     
     if ((state == UITableViewCellStateDefaultMask) && lastEditing)
