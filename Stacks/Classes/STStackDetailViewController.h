@@ -22,6 +22,7 @@
 @property (strong, nonatomic) STStack *stack;
 
 - (void)reloadStack:(NSNotification *)note;
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)newCard;
 - (void)shareStack;
 - (void)study;

@@ -47,9 +47,11 @@
 {
     [super viewDidLoad];
 	
+    self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 65;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 8)];
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 67)];
     
@@ -73,7 +75,7 @@
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], 
                              [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settingsIcon"] style:UIBarButtonItemStylePlain target:delegate action:@selector(showSettings)], 
                              nil];
-    self.toolbarItems = toolbarItems;
+    [self setToolbarItems:toolbarItems animated:YES];
     
     NSString *text = NSLocalizedString(@"Tap either button to add your first Stack.", nil);
     emptyDataSetView = [[STEmptyDataSetView alloc] initWithFrame:CGRectMake(0, 0, 320, 261) text:text style:STEmptyDataSetViewStyleOneButton];

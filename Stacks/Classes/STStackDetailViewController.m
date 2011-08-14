@@ -14,7 +14,7 @@
 #import "STStack.h"
 #import "STCard.h"
 
-#import "STStackCell.h"
+#import "STCardCell.h"
 #import "STButton.h"
 #import "STEmptyDataSetView.h"
 
@@ -46,9 +46,11 @@
 {
     [super viewDidLoad];
     
+    self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 59;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 8)];
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 66)];
     
@@ -82,16 +84,31 @@
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
                              [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settingsIcon"] style:UIBarButtonItemStylePlain target:delegate action:@selector(showSettings)], 
                              nil];
-//    self.toolbarItems = toolbarItems;
     [self setToolbarItems:toolbarItems animated:YES];
     
-    NSString *text = NSLocalizedString(@"Tap either button to add your first Stack.", nil);
-    emptyDataSetView = [[STEmptyDataSetView alloc] initWithFrame:CGRectMake(0, 0, 320, 261) text:text style:STEmptyDataSetViewStyleOneButton];
+    NSString *text = NSLocalizedString(@"Tap either button to add a Card to this Stack.", nil);
+    emptyDataSetView = [[STEmptyDataSetView alloc] initWithFrame:CGRectMake(0, 0, 320, 261) text:text style:STEmptyDataSetViewStyleTwoButtons];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadRecipe:) name:@"RefreshAllViews" object:[[UIApplication sharedApplication] delegate]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    self.title = _stack.name;
+    
+    cards = [_stack sortedCards];
+    
+    [self presentEmptyDataSetViewIfNeeded];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    StacksAppDelegate *delegate = (StacksAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate hideToolbarGlow];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -104,40 +121,41 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [cards count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    STCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil)
+        cell = [[STCardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-    // Configure the cell...
-    
+    // Configure the cell.
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
-/*
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    STCard *card = [cards objectAtIndex:indexPath.row];
+    cell.textLabel.text = card.frontText;
+}
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
 /*
 // Override to support editing the table view.
@@ -150,13 +168,6 @@
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
 }
 */
 
@@ -186,7 +197,44 @@
 
 - (void)newCard
 {
+    NSArray *possibleValues = [[NSArray alloc] initWithObjects:
+                               [NSDictionary dictionaryWithObjectsAndKeys:@"Amo, amare, amavi, amatus", @"front", @"To love", @"back", nil],
+                               [NSDictionary dictionaryWithObjectsAndKeys:@"Porto, portare, portavi, portatus", @"front", @"To carry", @"back", nil],
+                               [NSDictionary dictionaryWithObjectsAndKeys:@"Laudo, laudare, laudavi, laudatus", @"front", @"To praise", @"back", nil],
+                               [NSDictionary dictionaryWithObjectsAndKeys:@"Bonus, -a, -um", @"front", @"Good", @"back", nil],
+                               [NSDictionary dictionaryWithObjectsAndKeys:@"Rana, -ae, f.", @"front", @"Frog", @"back", nil],
+                               [NSDictionary dictionaryWithObjectsAndKeys:@"Felix, felicis", @"front", @"Happy", @"back", nil],
+                               nil];
     
+    STCard *newCard = [NSEntityDescription insertNewObjectForEntityForName:@"STCard" inManagedObjectContext:self.managedObjectContext];
+    
+    NSDictionary *info = [possibleValues objectAtIndex:(arc4random() % [possibleValues count])];
+    
+    newCard.createdDate = [NSDate date];
+    newCard.frontText = [info objectForKey:@"front"];
+    newCard.backText = [info objectForKey:@"back"];
+    
+    [_stack addCardsObject:newCard];
+    
+    // Save the context.
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error])
+    {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    [self viewWillAppear:YES];
+    
+    NSInteger row = [cards indexOfObject:newCard];
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [self presentEmptyDataSetViewIfNeeded];
 }
 
 - (void)shareStack
@@ -208,6 +256,8 @@
     
     StacksAppDelegate *delegate = (StacksAppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    STButton *studyButton = (STButton *)[self.tableView.tableHeaderView viewWithTag:STUDY_BUTTON_TAG];
+    
     if (!hasCards && !shown) {
         emptyDataSetView.alpha = 0.0;
         [self.view addSubview:emptyDataSetView];
@@ -219,6 +269,8 @@
         
         [delegate showToolbarGlow];
         [delegate adjustToolbarGlowForYOffset:self.tableView.contentOffset.y];
+        
+        [studyButton setEnabled:NO animated:YES];
     } else if (hasCards && shown) {
         [UIView animateWithDuration:0.5 animations:^(void) {
             emptyDataSetView.alpha = 0.0;
@@ -226,6 +278,8 @@
         [emptyDataSetView removeFromSuperview];
         
         [delegate hideToolbarGlow];
+        
+        [studyButton setEnabled:YES animated:YES];
     }
 }
 

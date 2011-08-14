@@ -45,6 +45,11 @@
 		505C828D13F72F660003F864 /* greenButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C828913F72F660003F864 /* greenButtonBackground@2x.png */; };
 		505C828E13F72F660003F864 /* greenButtonTappedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C828A13F72F660003F864 /* greenButtonTappedBackground.png */; };
 		505C828F13F72F660003F864 /* greenButtonTappedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C828B13F72F660003F864 /* greenButtonTappedBackground@2x.png */; };
+		505C829213F74BA30003F864 /* STCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505C829113F74BA30003F864 /* STCardCell.m */; };
+		505C829713F754120003F864 /* cardCellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C829313F754120003F864 /* cardCellBackground.png */; };
+		505C829813F754120003F864 /* cardCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C829413F754120003F864 /* cardCellBackground@2x.png */; };
+		505C829913F754120003F864 /* cardCellSelectedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C829513F754120003F864 /* cardCellSelectedBackground.png */; };
+		505C829A13F754120003F864 /* cardCellSelectedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C829613F754120003F864 /* cardCellSelectedBackground@2x.png */; };
 		50790B7413F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7313F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png */; };
 		50790B7813F2E98F001C68E9 /* disclosureIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7613F2E98F001C68E9 /* disclosureIndicator.png */; };
 		50790B7913F2E98F001C68E9 /* disclosureIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7713F2E98F001C68E9 /* disclosureIndicator@2x.png */; };
@@ -116,6 +121,12 @@
 		505C828913F72F660003F864 /* greenButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greenButtonBackground@2x.png"; path = "Images/greenButtonBackground@2x.png"; sourceTree = "<group>"; };
 		505C828A13F72F660003F864 /* greenButtonTappedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenButtonTappedBackground.png; path = Images/greenButtonTappedBackground.png; sourceTree = "<group>"; };
 		505C828B13F72F660003F864 /* greenButtonTappedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greenButtonTappedBackground@2x.png"; path = "Images/greenButtonTappedBackground@2x.png"; sourceTree = "<group>"; };
+		505C829013F74BA30003F864 /* STCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardCell.h; sourceTree = "<group>"; };
+		505C829113F74BA30003F864 /* STCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardCell.m; sourceTree = "<group>"; };
+		505C829313F754120003F864 /* cardCellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cardCellBackground.png; path = Images/cardCellBackground.png; sourceTree = "<group>"; };
+		505C829413F754120003F864 /* cardCellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cardCellBackground@2x.png"; path = "Images/cardCellBackground@2x.png"; sourceTree = "<group>"; };
+		505C829513F754120003F864 /* cardCellSelectedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cardCellSelectedBackground.png; path = Images/cardCellSelectedBackground.png; sourceTree = "<group>"; };
+		505C829613F754120003F864 /* cardCellSelectedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cardCellSelectedBackground@2x.png"; path = "Images/cardCellSelectedBackground@2x.png"; sourceTree = "<group>"; };
 		50790B7313F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stackCellSelectedBackground@2x.png"; path = "Images/stackCellSelectedBackground@2x.png"; sourceTree = "<group>"; };
 		50790B7613F2E98F001C68E9 /* disclosureIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disclosureIndicator.png; path = Images/disclosureIndicator.png; sourceTree = "<group>"; };
 		50790B7713F2E98F001C68E9 /* disclosureIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disclosureIndicator@2x.png"; path = "Images/disclosureIndicator@2x.png"; sourceTree = "<group>"; };
@@ -250,6 +261,10 @@
 				50790B8113F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png */,
 				500E13E013F5F0A000FF2F38 /* bottomButtonGlow.png */,
 				500E13E113F5F0A000FF2F38 /* bottomButtonGlow@2x.png */,
+				505C829313F754120003F864 /* cardCellBackground.png */,
+				505C829413F754120003F864 /* cardCellBackground@2x.png */,
+				505C829513F754120003F864 /* cardCellSelectedBackground.png */,
+				505C829613F754120003F864 /* cardCellSelectedBackground@2x.png */,
 				50790B7613F2E98F001C68E9 /* disclosureIndicator.png */,
 				50790B7713F2E98F001C68E9 /* disclosureIndicator@2x.png */,
 				500E13D813F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground.png */,
@@ -328,6 +343,8 @@
 			children = (
 				50790B8A13F3A7B3001C68E9 /* STButton.h */,
 				50790B8B13F3A7B3001C68E9 /* STButton.m */,
+				505C829013F74BA30003F864 /* STCardCell.h */,
+				505C829113F74BA30003F864 /* STCardCell.m */,
 				500E13D513F5C88A00FF2F38 /* STEmptyDataSetView.h */,
 				500E13D613F5C88A00FF2F38 /* STEmptyDataSetView.m */,
 				505B3DEE13F231AC007C4A17 /* STStackCell.h */,
@@ -429,6 +446,10 @@
 				505C828D13F72F660003F864 /* greenButtonBackground@2x.png in Resources */,
 				505C828E13F72F660003F864 /* greenButtonTappedBackground.png in Resources */,
 				505C828F13F72F660003F864 /* greenButtonTappedBackground@2x.png in Resources */,
+				505C829713F754120003F864 /* cardCellBackground.png in Resources */,
+				505C829813F754120003F864 /* cardCellBackground@2x.png in Resources */,
+				505C829913F754120003F864 /* cardCellSelectedBackground.png in Resources */,
+				505C829A13F754120003F864 /* cardCellSelectedBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +470,7 @@
 				50790B8C13F3A7B3001C68E9 /* STButton.m in Sources */,
 				500E13D713F5C88A00FF2F38 /* STEmptyDataSetView.m in Sources */,
 				505C828613F723490003F864 /* STStackDetailViewController.m in Sources */,
+				505C829213F74BA30003F864 /* STCardCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

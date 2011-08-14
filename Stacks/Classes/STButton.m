@@ -82,8 +82,7 @@
 {
     CGRect oldFrame = self.titleLabel.frame;
     
-//    self.titleLabel.frame = CGRectMake(oldFrame.origin.x - 5, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
-    self.titleLabel.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width - 10, oldFrame.size.height);
+    self.titleLabel.frame = CGRectMake(oldFrame.origin.x - 5, oldFrame.origin.y, oldFrame.size.width, oldFrame.size.height);
 }
 
 - (void)setEnabled:(BOOL)enabled

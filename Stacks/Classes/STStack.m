@@ -18,7 +18,7 @@
 
 - (NSMutableArray *)sortedCards
 {
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"frontText" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"frontText" ascending:YES];
     NSArray *cards = [[self.cards allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
     return [cards mutableCopy];

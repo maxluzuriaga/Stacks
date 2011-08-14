@@ -1,18 +1,20 @@
 //
-//  STStackCell.h
+//  STCardCell.h
 //  Stacks
 //
-//  Created by Max Luzuriaga on 8/9/11.
+//  Created by Max Luzuriaga on 8/13/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface STStackCell : UITableViewCell {
+@interface STCardCell : UITableViewCell {
     UIImageView *disclosureIndicator;
     
     BOOL lastEditing;
 }
+
+//@property (nonatomic) BOOL lastEditing;
 
 - (void)configureTextLabel;
 
