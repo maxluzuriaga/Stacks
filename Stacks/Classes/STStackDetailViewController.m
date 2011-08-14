@@ -8,6 +8,8 @@
 
 #import "STStackDetailViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "STStackDetailViewController.h"
 #import "StacksAppDelegate.h"
 
@@ -72,6 +74,21 @@
     [headerView addSubview:studyButton];
     
     self.tableView.tableHeaderView = headerView;
+    
+    CAGradientLayer *shadow = [[CAGradientLayer alloc] init];
+    
+    CGRect shadowFrame = CGRectMake(0, -100, 320, 90);
+    
+    shadow.frame = shadowFrame;
+    
+    CGColorRef darkColor = [[UIColor blackColor] CGColor];
+    CGColorRef transparentColor = [[[UIColor blackColor] colorWithAlphaComponent:0.0] CGColor];
+    
+    shadow.colors = [NSArray arrayWithObjects:(__bridge id)transparentColor, (__bridge id)darkColor, nil];
+    
+    shadow.opacity = 0.8;
+    
+    [self.tableView.layer addSublayer:shadow];
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
@@ -194,7 +211,6 @@
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         [self viewWillAppear:YES];
-//        [self.tableView reloadData];
     }
 }
 
