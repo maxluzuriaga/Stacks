@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500CC4E013F9BA1200FED029 /* STCardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500CC4DF13F9BA1200FED029 /* STCardDetailViewController.m */; };
 		500E13D713F5C88A00FF2F38 /* STEmptyDataSetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 500E13D613F5C88A00FF2F38 /* STEmptyDataSetView.m */; };
 		500E13DC13F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 500E13D813F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground.png */; };
 		500E13DD13F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 500E13D913F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground@2x.png */; };
@@ -74,6 +75,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		500CC4DE13F9BA1200FED029 /* STCardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardDetailViewController.h; sourceTree = "<group>"; };
+		500CC4DF13F9BA1200FED029 /* STCardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardDetailViewController.m; sourceTree = "<group>"; };
 		500E13D513F5C88A00FF2F38 /* STEmptyDataSetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STEmptyDataSetView.h; path = Stacks/Classes/STEmptyDataSetView.h; sourceTree = SOURCE_ROOT; };
 		500E13D613F5C88A00FF2F38 /* STEmptyDataSetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STEmptyDataSetView.m; path = Stacks/Classes/STEmptyDataSetView.m; sourceTree = SOURCE_ROOT; };
 		500E13D813F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = emptyDataSetViewOneButtonBackground.png; path = Images/emptyDataSetViewOneButtonBackground.png; sourceTree = "<group>"; };
@@ -311,6 +314,8 @@
 		501EA65B13C8CA95006DE75D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				500CC4DE13F9BA1200FED029 /* STCardDetailViewController.h */,
+				500CC4DF13F9BA1200FED029 /* STCardDetailViewController.m */,
 				501EA64A13C8C8CA006DE75D /* STRootViewController.h */,
 				501EA64B13C8C8CA006DE75D /* STRootViewController.m */,
 				505C828313F723490003F864 /* STStackDetailViewController.h */,
@@ -477,6 +482,7 @@
 				505C828613F723490003F864 /* STStackDetailViewController.m in Sources */,
 				505C829213F74BA30003F864 /* STCardCell.m in Sources */,
 				501527CD13F9A43000100EAC /* STCardView.m in Sources */,
+				500CC4E013F9BA1200FED029 /* STCardDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

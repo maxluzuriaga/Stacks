@@ -10,7 +10,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "STStackDetailViewController.h"
+#import "STCardDetailViewController.h"
 #import "StacksAppDelegate.h"
 
 #import "STStack.h"
@@ -25,7 +25,7 @@
 
 @implementation STStackDetailViewController
 
-@synthesize managedObjectContext = __managedObjectContext, stack = _stack;
+@synthesize managedObjectContext = __managedObjectContext, stack = _stack, detailViewController = _detailViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -262,7 +262,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (!self.detailViewController) {
+        self.detailViewController = [[STCardDetailViewController alloc] initWithNibName:nil bundle:nil];
+    }
+    STCard *selectedCard = [cards objectAtIndex:[indexPath row]];
+    _detailViewController.card = selectedCard;    
+    [self.navigationController pushViewController:_detailViewController animated:YES];
 }
 
 #pragma mark - Interacting with the Stack

@@ -24,7 +24,7 @@
 
 @implementation STRootViewController
 
-@synthesize fetchedResultsController = __fetchedResultsController, managedObjectContext = __managedObjectContext;
+@synthesize fetchedResultsController = __fetchedResultsController, managedObjectContext = __managedObjectContext, detailViewController = _detailViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -182,10 +182,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    STStackDetailViewController *detailViewController = [[STStackDetailViewController alloc] initWithNibName:@"STStackDetailViewController" bundle:nil];
+    if (!self.detailViewController) {
+        self.detailViewController = [[STStackDetailViewController alloc] initWithNibName:@"STStackDetailViewController" bundle:nil];
+    }
     STStack *selectedStack = (STStack *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
-    detailViewController.stack = selectedStack;    
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    _detailViewController.stack = selectedStack;    
+    [self.navigationController pushViewController:_detailViewController animated:YES];
 }
 
 #pragma mark - Fetched results controller

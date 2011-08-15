@@ -20,7 +20,6 @@
         
         _textView = [[UITextView alloc] initWithFrame:frame];
         _textView.font = [UIFont systemFontOfSize:17];
-        _textView.delegate = self;
         _textView.editable = NO;
         _textView.backgroundColor = [UIColor clearColor];
         

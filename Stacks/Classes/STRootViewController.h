@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+@class STStackDetailViewController;
 @class STEmptyDataSetView;
 
 @interface STRootViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
@@ -17,6 +18,7 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) STStackDetailViewController *detailViewController;
 
 - (void)persistentStoreAdded;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;

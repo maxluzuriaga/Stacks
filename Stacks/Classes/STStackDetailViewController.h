@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class STStack;
+@class STCardDetailViewController;
 @class STEmptyDataSetView;
 
 @interface STStackDetailViewController : UITableViewController {
@@ -20,6 +21,7 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) STStack *stack;
+@property (strong, nonatomic) STCardDetailViewController *detailViewController;
 
 - (void)reloadStack:(NSNotification *)note;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
