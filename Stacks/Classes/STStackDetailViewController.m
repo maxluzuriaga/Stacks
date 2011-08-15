@@ -39,7 +39,52 @@
 
 - (void)reloadStack:(NSNotification *)note
 {
+    NSDictionary *ui = [note userInfo];
+    NSManagedObjectID *stackID = [_stack objectID];
     
+    if (stackID) {
+        BOOL shouldReload = ([ui objectForKey:NSInvalidatedAllObjectsKey] != nil);
+        BOOL wasInvalidated = ([ui objectForKey:NSInvalidatedAllObjectsKey] != nil);
+        
+        NSString *interestingKeys[] = { NSUpdatedObjectsKey, NSRefreshedObjectsKey, NSInvalidatedObjectsKey };
+        int c = (sizeof(interestingKeys) / sizeof(NSString *));
+        
+        for (int i = 0; i < c; i++) {
+            NSSet *collection = [ui objectForKey:interestingKeys[i]];
+            if (collection) {
+                for (NSManagedObject *mo in collection) {
+                    NSEntityDescription *card = [NSEntityDescription entityForName:@"STCard" inManagedObjectContext:self.managedObjectContext];
+                    BOOL cardInStack = NO;
+                    if (mo.entity == card) {
+                        cardInStack = ((STCard *)mo).stack.objectID == stackID;
+                    }
+                    
+                    if ([[mo objectID] isEqual:stackID] || cardInStack) {
+                        if ([interestingKeys[i] isEqual:NSInvalidatedObjectsKey]) {
+                            wasInvalidated = YES;
+                        }
+                        shouldReload = YES;
+                        break;
+                    }
+                }
+            }
+            if (shouldReload) {
+                break;
+            }
+        }
+        
+        if (shouldReload) {
+            if (wasInvalidated) {
+                // if the object was invalidated, it is no longer a part of our MOC
+                // we need a new MO for the objectID we care about
+                // this generally only happens if the object was released to rc 0, the persistent store removed, or the MOC reset
+                self.stack = (STStack *)[__managedObjectContext objectWithID:stackID];
+            }
+            
+            [self viewWillAppear:NO];
+            [self.tableView reloadData];
+        }
+    }
 }
 
 #pragma mark - View lifecycle
@@ -106,7 +151,7 @@
     NSString *text = NSLocalizedString(@"Tap either button to add a Card to this Stack.", nil);
     emptyDataSetView = [[STEmptyDataSetView alloc] initWithFrame:CGRectMake(0, 0, 320, 261) text:text style:STEmptyDataSetViewStyleTwoButtons];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadRecipe:) name:@"RefreshAllViews" object:[[UIApplication sharedApplication] delegate]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadStack:) name:@"RefreshAllViews" object:[[UIApplication sharedApplication] delegate]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -203,7 +248,6 @@
         STCard *card = [cards objectAtIndex:[indexPath row]];
         [_stack removeCardsObject:card];
         [__managedObjectContext deleteObject:card];
-        
         [cards removeObjectAtIndex:[indexPath row]];
         
         [(StacksAppDelegate *)[[UIApplication sharedApplication] delegate] saveContext];
