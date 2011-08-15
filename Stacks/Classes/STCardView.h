@@ -8,6 +8,29 @@
 
 #import <UIKit/UIKit.h>
 
-@interface STCardView : UIView
+#define CARD_VIEW_SHORT_HEIGHT 125
+#define CARD_VIEW_TALL_HEIGHT 178
+
+typedef enum {
+    STCardViewStateFront,
+    STCardViewStateBack
+} STCardViewState;
+
+@interface STCardView : UIView {
+    UIImageView *_backgroundImage;
+    UITextView *_textView;
+    
+    NSString *_frontText;
+    NSString *_backText;
+    
+    STCardViewState _state;
+}
+
+@property (nonatomic, strong) UITextView *textView;
+@property (nonatomic, strong) NSString *frontText;
+@property (nonatomic, strong) NSString *backText;
+@property (nonatomic) STCardViewState state;
+
+- (void)flip;
 
 @end
