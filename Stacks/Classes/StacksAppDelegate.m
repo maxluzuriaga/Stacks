@@ -207,8 +207,6 @@
 
 - (void)mergeiCloudChanges:(NSDictionary *)noteInfo forContext:(NSManagedObjectContext *)moc
 {
-//    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
     NSMutableDictionary *localUserInfo = [NSMutableDictionary dictionary];
     
     NSSet *allInvalidations = [noteInfo objectForKey:NSInvalidatedAllObjectsKey];
@@ -263,7 +261,6 @@
     refreshNotification = [NSNotification notificationWithName:@"RefreshAllViews" object:self  userInfo:localUserInfo];
     
     [[NSNotificationCenter defaultCenter] postNotification:refreshNotification];
-//    [pool drain];
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {

@@ -1,7 +1,3 @@
-
-
-
-
 //  main.m
 //  Stacks
 //

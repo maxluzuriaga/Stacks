@@ -1,14 +1,14 @@
 //
-//  STStackCell.m
+//  STCardCell.m
 //  Stacks
 //
-//  Created by Max Luzuriaga on 8/9/11.
+//  Created by Max Luzuriaga on 8/13/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "STStackCell.h"
+#import "STCardCell.h"
 
-@implementation STStackCell
+@implementation STCardCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -18,7 +18,6 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleBlue;
         
-        self.textLabel.textAlignment = UITextAlignmentCenter;
         self.textLabel.font = [UIFont boldSystemFontOfSize:17];
         self.textLabel.backgroundColor = [UIColor greenColor];
         
@@ -26,14 +25,14 @@
         
         self.textLabel.highlightedTextColor = [UIColor whiteColor];
         
-        UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stackCellBackground"]];
+        UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cardCellBackground"]];
         self.backgroundView = backgroundImage;
         
-        UIImageView *selectedBackgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stackCellSelectedBackground"]];
+        UIImageView *selectedBackgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cardCellSelectedBackground"]];
         selectedBackgroundImage.alpha = 0.7;
         self.selectedBackgroundView = selectedBackgroundImage;
         
-        disclosureIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(283, 27, 9, 14)];
+        disclosureIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(283, 24, 9, 14)];
         disclosureIndicator.image = [UIImage imageNamed:@"disclosureIndicator"];
         
         [self.contentView addSubview:disclosureIndicator];
@@ -66,7 +65,7 @@
         disclosureOpacity = 0.0;
     }
     
-    self.textLabel.frame = CGRectMake((adjustTextLabel ? (28 + offset) : 28), 25, 246, 18);
+    self.textLabel.frame = CGRectMake((adjustTextLabel ? (28 + offset) : 28), 22, 246, 18);
     
     CGRect oldBackgroundFrame = self.backgroundView.frame;
     self.backgroundView.frame = CGRectMake(oldBackgroundFrame.origin.x + offset, oldBackgroundFrame.origin.y, oldBackgroundFrame.size.width, oldBackgroundFrame.size.height);
@@ -75,6 +74,7 @@
 }
 
 - (void)willTransitionToState:(UITableViewCellStateMask)state {
+    
     [super willTransitionToState:state];
     
     if ((state == UITableViewCellStateDefaultMask) && lastEditing)

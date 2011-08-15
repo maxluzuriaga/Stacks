@@ -57,6 +57,10 @@
             color = @"blue";
             break;
             
+        case STButtonColorGreen:
+            color = @"green";
+            break;
+            
         default:
             break;
     }

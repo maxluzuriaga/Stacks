@@ -11,8 +11,17 @@
 
 
 @implementation STStack
+
 @dynamic createdDate;
 @dynamic name;
 @dynamic cards;
+
+- (NSMutableArray *)sortedCards
+{
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"frontText" ascending:YES];
+    NSArray *cards = [[self.cards allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    return [cards mutableCopy];
+}
 
 @end

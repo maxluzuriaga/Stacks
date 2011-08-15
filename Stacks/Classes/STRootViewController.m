@@ -1,4 +1,4 @@
- //
+//
 //  STRootViewController.m
 //  Stacks
 //
@@ -8,7 +8,9 @@
 
 #import "STRootViewController.h"
 
-#import "DetailViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
+#import "STStackDetailViewController.h"
 #import "StacksAppDelegate.h"
 
 #import "STStack.h"
@@ -22,8 +24,7 @@
 
 @implementation STRootViewController
 
-@synthesize fetchedResultsController = __fetchedResultsController;
-@synthesize managedObjectContext = __managedObjectContext;
+@synthesize fetchedResultsController = __fetchedResultsController, managedObjectContext = __managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,9 +49,11 @@
 {
     [super viewDidLoad];
 	
+    self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 65;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 8)];
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 67)];
     
@@ -65,6 +68,21 @@
     
     self.tableView.tableHeaderView = headerView;
     
+    CAGradientLayer *shadow = [[CAGradientLayer alloc] init];
+    
+    CGRect shadowFrame = CGRectMake(0, -100, 320, 90);
+    
+    shadow.frame = shadowFrame;
+    
+    CGColorRef darkColor = [[UIColor blackColor] CGColor];
+    CGColorRef transparentColor = [[[UIColor blackColor] colorWithAlphaComponent:0.0] CGColor];
+    
+    shadow.colors = [NSArray arrayWithObjects:(__bridge id)transparentColor, (__bridge id)darkColor, nil];
+
+    shadow.opacity = 0.8;
+    
+    [self.tableView.layer addSublayer:shadow];
+    
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     id delegate = [[UIApplication sharedApplication] delegate];
@@ -74,37 +92,10 @@
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], 
                              [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settingsIcon"] style:UIBarButtonItemStylePlain target:delegate action:@selector(showSettings)], 
                              nil];
-    self.toolbarItems = toolbarItems;
+    [self setToolbarItems:toolbarItems animated:YES];
     
     NSString *text = NSLocalizedString(@"Tap either button to add your first Stack.", nil);
     emptyDataSetView = [[STEmptyDataSetView alloc] initWithFrame:CGRectMake(0, 0, 320, 261) text:text style:STEmptyDataSetViewStyleOneButton];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -191,9 +182,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-    NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    detailViewController.detailItem = selectedObject;    
+    STStackDetailViewController *detailViewController = [[STStackDetailViewController alloc] initWithNibName:@"STStackDetailViewController" bundle:nil];
+    STStack *selectedStack = (STStack *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
+    detailViewController.stack = selectedStack;    
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
@@ -381,7 +372,7 @@
     }
 }
 
-#pragma mark - Called from interface elements
+#pragma mark - Add new Stack
 
 - (void)addNewStack
 {

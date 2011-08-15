@@ -26,4 +26,7 @@
 - (void)removeCardsObject:(STCard *)value;
 - (void)addCards:(NSSet *)values;
 - (void)removeCards:(NSSet *)values;
+
+- (NSMutableArray *)sortedCards;
+
 @end
