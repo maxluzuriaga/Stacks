@@ -12,9 +12,8 @@
     UIImageView *disclosureIndicator;
     
     BOOL lastEditing;
+    UITableViewCellStateMask _state;
 }
-
-//@property (nonatomic) BOOL lastEditing;
 
 - (void)configureTextLabel;
 

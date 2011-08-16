@@ -8,6 +8,11 @@
 
 #import "STCardDetailViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
+#import "StacksAppDelegate.h"
+#import "STCard.h"
+
 @implementation STCardDetailViewController
 
 @synthesize card = _card;
@@ -43,12 +48,13 @@
 - (void)configureView
 {
     if (_card) {
-        // Configure the view for the card
+        self.title = _card.frontText;
     }
 }
 
 - (void)newCard
 {
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
@@ -58,23 +64,40 @@
 {
     [super viewDidLoad];
     
-    id delegate = [[UIApplication sharedApplication] delegate];
-    
-    NSArray *toolbarItems = [[NSArray alloc] initWithObjects:
-                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newCard)], 
-                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], 
-                             [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settingsIcon"] style:UIBarButtonItemStylePlain target:delegate action:@selector(showSettings)], 
-                             nil];
-    [self setToolbarItems:toolbarItems animated:YES];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self configureView];
 }
 
-- (void)viewDidUnload
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    [super viewWillAppear:animated];
+    
+    StacksAppDelegate *delegate = (StacksAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate hideShadowAtIndex:1];
+    
+    [self.navigationController setToolbarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    StacksAppDelegate *delegate = (StacksAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate showShadowAtIndex:1];
+    
+    [self.navigationController setToolbarHidden:NO animated:YES];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    
+    if (editing)
+        [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemHighlightedBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    else
+        [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    NSLog(@"setEditing:animated:");
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -10,6 +10,7 @@
 
 @interface StacksAppDelegate : UIResponder <UIApplicationDelegate> {
     UIImageView *toolbarGlow;
+    NSMutableArray *_shadows;
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -25,6 +26,8 @@
 - (void)showToolbarGlow;
 - (void)hideToolbarGlow;
 - (void)adjustToolbarGlowForYOffset:(float)yOffset;
+- (void)showShadowAtIndex:(NSInteger)index;
+- (void)hideShadowAtIndex:(NSInteger)index;
 
 @property (strong, nonatomic) UINavigationController *navigationController;
 

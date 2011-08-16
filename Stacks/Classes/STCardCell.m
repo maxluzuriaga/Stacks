@@ -49,7 +49,7 @@
     
     BOOL adjustTextLabel = NO;
     
-    BOOL slidingToShowDeleteControl = (self.editing && self.showingDeleteConfirmation && !lastEditing);
+    BOOL slidingToShowDeleteControl = (self.editing && self.showingDeleteConfirmation && !lastEditing) || (_state == UITableViewCellStateShowingDeleteConfirmationMask);
     BOOL enteringEditMode = (self.editing && !self.showingDeleteConfirmation && !lastEditing);
     BOOL confirmingDeletion = (self.editing && self.showingDeleteConfirmation && lastEditing);
     BOOL rejectingDeletion = (self.editing && !self.showingDeleteConfirmation && lastEditing);
@@ -76,6 +76,8 @@
 - (void)willTransitionToState:(UITableViewCellStateMask)state {
     
     [super willTransitionToState:state];
+    
+    _state = state;
     
     if ((state == UITableViewCellStateDefaultMask) && lastEditing)
         self.backgroundView.frame = CGRectMake(32, 0, self.backgroundView.frame.size.width, self.backgroundView.frame.size.height);

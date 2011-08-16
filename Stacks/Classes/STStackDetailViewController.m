@@ -272,6 +272,16 @@
 
 #pragma mark - Interacting with the Stack
 
+- (void)setStack:(STStack *)stack
+{
+    if (stack != _stack) {
+        _stack = stack;
+        
+        [self viewWillAppear:YES];
+        [self.tableView reloadData];
+    }
+}
+
 - (void)newCard
 {
     NSArray *possibleValues = [[NSArray alloc] initWithObjects:
