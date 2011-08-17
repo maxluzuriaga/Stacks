@@ -25,7 +25,7 @@
 
 @implementation STStackDetailViewController
 
-@synthesize managedObjectContext = __managedObjectContext, stack = _stack, detailViewController = _detailViewController;
+@synthesize managedObjectContext = __managedObjectContext, stack = _stack;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -262,12 +262,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.detailViewController) {
-        self.detailViewController = [[STCardDetailViewController alloc] initWithNibName:nil bundle:nil];
-    }
+    STCardDetailViewController *detailViewController = [[STCardDetailViewController alloc] initWithNibName:nil bundle:nil];
     STCard *selectedCard = [cards objectAtIndex:[indexPath row]];
-    _detailViewController.card = selectedCard;    
-    [self.navigationController pushViewController:_detailViewController animated:YES];
+    detailViewController.card = selectedCard;    
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 #pragma mark - Interacting with the Stack

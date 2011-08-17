@@ -13,18 +13,11 @@
 #import "StacksAppDelegate.h"
 #import "STCard.h"
 
+#import "STCardView.h"
+
 @implementation STCardDetailViewController
 
 @synthesize card = _card;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -45,17 +38,51 @@
     }
 }
 
+- (void)flip
+{
+    _flipButton.enabled = NO;
+    
+    [_cardView flip];
+    
+    NSString *labelText;
+    CGRect shownFrame = _stateLabel.frame;
+    CGRect hiddenFrame = CGRectMake(15, _stateLabel.frame.origin.y, _stateLabel.frame.size.width, _stateLabel.frame.size.height);
+    
+    switch (_cardView.state) {
+        case STCardViewStateFront:
+            labelText = NSLocalizedString(@"Front", nil);
+            break;
+            
+        case STCardViewStateBack:
+            labelText = NSLocalizedString(@"Back", nil);
+            break;
+            
+        default:
+            break;
+    }
+    
+    [UIView animateWithDuration:0.25 animations:^(void) {
+        _stateLabel.alpha = 0.0;
+        _stateLabel.frame = hiddenFrame;
+    } completion:^(BOOL finished) {
+        _stateLabel.text = labelText;
+        [UIView animateWithDuration:0.5 animations:^(void) {
+            _stateLabel.alpha = 1.0;
+            _stateLabel.frame = shownFrame;
+        } completion:^(BOOL finished) {
+            _flipButton.enabled = YES;
+        }];
+    }];
+}
+
 - (void)configureView
 {
     if (_card) {
         self.title = _card.frontText;
+        
+        _cardView.frontText = _card.frontText;
+        _cardView.backText = _card.backText;
     }
-}
-
-- (void)newCard
-{
-    [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 #pragma mark - View lifecycle
@@ -66,7 +93,27 @@
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self configureView];
+    _stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(68, 22, 237, 23)];
+    _stateLabel.numberOfLines = 0;
+    _stateLabel.lineBreakMode = UILineBreakModeWordWrap;
+    _stateLabel.textAlignment = UITextAlignmentLeft;
+    _stateLabel.clipsToBounds = NO;
+    _stateLabel.font = [UIFont fontWithName:@"FreestyleScriptEF-Reg" size:25];
+    _stateLabel.textColor = [UIColor whiteColor];
+    _stateLabel.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:_stateLabel];
+    
+    _flipButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 44, 30)];
+    [_flipButton setImage:[UIImage imageNamed:@"flipButton"] forState:UIControlStateNormal];
+    [_flipButton setImage:[UIImage imageNamed:@"flipButtonTapped"] forState:UIControlStateHighlighted];
+    [_flipButton setImage:[UIImage imageNamed:@"flipButtonTapped"] forState:UIControlStateDisabled];
+    [_flipButton addTarget:self action:@selector(flip) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:_flipButton];
+    
+    _cardView = [[STCardView alloc] initWithFrame:CGRectMake(15, 60, 290, CARD_VIEW_SHORT_HEIGHT)];
+    [self.view addSubview:_cardView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -77,6 +124,11 @@
     [delegate hideShadowAtIndex:1];
     
     [self.navigationController setToolbarHidden:YES animated:YES];
+    
+    _stateLabel.text = NSLocalizedString(@"Front", nil);
+    _cardView.state = STCardViewStateFront;
+    
+    [self configureView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -97,7 +149,6 @@
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemHighlightedBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     else
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    NSLog(@"setEditing:animated:");
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

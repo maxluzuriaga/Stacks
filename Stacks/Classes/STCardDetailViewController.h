@@ -14,7 +14,6 @@
 @interface STCardDetailViewController : UIViewController {
     STCard *_card;
     
-    UIScrollView *_scrollView;
     UIButton *_flipButton;
     UILabel *_stateLabel;
     
@@ -23,7 +22,7 @@
 
 @property (nonatomic, retain) STCard *card;
 
+- (void)flip;
 - (void)configureView;
-- (void)newCard;
 
 @end

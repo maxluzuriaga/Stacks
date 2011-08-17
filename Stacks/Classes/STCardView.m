@@ -18,12 +18,17 @@
     if (self) {
         _state = STCardViewStateFront;
         
-        _textView = [[UITextView alloc] initWithFrame:frame];
+        _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         _textView.font = [UIFont systemFontOfSize:17];
         _textView.editable = NO;
         _textView.backgroundColor = [UIColor clearColor];
         
-        _backgroundImage = [[UIImageView alloc] initWithFrame:frame];
+        [self addSubview:_textView];
+        
+        _backgroundImage = [[UIImageView alloc] initWithFrame:_textView.frame];
+        
+        [self addSubview:_backgroundImage];
+        [self sendSubviewToBack:_backgroundImage];
         
         if (frame.size.height == CARD_VIEW_SHORT_HEIGHT)
             _backgroundImage.image = [UIImage imageNamed:@"cardViewShortBackground"];
@@ -64,7 +69,6 @@
     if (_state == STCardViewStateBack) {
         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self cache:YES];
         
-        // Update the interface for the flipped view
         _backText = _textView.text;
         _textView.text = _frontText;
         
@@ -72,7 +76,6 @@
     } else if (_state == STCardViewStateFront) {
         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self cache:YES];
         
-        // Update the interface for the flipped view
         _frontText = _textView.text;
         _textView.text = _backText;
         
