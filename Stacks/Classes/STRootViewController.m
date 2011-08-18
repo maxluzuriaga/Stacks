@@ -24,7 +24,7 @@
 
 @implementation STRootViewController
 
-@synthesize fetchedResultsController = __fetchedResultsController, managedObjectContext = __managedObjectContext;
+@synthesize fetchedResultsController = __fetchedResultsController, managedObjectContext = __managedObjectContext, detailViewController = _detailViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -67,21 +67,6 @@
     [headerView addSubview:button];
     
     self.tableView.tableHeaderView = headerView;
-    
-    CAGradientLayer *shadow = [[CAGradientLayer alloc] init];
-    
-    CGRect shadowFrame = CGRectMake(0, -100, 320, 90);
-    
-    shadow.frame = shadowFrame;
-    
-    CGColorRef darkColor = [[UIColor blackColor] CGColor];
-    CGColorRef transparentColor = [[[UIColor blackColor] colorWithAlphaComponent:0.0] CGColor];
-    
-    shadow.colors = [NSArray arrayWithObjects:(__bridge id)transparentColor, (__bridge id)darkColor, nil];
-
-    shadow.opacity = 0.8;
-    
-    [self.tableView.layer addSublayer:shadow];
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
@@ -182,10 +167,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    STStackDetailViewController *detailViewController = [[STStackDetailViewController alloc] initWithNibName:@"STStackDetailViewController" bundle:nil];
+    if (!self.detailViewController) {
+        self.detailViewController = [[STStackDetailViewController alloc] initWithNibName:@"STStackDetailViewController" bundle:nil];
+    }
     STStack *selectedStack = (STStack *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
-    detailViewController.stack = selectedStack;    
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    _detailViewController.stack = selectedStack;    
+    [self.navigationController pushViewController:_detailViewController animated:YES];
 }
 
 #pragma mark - Fetched results controller

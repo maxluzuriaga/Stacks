@@ -10,7 +10,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "STStackDetailViewController.h"
+#import "STCardDetailViewController.h"
 #import "StacksAppDelegate.h"
 
 #import "STStack.h"
@@ -120,21 +120,6 @@
     
     self.tableView.tableHeaderView = headerView;
     
-    CAGradientLayer *shadow = [[CAGradientLayer alloc] init];
-    
-    CGRect shadowFrame = CGRectMake(0, -100, 320, 90);
-    
-    shadow.frame = shadowFrame;
-    
-    CGColorRef darkColor = [[UIColor blackColor] CGColor];
-    CGColorRef transparentColor = [[[UIColor blackColor] colorWithAlphaComponent:0.0] CGColor];
-    
-    shadow.colors = [NSArray arrayWithObjects:(__bridge id)transparentColor, (__bridge id)darkColor, nil];
-    
-    shadow.opacity = 0.8;
-    
-    [self.tableView.layer addSublayer:shadow];
-    
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     id delegate = [[UIApplication sharedApplication] delegate];
@@ -162,6 +147,8 @@
     
     cards = [_stack sortedCards];
     
+    [self.tableView reloadData];
+    
     [self presentEmptyDataSetViewIfNeeded];
 }
 
@@ -171,6 +158,13 @@
     
     StacksAppDelegate *delegate = (StacksAppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate hideToolbarGlow];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self setEditing:NO animated:NO];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -254,7 +248,8 @@
         
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
-        [self viewWillAppear:YES];
+        cards = [_stack sortedCards];
+        [self presentEmptyDataSetViewIfNeeded];
     }
 }
 
@@ -262,10 +257,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    STCardDetailViewController *detailViewController = [[STCardDetailViewController alloc] initWithNibName:nil bundle:nil];
+    STCard *selectedCard = [cards objectAtIndex:[indexPath row]];
+    detailViewController.card = selectedCard;    
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 #pragma mark - Interacting with the Stack
+
+- (void)setStack:(STStack *)stack
+{
+    if (stack != _stack) {
+        _stack = stack;
+        
+        [self viewWillAppear:YES];
+        [self.tableView reloadData];
+    }
+}
 
 - (void)newCard
 {
@@ -301,12 +309,11 @@
         abort();
     }
     
-    [self viewWillAppear:YES];
+    cards = [_stack sortedCards];
+    [self presentEmptyDataSetViewIfNeeded];
     
     NSInteger row = [cards indexOfObject:newCard];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    
-    [self presentEmptyDataSetViewIfNeeded];
 }
 
 - (void)shareStack

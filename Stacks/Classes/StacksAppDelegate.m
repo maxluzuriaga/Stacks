@@ -55,6 +55,8 @@
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     self.navigationController.toolbarHidden = NO;
     
+    _shadows = [[NSMutableArray alloc] init];
+    
     for (int x = 0; x < 2; x++) {
         BOOL top = x == 0;
         
@@ -76,6 +78,8 @@
         shadow.opacity = 0.3;
         
         [self.navigationController.view.layer insertSublayer:shadow atIndex:2];
+        
+        [_shadows addObject:shadow];
     }
     
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
@@ -318,7 +322,6 @@
         // post a custom notification to make your views do whatever they need to such as tell their
         // NSFetchedResultsController to -performFetch again now there is a real store
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"asynchronously added persistent store!");
             [[NSNotificationCenter defaultCenter] postNotificationName:kPersistentStoreCoordinatorDidAddPersistentStoreNotification object:self userInfo:nil];
         });
     });
@@ -383,6 +386,20 @@
         float y = 365 + ((1 - alpha) * diff);
         toolbarGlow.frame = CGRectMake(0, y, 160, 71);
     }];
+}
+
+- (void)showShadowAtIndex:(NSInteger)index
+{
+    CAGradientLayer *shadow = [_shadows objectAtIndex:index];
+    
+    shadow.opacity = 0.3;
+}
+
+- (void)hideShadowAtIndex:(NSInteger)index
+{
+    CAGradientLayer *shadow = [_shadows objectAtIndex:index];
+    
+    shadow.opacity = 0.0;
 }
 
 @end

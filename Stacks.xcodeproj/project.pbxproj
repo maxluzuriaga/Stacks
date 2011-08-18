@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500CC4E013F9BA1200FED029 /* STCardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500CC4DF13F9BA1200FED029 /* STCardDetailViewController.m */; };
+		500CC54D13FA2BB800FED029 /* cardViewShortBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 500CC54B13FA2BB800FED029 /* cardViewShortBackground.png */; };
+		500CC54E13FA2BB800FED029 /* cardViewShortBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 500CC54C13FA2BB800FED029 /* cardViewShortBackground@2x.png */; };
+		500CC55313FB114D00FED029 /* flipButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 500CC54F13FB114D00FED029 /* flipButton.png */; };
+		500CC55413FB114D00FED029 /* flipButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 500CC55013FB114D00FED029 /* flipButton@2x.png */; };
+		500CC55513FB114D00FED029 /* flipButtonTapped.png in Resources */ = {isa = PBXBuildFile; fileRef = 500CC55113FB114D00FED029 /* flipButtonTapped.png */; };
+		500CC55613FB114D00FED029 /* flipButtonTapped@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 500CC55213FB114D00FED029 /* flipButtonTapped@2x.png */; };
 		500E13D713F5C88A00FF2F38 /* STEmptyDataSetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 500E13D613F5C88A00FF2F38 /* STEmptyDataSetView.m */; };
 		500E13DC13F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 500E13D813F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground.png */; };
 		500E13DD13F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 500E13D913F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground@2x.png */; };
@@ -62,6 +69,7 @@
 		50790B8513F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B8113F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png */; };
 		50790B8C13F3A7B3001C68E9 /* STButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 50790B8B13F3A7B3001C68E9 /* STButton.m */; };
 		50CEB51613F5B6D400DF6EC1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50CEB51513F5B6D400DF6EC1 /* QuartzCore.framework */; };
+		50DC9F0413FCB20B001758BC /* STLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DC9F0313FCB20B001758BC /* STLabel.m */; };
 		50FC06A413F2453B00C6C43C /* stackCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */; };
 		50FC06AC13F24CF800C6C43C /* backgroundTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06AA13F24CF700C6C43C /* backgroundTexture.png */; };
 		50FC06AD13F24CF800C6C43C /* backgroundTexture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06AB13F24CF800C6C43C /* backgroundTexture@2x.png */; };
@@ -74,6 +82,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		500CC4DE13F9BA1200FED029 /* STCardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardDetailViewController.h; sourceTree = "<group>"; };
+		500CC4DF13F9BA1200FED029 /* STCardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardDetailViewController.m; sourceTree = "<group>"; };
+		500CC54B13FA2BB800FED029 /* cardViewShortBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cardViewShortBackground.png; path = Images/cardViewShortBackground.png; sourceTree = "<group>"; };
+		500CC54C13FA2BB800FED029 /* cardViewShortBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cardViewShortBackground@2x.png"; path = "Images/cardViewShortBackground@2x.png"; sourceTree = "<group>"; };
+		500CC54F13FB114D00FED029 /* flipButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flipButton.png; path = Images/flipButton.png; sourceTree = "<group>"; };
+		500CC55013FB114D00FED029 /* flipButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "flipButton@2x.png"; path = "Images/flipButton@2x.png"; sourceTree = "<group>"; };
+		500CC55113FB114D00FED029 /* flipButtonTapped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flipButtonTapped.png; path = Images/flipButtonTapped.png; sourceTree = "<group>"; };
+		500CC55213FB114D00FED029 /* flipButtonTapped@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "flipButtonTapped@2x.png"; path = "Images/flipButtonTapped@2x.png"; sourceTree = "<group>"; };
 		500E13D513F5C88A00FF2F38 /* STEmptyDataSetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STEmptyDataSetView.h; path = Stacks/Classes/STEmptyDataSetView.h; sourceTree = SOURCE_ROOT; };
 		500E13D613F5C88A00FF2F38 /* STEmptyDataSetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STEmptyDataSetView.m; path = Stacks/Classes/STEmptyDataSetView.m; sourceTree = SOURCE_ROOT; };
 		500E13D813F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = emptyDataSetViewOneButtonBackground.png; path = Images/emptyDataSetViewOneButtonBackground.png; sourceTree = "<group>"; };
@@ -143,6 +159,8 @@
 		50790B8B13F3A7B3001C68E9 /* STButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STButton.m; sourceTree = "<group>"; };
 		50B55F2813CBD44100DBB00A /* STCommonDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCommonDefinitions.h; sourceTree = "<group>"; };
 		50CEB51513F5B6D400DF6EC1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		50DC9F0213FCB20B001758BC /* STLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STLabel.h; sourceTree = "<group>"; };
+		50DC9F0313FCB20B001758BC /* STLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STLabel.m; sourceTree = "<group>"; };
 		50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stackCellBackground@2x.png"; path = "Images/stackCellBackground@2x.png"; sourceTree = "<group>"; };
 		50FC06AA13F24CF700C6C43C /* backgroundTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backgroundTexture.png; path = Images/backgroundTexture.png; sourceTree = "<group>"; };
 		50FC06AB13F24CF800C6C43C /* backgroundTexture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backgroundTexture@2x.png"; path = "Images/backgroundTexture@2x.png"; sourceTree = "<group>"; };
@@ -268,12 +286,18 @@
 				505C829413F754120003F864 /* cardCellBackground@2x.png */,
 				505C829513F754120003F864 /* cardCellSelectedBackground.png */,
 				505C829613F754120003F864 /* cardCellSelectedBackground@2x.png */,
+				500CC54B13FA2BB800FED029 /* cardViewShortBackground.png */,
+				500CC54C13FA2BB800FED029 /* cardViewShortBackground@2x.png */,
 				50790B7613F2E98F001C68E9 /* disclosureIndicator.png */,
 				50790B7713F2E98F001C68E9 /* disclosureIndicator@2x.png */,
 				500E13D813F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground.png */,
 				500E13D913F5D3B300FF2F38 /* emptyDataSetViewOneButtonBackground@2x.png */,
 				500E13DA13F5D3B300FF2F38 /* emptyDataSetViewTwoButtonsBackground.png */,
 				500E13DB13F5D3B300FF2F38 /* emptyDataSetViewTwoButtonsBackground@2x.png */,
+				500CC54F13FB114D00FED029 /* flipButton.png */,
+				500CC55013FB114D00FED029 /* flipButton@2x.png */,
+				500CC55113FB114D00FED029 /* flipButtonTapped.png */,
+				500CC55213FB114D00FED029 /* flipButtonTapped@2x.png */,
 				505C828813F72F660003F864 /* greenButtonBackground.png */,
 				505C828913F72F660003F864 /* greenButtonBackground@2x.png */,
 				505C828A13F72F660003F864 /* greenButtonTappedBackground.png */,
@@ -311,6 +335,8 @@
 		501EA65B13C8CA95006DE75D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				500CC4DE13F9BA1200FED029 /* STCardDetailViewController.h */,
+				500CC4DF13F9BA1200FED029 /* STCardDetailViewController.m */,
 				501EA64A13C8C8CA006DE75D /* STRootViewController.h */,
 				501EA64B13C8C8CA006DE75D /* STRootViewController.m */,
 				505C828313F723490003F864 /* STStackDetailViewController.h */,
@@ -352,6 +378,8 @@
 				501527CC13F9A43000100EAC /* STCardView.m */,
 				500E13D513F5C88A00FF2F38 /* STEmptyDataSetView.h */,
 				500E13D613F5C88A00FF2F38 /* STEmptyDataSetView.m */,
+				50DC9F0213FCB20B001758BC /* STLabel.h */,
+				50DC9F0313FCB20B001758BC /* STLabel.m */,
 				505B3DEE13F231AC007C4A17 /* STStackCell.h */,
 				505B3DEF13F231AC007C4A17 /* STStackCell.m */,
 			);
@@ -455,6 +483,12 @@
 				505C829813F754120003F864 /* cardCellBackground@2x.png in Resources */,
 				505C829913F754120003F864 /* cardCellSelectedBackground.png in Resources */,
 				505C829A13F754120003F864 /* cardCellSelectedBackground@2x.png in Resources */,
+				500CC54D13FA2BB800FED029 /* cardViewShortBackground.png in Resources */,
+				500CC54E13FA2BB800FED029 /* cardViewShortBackground@2x.png in Resources */,
+				500CC55313FB114D00FED029 /* flipButton.png in Resources */,
+				500CC55413FB114D00FED029 /* flipButton@2x.png in Resources */,
+				500CC55513FB114D00FED029 /* flipButtonTapped.png in Resources */,
+				500CC55613FB114D00FED029 /* flipButtonTapped@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +511,8 @@
 				505C828613F723490003F864 /* STStackDetailViewController.m in Sources */,
 				505C829213F74BA30003F864 /* STCardCell.m in Sources */,
 				501527CD13F9A43000100EAC /* STCardView.m in Sources */,
+				500CC4E013F9BA1200FED029 /* STCardDetailViewController.m in Sources */,
+				50DC9F0413FCB20B001758BC /* STLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
