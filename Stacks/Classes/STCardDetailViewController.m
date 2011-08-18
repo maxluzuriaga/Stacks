@@ -14,6 +14,7 @@
 #import "STCard.h"
 
 #import "STCardView.h"
+#import "STLabel.h"
 
 @implementation STCardDetailViewController
 
@@ -27,80 +28,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - Managing the Card view
-
-- (void)setCard:(STCard *)card
-{
-    if (card != _card) {
-        _card = card;
-        
-        [self configureView];
-    }
-}
-
-- (void)flip
-{
-    _flipButton.enabled = NO;
-    
-    [_cardView flip];
-    
-    NSString *labelText;
-    CGRect shownFrame = _stateLabel.frame;
-    CGRect hiddenFrame = CGRectMake(15, _stateLabel.frame.origin.y, _stateLabel.frame.size.width, _stateLabel.frame.size.height);
-    
-    switch (_cardView.state) {
-        case STCardViewStateFront:
-            labelText = NSLocalizedString(@"Front", nil);
-            break;
-            
-        case STCardViewStateBack:
-            labelText = NSLocalizedString(@"Back", nil);
-            break;
-            
-        default:
-            break;
-    }
-    
-    [UIView animateWithDuration:0.25 animations:^(void) {
-        _stateLabel.alpha = 0.0;
-        _stateLabel.frame = hiddenFrame;
-    } completion:^(BOOL finished) {
-        _stateLabel.text = labelText;
-        [UIView animateWithDuration:0.5 animations:^(void) {
-            _stateLabel.alpha = 1.0;
-            _stateLabel.frame = shownFrame;
-        } completion:^(BOOL finished) {
-            _flipButton.enabled = YES;
-        }];
-    }];
-}
-
-- (void)configureView
-{
-    if (_card) {
-        self.title = _card.frontText;
-        
-        _cardView.frontText = _card.frontText;
-        _cardView.backText = _card.backText;
-    }
-}
-
-- (void)textViewDidChange:(UITextView *)textView
-{
-    if (_cardView.state == STCardViewStateFront)
-        self.title = textView.text;
-}
-
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView
-{
-    if (_cardView.state == STCardViewStateFront)
-        _cardView.frontText = _cardView.textView.text;
-    else if (_cardView.state == STCardViewStateBack)
-        _cardView.backText = _cardView.textView.text;
-    
-    return YES;
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -109,14 +36,8 @@
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    _stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(68, 22, 237, 23)];
-    _stateLabel.numberOfLines = 0;
-    _stateLabel.lineBreakMode = UILineBreakModeWordWrap;
-    _stateLabel.textAlignment = UITextAlignmentLeft;
-    _stateLabel.clipsToBounds = NO;
+    _stateLabel = [[STLabel alloc] initWithFrame:CGRectMake(68, 22, 237, 23)];
     _stateLabel.font = [UIFont fontWithName:@"FreestyleScriptEF-Reg" size:25];
-    _stateLabel.textColor = [UIColor whiteColor];
-    _stateLabel.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:_stateLabel];
     
@@ -198,6 +119,80 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - Managing the Card view
+
+- (void)setCard:(STCard *)card
+{
+    if (card != _card) {
+        _card = card;
+        
+        [self configureView];
+    }
+}
+
+- (void)flip
+{
+    _flipButton.enabled = NO;
+    
+    [_cardView flip];
+    
+    NSString *labelText;
+    CGRect shownFrame = _stateLabel.frame;
+    CGRect hiddenFrame = CGRectMake(15, _stateLabel.frame.origin.y, _stateLabel.frame.size.width, _stateLabel.frame.size.height);
+    
+    switch (_cardView.state) {
+        case STCardViewStateFront:
+            labelText = NSLocalizedString(@"Front", nil);
+            break;
+            
+        case STCardViewStateBack:
+            labelText = NSLocalizedString(@"Back", nil);
+            break;
+            
+        default:
+            break;
+    }
+    
+    [UIView animateWithDuration:0.25 animations:^(void) {
+        _stateLabel.alpha = 0.0;
+        _stateLabel.frame = hiddenFrame;
+    } completion:^(BOOL finished) {
+        _stateLabel.text = labelText;
+        [UIView animateWithDuration:0.5 animations:^(void) {
+            _stateLabel.alpha = 1.0;
+            _stateLabel.frame = shownFrame;
+        } completion:^(BOOL finished) {
+            _flipButton.enabled = YES;
+        }];
+    }];
+}
+
+- (void)configureView
+{
+    if (_card) {
+        self.title = _card.frontText;
+        
+        _cardView.frontText = _card.frontText;
+        _cardView.backText = _card.backText;
+    }
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (_cardView.state == STCardViewStateFront)
+        self.title = textView.text;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    if (_cardView.state == STCardViewStateFront)
+        _cardView.frontText = _cardView.textView.text;
+    else if (_cardView.state == STCardViewStateBack)
+        _cardView.backText = _cardView.textView.text;
+    
+    return YES;
 }
 
 @end
