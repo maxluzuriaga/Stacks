@@ -22,6 +22,7 @@
 
 @property (nonatomic, retain) STCard *card;
 
+- (void)reloadCard:(NSNotification *)note;
 - (void)flip;
 - (void)configureView;
 

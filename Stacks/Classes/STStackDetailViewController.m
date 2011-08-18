@@ -120,21 +120,6 @@
     
     self.tableView.tableHeaderView = headerView;
     
-    CAGradientLayer *shadow = [[CAGradientLayer alloc] init];
-    
-    CGRect shadowFrame = CGRectMake(0, -100, 320, 90);
-    
-    shadow.frame = shadowFrame;
-    
-    CGColorRef darkColor = [[UIColor blackColor] CGColor];
-    CGColorRef transparentColor = [[[UIColor blackColor] colorWithAlphaComponent:0.0] CGColor];
-    
-    shadow.colors = [NSArray arrayWithObjects:(__bridge id)transparentColor, (__bridge id)darkColor, nil];
-    
-    shadow.opacity = 0.8;
-    
-    [self.tableView.layer addSublayer:shadow];
-    
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     id delegate = [[UIApplication sharedApplication] delegate];
@@ -173,6 +158,13 @@
     
     StacksAppDelegate *delegate = (StacksAppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate hideToolbarGlow];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self setEditing:NO animated:NO];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated

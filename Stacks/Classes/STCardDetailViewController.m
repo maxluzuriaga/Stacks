@@ -53,6 +53,8 @@
     _cardView.textView.delegate = self;
     
     [self.view addSubview:_cardView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCard:) name:@"RefreshAllViews" object:[[UIApplication sharedApplication] delegate]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -178,6 +180,53 @@
         _cardView.backText = _card.backText;
     }
 }
+
+- (void)reloadCard:(NSNotification *)note
+{
+    NSDictionary *ui = [note userInfo];
+    NSManagedObjectID *cardID = [_card objectID];
+    
+    if (cardID) {
+        BOOL shouldReload = ([ui objectForKey:NSInvalidatedAllObjectsKey] != nil);
+        BOOL wasInvalidated = ([ui objectForKey:NSInvalidatedAllObjectsKey] != nil);
+        
+        NSString *interestingKeys[] = { NSUpdatedObjectsKey, NSRefreshedObjectsKey, NSInvalidatedObjectsKey };
+        int c = (sizeof(interestingKeys) / sizeof(NSString *));
+        
+        for (int i = 0; i < c; i++) {
+            NSSet *collection = [ui objectForKey:interestingKeys[i]];
+            if (collection) {
+                for (NSManagedObject *mo in collection) {
+                    if ([[mo objectID] isEqual:cardID]) {
+                        if ([interestingKeys[i] isEqual:NSInvalidatedObjectsKey]) {
+                            wasInvalidated = YES;
+                        }
+                        shouldReload = YES;
+                        break;
+                    }
+                }
+            }
+            if (shouldReload) {
+                break;
+            }
+        }
+        
+        if (shouldReload) {
+            if (wasInvalidated) {
+                // if the object was invalidated, it is no longer a part of our MOC
+                // we need a new MO for the objectID we care about
+                // this generally only happens if the object was released to rc 0, the persistent store removed, or the MOC reset
+                NSLog(@"was invalidated");
+                NSManagedObjectContext *context = [(StacksAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+                self.card = (STCard *)[context objectWithID:cardID];
+            }
+            
+            [self configureView];
+        }
+    }
+}
+
+#pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView
 {
