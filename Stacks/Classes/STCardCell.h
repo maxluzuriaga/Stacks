@@ -12,6 +12,7 @@
     UIImageView *disclosureIndicator;
     
     BOOL lastEditing;
+    BOOL reusing;
     UITableViewCellStateMask _state;
 }
 

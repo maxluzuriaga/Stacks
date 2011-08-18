@@ -32,5 +32,6 @@ typedef enum {
 @property (nonatomic) STCardViewState state;
 
 - (void)flip;
+- (void)setEditable:(BOOL)editable;
 
 @end

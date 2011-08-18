@@ -27,7 +27,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - Managing the Card
+#pragma mark - Managing the Card view
 
 - (void)setCard:(STCard *)card
 {
@@ -85,6 +85,22 @@
     }
 }
 
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (_cardView.state == STCardViewStateFront)
+        self.title = textView.text;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    if (_cardView.state == STCardViewStateFront)
+        _cardView.frontText = _cardView.textView.text;
+    else if (_cardView.state == STCardViewStateBack)
+        _cardView.backText = _cardView.textView.text;
+    
+    return YES;
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -113,6 +129,8 @@
     [self.view addSubview:_flipButton];
     
     _cardView = [[STCardView alloc] initWithFrame:CGRectMake(15, 60, 290, CARD_VIEW_SHORT_HEIGHT)];
+    _cardView.textView.delegate = self;
+    
     [self.view addSubview:_cardView];
 }
 
@@ -145,10 +163,35 @@
 {
     [super setEditing:editing animated:animated];
     
-    if (editing)
+    if (editing) {
+        [self.navigationItem setHidesBackButton:YES animated:YES];
+        
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemHighlightedBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    else
+        
+        _cardView.editable = YES;
+    } else {
+        [self.navigationItem setHidesBackButton:NO animated:YES];
+        
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        
+        _cardView.editable = NO;
+        
+        _card.frontText = _cardView.frontText;
+        _card.backText = _cardView.backText;
+        
+        NSManagedObjectContext *context = [(StacksAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        NSError *error = nil;
+        if (![context save:&error])
+        {
+            /*
+             Replace this implementation with code to handle the error appropriately.
+             
+             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+             */
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

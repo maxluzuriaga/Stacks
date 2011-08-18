@@ -58,6 +58,15 @@
     }
 }
 
+- (void)setEditable:(BOOL)editable
+{
+    _textView.editable = editable;
+    if (editable)
+        [_textView becomeFirstResponder];
+    else
+        [_textView resignFirstResponder];
+}
+
 - (void)flip {
     [_textView resignFirstResponder];
     

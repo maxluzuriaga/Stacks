@@ -11,7 +11,7 @@
 @class STCard;
 @class STCardView;
 
-@interface STCardDetailViewController : UIViewController {
+@interface STCardDetailViewController : UIViewController <UITextViewDelegate> {
     STCard *_card;
     
     UIButton *_flipButton;

@@ -162,6 +162,8 @@
     
     cards = [_stack sortedCards];
     
+    [self.tableView reloadData];
+    
     [self presentEmptyDataSetViewIfNeeded];
 }
 
@@ -254,7 +256,8 @@
         
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
-        [self viewWillAppear:YES];
+        cards = [_stack sortedCards];
+        [self presentEmptyDataSetViewIfNeeded];
     }
 }
 
@@ -314,12 +317,11 @@
         abort();
     }
     
-    [self viewWillAppear:YES];
+    cards = [_stack sortedCards];
+    [self presentEmptyDataSetViewIfNeeded];
     
     NSInteger row = [cards indexOfObject:newCard];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    
-    [self presentEmptyDataSetViewIfNeeded];
 }
 
 - (void)shareStack

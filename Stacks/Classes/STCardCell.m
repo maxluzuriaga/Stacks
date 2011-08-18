@@ -15,6 +15,7 @@
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
         lastEditing = NO;
+        reusing = NO;
         
         self.selectionStyle = UITableViewCellSelectionStyleBlue;
         
@@ -53,6 +54,15 @@
     BOOL enteringEditMode = (self.editing && !self.showingDeleteConfirmation && !lastEditing);
     BOOL confirmingDeletion = (self.editing && self.showingDeleteConfirmation && lastEditing);
     BOOL rejectingDeletion = (self.editing && !self.showingDeleteConfirmation && lastEditing);
+    
+    if (reusing && !enteringEditMode) {
+        self.textLabel.frame = CGRectMake(28, 22, 246, 18);
+        self.backgroundView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        disclosureIndicator.alpha = 1.0;
+        
+        reusing = NO;
+        return;
+    }
     
     if ((enteringEditMode || confirmingDeletion || rejectingDeletion) && !slidingToShowDeleteControl) {
         offset = 32;
@@ -98,6 +108,8 @@
     
     [self configureTextLabel];
     lastEditing = NO;
+    
+    reusing = YES;
 }
 
 - (void)configureTextLabel
