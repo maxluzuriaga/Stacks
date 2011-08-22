@@ -12,4 +12,6 @@
     float _offset;
 }
 
+- (CGRect)insetRect:(CGRect)original inverse:(BOOL)inverse;
+
 @end

@@ -13,19 +13,29 @@
 - (id)initWithFrame:(CGRect)frame
 {
     _offset = 3;
-    CGRect newFrame = CGRectMake(frame.origin.x - _offset, frame.origin.y - _offset, frame.size.width + (2 * _offset), frame.size.height + (2 * _offset));
     
-    if (self = [super initWithFrame:newFrame]) {
+    if (self = [super initWithFrame:frame]) {
         self.textColor = [UIColor whiteColor];
         self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
 
+- (CGRect)insetRect:(CGRect)original inverse:(BOOL)inverse
+{
+    float offset = _offset * (inverse ? -1 : 1);
+    return CGRectMake(original.origin.x - offset, original.origin.y - offset, original.size.width + (2 * offset), original.size.height + (2 * offset));
+}
+
+- (void)setFrame:(CGRect)frame
+{
+    frame = [self insetRect:frame inverse:NO];
+    [super setFrame:frame];
+}
+
 - (void)drawTextInRect:(CGRect)rect
 {
-    UIEdgeInsets insets = UIEdgeInsetsMake(_offset, _offset, _offset, _offset);
-    return [super drawTextInRect:UIEdgeInsetsInsetRect(rect, insets)];
+    return [super drawTextInRect:[self insetRect:rect inverse:YES]];
 }
 
 @end
