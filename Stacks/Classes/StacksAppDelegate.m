@@ -282,7 +282,6 @@
     
     // prep the store path and bundle stuff here since -mainBundle isn't totally thread safe
     NSString *storePath = [[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:@"Stacks.sqlite"];
-    NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Stacks" ofType:@"sqlite"];
     
     // do this asynchronously since if this is the first time this particular device is syncing with preexisting
     // iCloud content it may take a long long time to download
