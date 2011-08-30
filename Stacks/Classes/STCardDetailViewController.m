@@ -141,7 +141,7 @@
     [_cardView flip];
     
     NSString *labelText;
-    CGRect shownFrame = _stateLabel.frame;
+    CGRect shownFrame = CGRectMake(68, _stateLabel.frame.origin.y, _stateLabel.frame.size.width, _stateLabel.frame.size.height);
     CGRect hiddenFrame = CGRectMake(15, _stateLabel.frame.origin.y, _stateLabel.frame.size.width, _stateLabel.frame.size.height);
     
     switch (_cardView.state) {
