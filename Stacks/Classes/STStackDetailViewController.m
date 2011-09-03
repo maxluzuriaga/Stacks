@@ -19,6 +19,7 @@
 #import "STCardCell.h"
 #import "STButton.h"
 #import "STEmptyDataSetView.h"
+#import "STTextField.h"
 
 #define NEW_CARD_BUTTON_TAG 53
 #define STUDY_BUTTON_TAG 75
@@ -118,6 +119,11 @@
     
     [headerView addSubview:studyButton];
     
+    nameTextField = [[STTextField alloc] initWithFrame:CGRectMake(15, 15, 290, 44)];
+    nameTextField.alpha = 0.0;
+    nameTextField.delegate = self;
+    nameTextField.placeholder = NSLocalizedString(@"Name", nil);
+    
     self.tableView.tableHeaderView = headerView;
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -171,10 +177,48 @@
 {
     [super setEditing:editing animated:animated];
     
-    if (editing)
+    if (editing) {
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemHighlightedBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    else
+        
+        nameTextField.text = _stack.name;
+        
+        [self.tableView.tableHeaderView addSubview:nameTextField];
+        
+        [UIView animateWithDuration:0.5 animations:^(void) {
+            nameTextField.alpha = 1.0;
+            
+            if ([cards count] == 0)
+                emptyDataSetView.alpha = 0.0;
+        }];
+    } else {
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        
+        _stack.name = nameTextField.text;
+        self.title = nameTextField.text;
+        
+        [nameTextField resignFirstResponder];
+        
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error])
+        {
+            /*
+             Replace this implementation with code to handle the error appropriately.
+             
+             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+             */
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+        
+        [UIView animateWithDuration:0.5 animations:^(void) {
+            nameTextField.alpha = 0.0;
+            
+            if ([cards count] == 0)
+                emptyDataSetView.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            [nameTextField removeFromSuperview];
+        }];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -314,6 +358,13 @@
     
     NSInteger row = [cards indexOfObject:newCard];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 - (void)shareStack

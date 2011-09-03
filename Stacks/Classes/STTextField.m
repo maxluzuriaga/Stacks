@@ -16,7 +16,6 @@
     if (self) {
         self.background = [[UIImage imageNamed:@"textFieldBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
         
-        self.placeholder = @"Name";
         self.font = [UIFont systemFontOfSize:15];
         self.textColor = [UIColor colorWithRed:0.15 green:0.15 blue:0.15 alpha:1.0];
         self.returnKeyType = UIReturnKeyDone;

@@ -10,12 +10,14 @@
 
 @class STStack;
 @class STEmptyDataSetView;
+@class STTextField;
 
-@interface STStackDetailViewController : UITableViewController {
+@interface STStackDetailViewController : UITableViewController <UITextFieldDelegate> {
     STStack *_stack;
     NSMutableArray *cards;
     
     STEmptyDataSetView *emptyDataSetView;
+    STTextField *nameTextField;
 }
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
