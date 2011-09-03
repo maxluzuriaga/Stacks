@@ -150,6 +150,7 @@
     [super viewWillAppear:animated];
     
     self.title = _stack.name;
+    nameTextField.text = _stack.name;
     
     cards = [_stack sortedCards];
     
@@ -179,8 +180,6 @@
     
     if (editing) {
         [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemHighlightedBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        
-        nameTextField.text = _stack.name;
         
         [self.tableView.tableHeaderView addSubview:nameTextField];
         
