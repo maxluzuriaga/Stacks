@@ -58,6 +58,9 @@
 		505C829813F754120003F864 /* cardCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C829413F754120003F864 /* cardCellBackground@2x.png */; };
 		505C829913F754120003F864 /* cardCellSelectedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C829513F754120003F864 /* cardCellSelectedBackground.png */; };
 		505C829A13F754120003F864 /* cardCellSelectedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 505C829613F754120003F864 /* cardCellSelectedBackground@2x.png */; };
+		5076B68B1412AFC9006AE55F /* STTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5076B68A1412AFC9006AE55F /* STTextField.m */; };
+		5076B68E1412B07D006AE55F /* textFieldBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5076B68D1412B07D006AE55F /* textFieldBackground@2x.png */; };
+		5076B6901412B35E006AE55F /* textFieldBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 5076B68F1412B35E006AE55F /* textFieldBackground.png */; };
 		50790B7413F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7313F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png */; };
 		50790B7813F2E98F001C68E9 /* disclosureIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7613F2E98F001C68E9 /* disclosureIndicator.png */; };
 		50790B7913F2E98F001C68E9 /* disclosureIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B7713F2E98F001C68E9 /* disclosureIndicator@2x.png */; };
@@ -146,6 +149,10 @@
 		505C829413F754120003F864 /* cardCellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cardCellBackground@2x.png"; path = "Images/cardCellBackground@2x.png"; sourceTree = "<group>"; };
 		505C829513F754120003F864 /* cardCellSelectedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cardCellSelectedBackground.png; path = Images/cardCellSelectedBackground.png; sourceTree = "<group>"; };
 		505C829613F754120003F864 /* cardCellSelectedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cardCellSelectedBackground@2x.png"; path = "Images/cardCellSelectedBackground@2x.png"; sourceTree = "<group>"; };
+		5076B6891412AFC9006AE55F /* STTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTextField.h; sourceTree = "<group>"; };
+		5076B68A1412AFC9006AE55F /* STTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STTextField.m; sourceTree = "<group>"; };
+		5076B68D1412B07D006AE55F /* textFieldBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "textFieldBackground@2x.png"; path = "Images/textFieldBackground@2x.png"; sourceTree = "<group>"; };
+		5076B68F1412B35E006AE55F /* textFieldBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = textFieldBackground.png; path = Images/textFieldBackground.png; sourceTree = "<group>"; };
 		50790B7313F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stackCellSelectedBackground@2x.png"; path = "Images/stackCellSelectedBackground@2x.png"; sourceTree = "<group>"; };
 		50790B7613F2E98F001C68E9 /* disclosureIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disclosureIndicator.png; path = Images/disclosureIndicator.png; sourceTree = "<group>"; };
 		50790B7713F2E98F001C68E9 /* disclosureIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disclosureIndicator@2x.png"; path = "Images/disclosureIndicator@2x.png"; sourceTree = "<group>"; };
@@ -308,6 +315,8 @@
 				50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */,
 				50790B7C13F3A1AF001C68E9 /* stackCellSelectedBackground.png */,
 				50790B7313F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png */,
+				5076B68F1412B35E006AE55F /* textFieldBackground.png */,
+				5076B68D1412B07D006AE55F /* textFieldBackground@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -382,6 +391,8 @@
 				50DC9F0313FCB20B001758BC /* STLabel.m */,
 				505B3DEE13F231AC007C4A17 /* STStackCell.h */,
 				505B3DEF13F231AC007C4A17 /* STStackCell.m */,
+				5076B6891412AFC9006AE55F /* STTextField.h */,
+				5076B68A1412AFC9006AE55F /* STTextField.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -489,6 +500,8 @@
 				500CC55413FB114D00FED029 /* flipButton@2x.png in Resources */,
 				500CC55513FB114D00FED029 /* flipButtonTapped.png in Resources */,
 				500CC55613FB114D00FED029 /* flipButtonTapped@2x.png in Resources */,
+				5076B68E1412B07D006AE55F /* textFieldBackground@2x.png in Resources */,
+				5076B6901412B35E006AE55F /* textFieldBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +526,7 @@
 				501527CD13F9A43000100EAC /* STCardView.m in Sources */,
 				500CC4E013F9BA1200FED029 /* STCardDetailViewController.m in Sources */,
 				50DC9F0413FCB20B001758BC /* STLabel.m in Sources */,
+				5076B68B1412AFC9006AE55F /* STTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
