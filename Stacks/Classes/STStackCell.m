@@ -19,6 +19,7 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleBlue;
         
+        self.textLabel.textAlignment = UITextAlignmentCenter;
         self.textLabel.font = [UIFont boldSystemFontOfSize:17];
         self.textLabel.backgroundColor = [UIColor greenColor];
         

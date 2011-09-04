@@ -26,9 +26,9 @@ typedef enum {
     STCardViewState _state;
 }
 
-@property (nonatomic, strong) UITextView *textView;
-@property (nonatomic, strong) NSString *frontText;
-@property (nonatomic, strong) NSString *backText;
+@property (strong, nonatomic) UITextView *textView;
+@property (strong, nonatomic) NSString *frontText;
+@property (strong, nonatomic) NSString *backText;
 @property (nonatomic) STCardViewState state;
 
 - (void)flip;

@@ -363,12 +363,22 @@
 
 - (void)addNewStack
 {
+    STNewStackViewController *newStackViewController = [[STNewStackViewController alloc] init];
+    newStackViewController.delegate = self;
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newStackViewController];
+    
+    [self presentModalViewController:navigationController animated:YES];
+}
+
+- (void)newStackViewController:(STNewStackViewController *)newStackViewController didSaveWithName:(NSString *)name
+{
     // Create a new instance of the entity managed by the fetched results controller.
     //    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     STStack *newStack = [NSEntityDescription insertNewObjectForEntityForName:@"STStack" inManagedObjectContext:self.managedObjectContext];
     
     newStack.createdDate = [NSDate date];
-    newStack.name = @"Test Stack";
+    newStack.name = name;
     
     // Save the context.
     NSError *error = nil;
@@ -382,6 +392,13 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    
+    if (!self.detailViewController) {
+        self.detailViewController = [[STStackDetailViewController alloc] initWithNibName:@"STStackDetailViewController" bundle:nil];
+    }
+    STStack *selectedStack = (STStack *)[[self fetchedResultsController] objectAtIndexPath:[self.fetchedResultsController indexPathForObject:newStack]];
+    _detailViewController.stack = selectedStack;    
+    [self.navigationController pushViewController:_detailViewController animated:YES];
 }
 
 @end

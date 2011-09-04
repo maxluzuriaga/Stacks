@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "STNewStackViewController.h"
+
 @class STStackDetailViewController;
 @class STEmptyDataSetView;
 
-@interface STRootViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
+@interface STRootViewController : UITableViewController <NSFetchedResultsControllerDelegate, STNewStackViewControllerDelegate> {
     STEmptyDataSetView *emptyDataSetView;
 }
 
