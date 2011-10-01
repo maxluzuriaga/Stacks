@@ -63,6 +63,7 @@
     textField.returnKeyType = UIReturnKeyDone;
     textField.delegate = self;
     [self.view addSubview:textField];
+    [textField becomeFirstResponder];
     
     saveButton = [[STButton alloc] initWithFrame:CGRectMake(15, 74, 290, 44) buttonColor:STButtonColorBlue disclosureImageEnabled:NO];
     [saveButton setTitle:NSLocalizedString(@"Save", nil) forState:UIControlStateNormal];

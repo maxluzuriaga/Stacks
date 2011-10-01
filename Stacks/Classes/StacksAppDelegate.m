@@ -191,8 +191,7 @@
     {
         return __managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Stacks" withExtension:@"momd"];
-    __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+    __managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     return __managedObjectModel;
 }
 
