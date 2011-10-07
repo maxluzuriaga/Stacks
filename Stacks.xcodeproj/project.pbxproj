@@ -46,6 +46,7 @@
 		504A3E2A13F1E15500465C64 /* barButtonItemHighlightedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E2913F1E15500465C64 /* barButtonItemHighlightedBackground.png */; };
 		504A3E2D13F1E5C500465C64 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E2B13F1E5C500465C64 /* settingsIcon.png */; };
 		504A3E2E13F1E5C500465C64 /* settingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 504A3E2C13F1E5C500465C64 /* settingsIcon@2x.png */; };
+		504E4DFB143F60E300C6E232 /* STNewCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504E4DFA143F60E300C6E232 /* STNewCardViewController.m */; };
 		5056D82F1412D8DB00E082B3 /* STNewStackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5056D82E1412D8DB00E082B3 /* STNewStackViewController.m */; };
 		505B3DF013F231AC007C4A17 /* STStackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 505B3DEF13F231AC007C4A17 /* STStackCell.m */; };
 		505C828613F723490003F864 /* STStackDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505C828413F723490003F864 /* STStackDetailViewController.m */; };
@@ -135,6 +136,8 @@
 		504A3E2913F1E15500465C64 /* barButtonItemHighlightedBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonItemHighlightedBackground.png; path = Images/barButtonItemHighlightedBackground.png; sourceTree = "<group>"; };
 		504A3E2B13F1E5C500465C64 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settingsIcon.png; path = Images/settingsIcon.png; sourceTree = "<group>"; };
 		504A3E2C13F1E5C500465C64 /* settingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settingsIcon@2x.png"; path = "Images/settingsIcon@2x.png"; sourceTree = "<group>"; };
+		504E4DF9143F60E300C6E232 /* STNewCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STNewCardViewController.h; path = Stacks/Classes/STNewCardViewController.h; sourceTree = SOURCE_ROOT; };
+		504E4DFA143F60E300C6E232 /* STNewCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STNewCardViewController.m; path = Stacks/Classes/STNewCardViewController.m; sourceTree = SOURCE_ROOT; };
 		5056D82D1412D8DB00E082B3 /* STNewStackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STNewStackViewController.h; path = Stacks/Classes/STNewStackViewController.h; sourceTree = SOURCE_ROOT; };
 		5056D82E1412D8DB00E082B3 /* STNewStackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STNewStackViewController.m; path = Stacks/Classes/STNewStackViewController.m; sourceTree = SOURCE_ROOT; };
 		505B3DEE13F231AC007C4A17 /* STStackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStackCell.h; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 			children = (
 				500CC4DE13F9BA1200FED029 /* STCardDetailViewController.h */,
 				500CC4DF13F9BA1200FED029 /* STCardDetailViewController.m */,
+				504E4DF9143F60E300C6E232 /* STNewCardViewController.h */,
+				504E4DFA143F60E300C6E232 /* STNewCardViewController.m */,
 				5056D82D1412D8DB00E082B3 /* STNewStackViewController.h */,
 				5056D82E1412D8DB00E082B3 /* STNewStackViewController.m */,
 				501EA64A13C8C8CA006DE75D /* STRootViewController.h */,
@@ -533,6 +538,7 @@
 				50DC9F0413FCB20B001758BC /* STLabel.m in Sources */,
 				5076B68B1412AFC9006AE55F /* STTextField.m in Sources */,
 				5056D82F1412D8DB00E082B3 /* STNewStackViewController.m in Sources */,
+				504E4DFB143F60E300C6E232 /* STNewCardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
