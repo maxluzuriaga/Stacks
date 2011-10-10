@@ -19,12 +19,10 @@
 @end
 
 @interface STNewStackViewController : UIViewController <UITextFieldDelegate> {
-    STTextField *textField;
-    STButton *saveButton;
+    STTextField *_textField;
+    STButton *_saveButton;
     
-    UIButton *backgroundButton;
-    
-    BOOL textFieldMessageAdded;
+    UIButton *_backgroundButton;
 }
 
 @property (weak, nonatomic) id<STNewStackViewControllerDelegate> delegate;
@@ -33,5 +31,6 @@
 - (void)save;
 - (void)cancel;
 - (void)backgroundTapped;
+- (void)textFieldDidChange:(UITextField *)textField;
 
 @end

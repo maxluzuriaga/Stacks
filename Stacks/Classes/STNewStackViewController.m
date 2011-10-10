@@ -48,27 +48,29 @@
     self.title = NSLocalizedString(@"New Stack", nil);
     self.view.backgroundColor = [UIColor clearColor];
     
-    textFieldMessageAdded = NO;
-    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(save)];
     [self.navigationItem.rightBarButtonItem setBackgroundImage:[[UIImage imageNamed:@"barButtonItemHighlightedBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
-    backgroundButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    [backgroundButton addTarget:self action:@selector(backgroundTapped) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backgroundButton];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     
-    textField = [[STTextField alloc] initWithFrame:CGRectMake(15, 15, 290, 44)];
-    textField.placeholder = NSLocalizedString(@"Name", nil);
-    textField.returnKeyType = UIReturnKeyDone;
-    textField.delegate = self;
-    [self.view addSubview:textField];
-    [textField becomeFirstResponder];
+    _backgroundButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    [_backgroundButton addTarget:self action:@selector(backgroundTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_backgroundButton];
     
-    saveButton = [[STButton alloc] initWithFrame:CGRectMake(15, 74, 290, 44) buttonColor:STButtonColorBlue disclosureImageEnabled:NO];
-    [saveButton setTitle:NSLocalizedString(@"Save", nil) forState:UIControlStateNormal];
-    [saveButton addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:saveButton];
+    _textField = [[STTextField alloc] initWithFrame:CGRectMake(15, 15, 290, 44)];
+    _textField.placeholder = NSLocalizedString(@"Name", nil);
+    _textField.returnKeyType = UIReturnKeyDone;
+    _textField.delegate = self;
+    [self.view addSubview:_textField];
+    [_textField becomeFirstResponder];
+    
+    [_textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
+    _saveButton = [[STButton alloc] initWithFrame:CGRectMake(15, 74, 290, 44) buttonColor:STButtonColorBlue disclosureImageEnabled:NO];
+    [_saveButton setTitle:NSLocalizedString(@"Save", nil) forState:UIControlStateNormal];
+    [_saveButton addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_saveButton];
 }
 
 - (void)viewDidUnload
@@ -84,11 +86,16 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    self.navigationItem.rightBarButtonItem.enabled = ([_textField.text length] != 0);
+}
+
 #pragma mark - Save/Cancel
 
-- (BOOL)textFieldShouldReturn:(UITextField *)aTextField
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    [_textField resignFirstResponder];
     [self save];
     
     return YES;
@@ -96,17 +103,9 @@
 
 - (void)save
 {
-    if (textField.text == nil || textField.text == @"") {
-        if (!textFieldMessageAdded) {
-            textField.placeholder = [textField.placeholder stringByAppendingFormat:@" (%@)", NSLocalizedString(@"Name cannot be blank", nil)];
-            textFieldMessageAdded = YES;
-        }
-        return;
-    }
-    
     [self.navigationController dismissModalViewControllerAnimated:YES];
     
-    [_delegate newStackViewController:self didSaveWithName:textField.text];
+    [_delegate newStackViewController:self didSaveWithName:_textField.text];
 }
 
 - (void)cancel
@@ -116,7 +115,7 @@
 
 - (void)backgroundTapped
 {
-    [textField resignFirstResponder];
+    [_textField resignFirstResponder];
 }
 
 @end

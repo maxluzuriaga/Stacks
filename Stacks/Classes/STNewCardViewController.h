@@ -8,6 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
-@interface STNewCardViewController : UIViewController
+@class STCardView;
+@class STNewCardViewController;
+
+@protocol STNewCardViewControllerDelegate
+
+- (void)newCardViewController:(STNewCardViewController *)newStackViewController didSaveWithFrontText:(NSString *)frontText backText:(NSString *)backText;
+
+@end
+
+@interface STNewCardViewController : UIViewController <UITextViewDelegate> {
+    UIButton *_flipButton;
+    UILabel *_stateLabel;
+    
+    STCardView *_cardView;
+}
+
+@property (weak, nonatomic) id<STNewCardViewControllerDelegate> delegate;
+
+- (void)flip;
+- (void)cancel;
+- (void)save;
 
 @end

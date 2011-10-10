@@ -104,7 +104,7 @@
     
     STButton *newCardButton = [[STButton alloc] initWithFrame:CGRectMake(15, 15, 139, 44) buttonColor:STButtonColorBlue disclosureImageEnabled:NO];
     [newCardButton setTitle:NSLocalizedString(@"+ New Card", nil) forState:UIControlStateNormal];
-    [newCardButton addTarget:self action:@selector(newCard) forControlEvents:UIControlEventTouchUpInside];
+    [newCardButton addTarget:self action:@selector(addNewCard) forControlEvents:UIControlEventTouchUpInside];
     
     newCardButton.tag = NEW_CARD_BUTTON_TAG;
     
@@ -131,7 +131,7 @@
     id delegate = [[UIApplication sharedApplication] delegate];
     
     NSArray *toolbarItems = [[NSArray alloc] initWithObjects:
-                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newCard)],
+                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewCard)],
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareStack)],
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
@@ -318,24 +318,23 @@
     }
 }
 
-- (void)newCard
+- (void)addNewCard
 {
-    NSArray *possibleValues = [[NSArray alloc] initWithObjects:
-                               [NSDictionary dictionaryWithObjectsAndKeys:@"Amo, amare, amavi, amatus", @"front", @"To love", @"back", nil],
-                               [NSDictionary dictionaryWithObjectsAndKeys:@"Porto, portare, portavi, portatus", @"front", @"To carry", @"back", nil],
-                               [NSDictionary dictionaryWithObjectsAndKeys:@"Laudo, laudare, laudavi, laudatus", @"front", @"To praise", @"back", nil],
-                               [NSDictionary dictionaryWithObjectsAndKeys:@"Bonus, -a, -um", @"front", @"Good", @"back", nil],
-                               [NSDictionary dictionaryWithObjectsAndKeys:@"Rana, -ae, f.", @"front", @"Frog", @"back", nil],
-                               [NSDictionary dictionaryWithObjectsAndKeys:@"Felix, felicis", @"front", @"Happy", @"back", nil],
-                               nil];
+    STNewCardViewController *newCardViewController = [[STNewCardViewController alloc] init];
+    newCardViewController.delegate = self;
     
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newCardViewController];
+    
+    [self presentModalViewController:navigationController animated:YES];
+}
+
+- (void)newCardViewController:(STNewCardViewController *)newStackViewController didSaveWithFrontText:(NSString *)frontText backText:(NSString *)backText
+{
     STCard *newCard = [NSEntityDescription insertNewObjectForEntityForName:@"STCard" inManagedObjectContext:self.managedObjectContext];
     
-    NSDictionary *info = [possibleValues objectAtIndex:(arc4random() % [possibleValues count])];
-    
     newCard.createdDate = [NSDate date];
-    newCard.frontText = [info objectForKey:@"front"];
-    newCard.backText = [info objectForKey:@"back"];
+    newCard.frontText = frontText;
+    newCard.backText = backText;
     
     [_stack addCardsObject:newCard];
     

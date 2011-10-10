@@ -54,6 +54,11 @@
     
     [self.view addSubview:_cardView];
     
+    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+//    recognizer.numberOfTouchesRequired = 5;
+    recognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:recognizer];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCard:) name:@"RefreshAllViews" object:[[UIApplication sharedApplication] delegate]];
 }
 
@@ -169,6 +174,11 @@
             _flipButton.enabled = YES;
         }];
     }];
+}
+
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer
+{
+    NSLog(@"handleSwipeFrom:");
 }
 
 - (void)configureView

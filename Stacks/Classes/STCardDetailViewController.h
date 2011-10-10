@@ -25,5 +25,6 @@
 - (void)reloadCard:(NSNotification *)note;
 - (void)flip;
 - (void)configureView;
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer;
 
 @end

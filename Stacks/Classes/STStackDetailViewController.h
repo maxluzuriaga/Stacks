@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "STNewCardViewController.h"
+
 @class STStack;
 @class STEmptyDataSetView;
 @class STTextField;
 
-@interface STStackDetailViewController : UITableViewController <UITextFieldDelegate> {
+@interface STStackDetailViewController : UITableViewController <UITextFieldDelegate, STNewCardViewControllerDelegate> {
     STStack *_stack;
     NSMutableArray *cards;
     
@@ -25,7 +27,7 @@
 
 - (void)reloadStack:(NSNotification *)note;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-- (void)newCard;
+- (void)addNewCard;
 - (void)shareStack;
 - (void)study;
 - (void)presentEmptyDataSetViewIfNeeded;
