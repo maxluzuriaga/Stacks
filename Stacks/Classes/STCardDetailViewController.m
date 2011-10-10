@@ -54,10 +54,14 @@
     
     [self.view addSubview:_cardView];
     
-    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
-//    recognizer.numberOfTouchesRequired = 5;
-    recognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:recognizer];
+    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(flip)];
+    rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    rightRecognizer.enabled = NO;
+    [self.view addGestureRecognizer:rightRecognizer];
+    
+    UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(flip)];
+    leftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:leftRecognizer];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCard:) name:@"RefreshAllViews" object:[[UIApplication sharedApplication] delegate]];
 }
@@ -145,6 +149,10 @@
     
     [_cardView flip];
     
+    for (UISwipeGestureRecognizer *recognizer in [self.view gestureRecognizers]) {
+        recognizer.enabled = NO;
+    }
+    
     NSString *labelText;
     CGRect shownFrame = CGRectMake(68, _stateLabel.frame.origin.y, _stateLabel.frame.size.width, _stateLabel.frame.size.height);
     CGRect hiddenFrame = CGRectMake(15, _stateLabel.frame.origin.y, _stateLabel.frame.size.width, _stateLabel.frame.size.height);
@@ -172,13 +180,12 @@
             _stateLabel.frame = shownFrame;
         } completion:^(BOOL finished) {
             _flipButton.enabled = YES;
+            for (UISwipeGestureRecognizer *recognizer in [self.view gestureRecognizers]) {
+                if (recognizer.direction == (_cardView.state == STCardViewStateFront ? UISwipeGestureRecognizerDirectionLeft : UISwipeGestureRecognizerDirectionRight))
+                    recognizer.enabled = YES;
+            }
         }];
     }];
-}
-
-- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer
-{
-    NSLog(@"handleSwipeFrom:");
 }
 
 - (void)configureView

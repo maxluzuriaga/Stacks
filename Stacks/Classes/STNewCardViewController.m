@@ -33,6 +33,8 @@
 {
     [super viewDidLoad];
     
+    self.title = NSLocalizedString(@"New Card", nil);
+    
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 480)];
     backgroundImageView.image = [UIImage imageNamed:@"backgroundTexture"];
     [self.navigationController.view addSubview:backgroundImageView];
@@ -64,6 +66,15 @@
     
     [self.view addSubview:_cardView];
     
+    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(flip)];
+    rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    rightRecognizer.enabled = NO;
+    [self.view addGestureRecognizer:rightRecognizer];
+    
+    UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(flip)];
+    leftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:leftRecognizer];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCard:) name:@"RefreshAllViews" object:[[UIApplication sharedApplication] delegate]];
 }
 
@@ -74,6 +85,10 @@
     _flipButton.enabled = NO;
     
     [_cardView flip];
+    
+    for (UISwipeGestureRecognizer *recognizer in [self.view gestureRecognizers]) {
+        recognizer.enabled = NO;
+    }
     
     NSString *labelText;
     CGRect shownFrame = CGRectMake(68, _stateLabel.frame.origin.y, _stateLabel.frame.size.width, _stateLabel.frame.size.height);
@@ -102,6 +117,10 @@
             _stateLabel.frame = shownFrame;
         } completion:^(BOOL finished) {
             _flipButton.enabled = YES;
+            for (UISwipeGestureRecognizer *recognizer in [self.view gestureRecognizers]) {
+                if (recognizer.direction == (_cardView.state == STCardViewStateFront ? UISwipeGestureRecognizerDirectionLeft : UISwipeGestureRecognizerDirectionRight))
+                    recognizer.enabled = YES;
+            }
         }];
     }];
 }
@@ -110,15 +129,12 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    if (_cardView.state == STCardViewStateFront)
-        self.title = textView.text;
-    
     BOOL enabled;
     
     if (_cardView.state == STCardViewStateFront)
-        enabled = [textView.text length] != 0;
+        enabled = ([textView.text length] != 0) && ([_cardView.backText length] != 0);
     else
-        enabled = [_cardView.frontText length] != 0;
+        enabled = ([textView.text length] != 0) && ([_cardView.frontText length] != 0);
     
     [self.navigationItem.rightBarButtonItem setEnabled:enabled];
 }
