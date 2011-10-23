@@ -74,6 +74,10 @@
 		50790B8513F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B8113F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png */; };
 		50790B8C13F3A7B3001C68E9 /* STButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 50790B8B13F3A7B3001C68E9 /* STButton.m */; };
 		50C1719B1454A20600FE8E17 /* STStudyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C1719A1454A20600FE8E17 /* STStudyViewController.m */; };
+		50C1719F1454AA9C00FE8E17 /* studyViewBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50C1719D1454AA9C00FE8E17 /* studyViewBackground@2x.png */; };
+		50C171A01454AA9C00FE8E17 /* studyViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50C1719E1454AA9C00FE8E17 /* studyViewBackground.png */; };
+		50C171A31454B62400FE8E17 /* studyViewArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 50C171A11454B62300FE8E17 /* studyViewArrow.png */; };
+		50C171A41454B62400FE8E17 /* studyViewArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50C171A21454B62400FE8E17 /* studyViewArrow@2x.png */; };
 		50CEB51613F5B6D400DF6EC1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50CEB51513F5B6D400DF6EC1 /* QuartzCore.framework */; };
 		50DC9F0413FCB20B001758BC /* STLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DC9F0313FCB20B001758BC /* STLabel.m */; };
 		50FC06A413F2453B00C6C43C /* stackCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */; };
@@ -174,6 +178,10 @@
 		50B55F2813CBD44100DBB00A /* STCommonDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCommonDefinitions.h; sourceTree = "<group>"; };
 		50C171991454A20600FE8E17 /* STStudyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStudyViewController.h; sourceTree = "<group>"; };
 		50C1719A1454A20600FE8E17 /* STStudyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStudyViewController.m; sourceTree = "<group>"; };
+		50C1719D1454AA9C00FE8E17 /* studyViewBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "studyViewBackground@2x.png"; sourceTree = "<group>"; };
+		50C1719E1454AA9C00FE8E17 /* studyViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = studyViewBackground.png; sourceTree = "<group>"; };
+		50C171A11454B62300FE8E17 /* studyViewArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = studyViewArrow.png; sourceTree = "<group>"; };
+		50C171A21454B62400FE8E17 /* studyViewArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "studyViewArrow@2x.png"; sourceTree = "<group>"; };
 		50CEB51513F5B6D400DF6EC1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		50DC9F0213FCB20B001758BC /* STLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STLabel.h; sourceTree = "<group>"; };
 		50DC9F0313FCB20B001758BC /* STLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STLabel.m; sourceTree = "<group>"; };
@@ -324,6 +332,10 @@
 				50FC06A313F2453B00C6C43C /* stackCellBackground@2x.png */,
 				50790B7C13F3A1AF001C68E9 /* stackCellSelectedBackground.png */,
 				50790B7313F2E3F1001C68E9 /* stackCellSelectedBackground@2x.png */,
+				50C171A11454B62300FE8E17 /* studyViewArrow.png */,
+				50C171A21454B62400FE8E17 /* studyViewArrow@2x.png */,
+				50C1719E1454AA9C00FE8E17 /* studyViewBackground.png */,
+				50C1719D1454AA9C00FE8E17 /* studyViewBackground@2x.png */,
 				5076B68F1412B35E006AE55F /* textFieldBackground.png */,
 				5076B68D1412B07D006AE55F /* textFieldBackground@2x.png */,
 			);
@@ -517,6 +529,10 @@
 				500CC55613FB114D00FED029 /* flipButtonTapped@2x.png in Resources */,
 				5076B68E1412B07D006AE55F /* textFieldBackground@2x.png in Resources */,
 				5076B6901412B35E006AE55F /* textFieldBackground.png in Resources */,
+				50C1719F1454AA9C00FE8E17 /* studyViewBackground@2x.png in Resources */,
+				50C171A01454AA9C00FE8E17 /* studyViewBackground.png in Resources */,
+				50C171A31454B62400FE8E17 /* studyViewArrow.png in Resources */,
+				50C171A41454B62400FE8E17 /* studyViewArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

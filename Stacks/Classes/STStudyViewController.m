@@ -25,7 +25,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -47,13 +47,32 @@
 }
 */
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = NSLocalizedString(@"Study", nil);
+    
+    _rotatePrompt = [[UIView alloc] initWithFrame:CGRectMake(0, 130, 145, 140)];
+    
+    UIImageView *rotateImage = [[UIImageView alloc] initWithFrame:CGRectMake(40, 0, 56, 31)];
+    rotateImage.image = [UIImage imageNamed:@"studyViewArrow"];
+    [_rotatePrompt addSubview:rotateImage];
+    
+    UIWebView *rotateText = [[UIWebView alloc] initWithFrame:CGRectMake(15, 50, 145, 84)];
+    rotateText.userInteractionEnabled = NO;
+    rotateText.clipsToBounds = NO;
+    rotateText.backgroundColor = [UIColor clearColor];
+    rotateText.opaque = NO;
+    
+    NSString *css = @"* { margin: 0; padding: 0; font-weight: normal; } p { font-size: 30px; color: #9c9c9c; text-shadow: 0px -1px 0 #000; font-family: FreestyleScriptEF-Reg, Helvetica, sans-serif; line-height: 32px; }";;
+    NSString *html = [NSString stringWithFormat:@"<style>%@</style><p>%@</p>", css, NSLocalizedString(@"Rotate your device to begin.", nil)];
+    
+    [rotateText loadHTMLString:html baseURL:nil];
+    [_rotatePrompt addSubview:rotateText];
+    
+    [self.view addSubview:_rotatePrompt];
 }
-*/
 
 - (void)viewDidUnload
 {
@@ -72,7 +91,9 @@
         [(StacksAppDelegate *)[[UIApplication sharedApplication] delegate] showShadowAtIndex:1];
         
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    } else {
+        
+        self.view.backgroundColor = nil;
+    } else if (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown) {
         [self.navigationController setToolbarHidden:YES animated:YES];
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         
@@ -80,6 +101,8 @@
         [(StacksAppDelegate *)[[UIApplication sharedApplication] delegate] hideShadowAtIndex:1];
         
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
+        
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"studyViewBackground"]];
     }
     
     
