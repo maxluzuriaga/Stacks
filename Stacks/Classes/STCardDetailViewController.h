@@ -20,7 +20,7 @@
     STCardView *_cardView;
 }
 
-@property (nonatomic, retain) STCard *card;
+@property (strong, nonatomic) STCard *card;
 
 - (void)reloadCard:(NSNotification *)note;
 - (void)flip;

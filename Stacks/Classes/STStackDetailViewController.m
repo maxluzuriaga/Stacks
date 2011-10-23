@@ -21,6 +21,8 @@
 #import "STEmptyDataSetView.h"
 #import "STTextField.h"
 
+#import "STStudyViewController.h"
+
 #define NEW_CARD_BUTTON_TAG 53
 #define STUDY_BUTTON_TAG 75
 
@@ -372,7 +374,8 @@
 
 - (void)study
 {
-    
+    STStudyViewController *studyViewController = [[STStudyViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:studyViewController animated:YES];
 }
 
 #pragma mark - STEmptyDataSetView
