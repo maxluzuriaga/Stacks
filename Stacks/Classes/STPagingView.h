@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface STPagingView : UIView
+@interface STPagingView : UIView <UIScrollViewDelegate> {
+    UIScrollView *_scrollView;
+    
+    NSArray *_cards;
+    NSMutableArray *_views;
+    
+    NSInteger _currentPage;
+    
+    CGRect _leftTapTarget;
+    CGRect _rightTapTarget;
+}
+
+- (void)handleSingleTapFrom:(UITapGestureRecognizer *)gestureRecognizer;
+- (void)loadViewAtIndex:(NSInteger)index;
+- (void)adjustViewsAlpha;
+- (void)restart;
 
 @end
