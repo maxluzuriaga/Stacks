@@ -74,6 +74,7 @@
 		50790B8413F3A1BD001C68E9 /* blueButtonTappedBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B8013F3A1BC001C68E9 /* blueButtonTappedBackground.png */; };
 		50790B8513F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B8113F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png */; };
 		50790B8C13F3A7B3001C68E9 /* STButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 50790B8B13F3A7B3001C68E9 /* STButton.m */; };
+		508E9376145F91D700687534 /* STCardStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508E9375145F91D700687534 /* STCardStateView.m */; };
 		50C1719B1454A20600FE8E17 /* STStudyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C1719A1454A20600FE8E17 /* STStudyViewController.m */; };
 		50C1719F1454AA9C00FE8E17 /* studyViewBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50C1719D1454AA9C00FE8E17 /* studyViewBackground@2x.png */; };
 		50C171A01454AA9C00FE8E17 /* studyViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50C1719E1454AA9C00FE8E17 /* studyViewBackground.png */; };
@@ -178,6 +179,8 @@
 		50790B8113F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blueButtonTappedBackground@2x.png"; path = "Images/blueButtonTappedBackground@2x.png"; sourceTree = "<group>"; };
 		50790B8A13F3A7B3001C68E9 /* STButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STButton.h; sourceTree = "<group>"; };
 		50790B8B13F3A7B3001C68E9 /* STButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STButton.m; sourceTree = "<group>"; };
+		508E9374145F91D700687534 /* STCardStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardStateView.h; sourceTree = "<group>"; };
+		508E9375145F91D700687534 /* STCardStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardStateView.m; sourceTree = "<group>"; };
 		50B55F2813CBD44100DBB00A /* STCommonDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCommonDefinitions.h; sourceTree = "<group>"; };
 		50C171991454A20600FE8E17 /* STStudyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStudyViewController.h; sourceTree = "<group>"; };
 		50C1719A1454A20600FE8E17 /* STStudyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStudyViewController.m; sourceTree = "<group>"; };
@@ -413,6 +416,8 @@
 				50790B8B13F3A7B3001C68E9 /* STButton.m */,
 				505C829013F74BA30003F864 /* STCardCell.h */,
 				505C829113F74BA30003F864 /* STCardCell.m */,
+				508E9374145F91D700687534 /* STCardStateView.h */,
+				508E9375145F91D700687534 /* STCardStateView.m */,
 				501527CB13F9A43000100EAC /* STCardView.h */,
 				501527CC13F9A43000100EAC /* STCardView.m */,
 				500E13D513F5C88A00FF2F38 /* STEmptyDataSetView.h */,
@@ -567,6 +572,7 @@
 				504E4DFB143F60E300C6E232 /* STNewCardViewController.m in Sources */,
 				50C1719B1454A20600FE8E17 /* STStudyViewController.m in Sources */,
 				501BD72D145F8AB900682E30 /* STPagingView.m in Sources */,
+				508E9376145F91D700687534 /* STCardStateView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,8 @@
 
 #import "STCardView.h"
 #import "STLabel.h"
+#import "STCardStateView.h"
+#import "STPagingView.h"
 
 @implementation STStudyViewController
 
@@ -105,6 +107,10 @@
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"studyViewBackground"]];
         
         [_rotatePrompt removeFromSuperview];
+        
+        STPagingView *pagingView = [[STPagingView alloc] initWithFrame:CGRectMake(0, 71, 480, 178)];
+        
+        [self.view addSubview:pagingView];
         
         _rotated = YES;
     }
