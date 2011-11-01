@@ -25,7 +25,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        _rotated = NO;
     }
     return self;
 }
@@ -83,7 +83,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
+    if ((interfaceOrientation == UIInterfaceOrientationPortrait) && (!_rotated)) {
         [self.navigationController setToolbarHidden:NO animated:YES];
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         
@@ -93,7 +93,7 @@
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
         
         self.view.backgroundColor = nil;
-    } else if (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown) {
+    } else if ((interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown) && (!_rotated)) {
         [self.navigationController setToolbarHidden:YES animated:YES];
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         
@@ -103,10 +103,16 @@
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
         
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"studyViewBackground"]];
+        
+        [_rotatePrompt removeFromSuperview];
+        
+        _rotated = YES;
     }
     
-    
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    if (_rotated)
+        return ((interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight));
+    else
+        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 @end

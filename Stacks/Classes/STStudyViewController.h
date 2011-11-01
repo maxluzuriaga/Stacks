@@ -17,6 +17,8 @@
     
     UIView *_rotatePrompt;
     UIView *_loadingView;
+    
+    BOOL _rotated;
 }
 
 @property (weak, nonatomic) STStack *stack;

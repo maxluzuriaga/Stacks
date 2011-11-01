@@ -22,6 +22,7 @@
 		500E13E213F5F0A000FF2F38 /* bottomButtonGlow.png in Resources */ = {isa = PBXBuildFile; fileRef = 500E13E013F5F0A000FF2F38 /* bottomButtonGlow.png */; };
 		500E13E313F5F0A000FF2F38 /* bottomButtonGlow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 500E13E113F5F0A000FF2F38 /* bottomButtonGlow@2x.png */; };
 		501527CD13F9A43000100EAC /* STCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501527CC13F9A43000100EAC /* STCardView.m */; };
+		501BD72D145F8AB900682E30 /* STPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BD72C145F8AB900682E30 /* STPagingView.m */; };
 		501EA60413C8C803006DE75D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501EA60313C8C803006DE75D /* UIKit.framework */; };
 		501EA60613C8C803006DE75D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501EA60513C8C803006DE75D /* Foundation.framework */; };
 		501EA60813C8C803006DE75D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501EA60713C8C803006DE75D /* CoreGraphics.framework */; };
@@ -110,6 +111,8 @@
 		500E13E113F5F0A000FF2F38 /* bottomButtonGlow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bottomButtonGlow@2x.png"; path = "Images/bottomButtonGlow@2x.png"; sourceTree = "<group>"; };
 		501527CB13F9A43000100EAC /* STCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardView.h; sourceTree = "<group>"; };
 		501527CC13F9A43000100EAC /* STCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardView.m; sourceTree = "<group>"; };
+		501BD72B145F8AB900682E30 /* STPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPagingView.h; sourceTree = "<group>"; };
+		501BD72C145F8AB900682E30 /* STPagingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPagingView.m; sourceTree = "<group>"; };
 		501EA5FF13C8C803006DE75D /* Stacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		501EA60313C8C803006DE75D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		501EA60513C8C803006DE75D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -416,6 +419,8 @@
 				500E13D613F5C88A00FF2F38 /* STEmptyDataSetView.m */,
 				50DC9F0213FCB20B001758BC /* STLabel.h */,
 				50DC9F0313FCB20B001758BC /* STLabel.m */,
+				501BD72B145F8AB900682E30 /* STPagingView.h */,
+				501BD72C145F8AB900682E30 /* STPagingView.m */,
 				505B3DEE13F231AC007C4A17 /* STStackCell.h */,
 				505B3DEF13F231AC007C4A17 /* STStackCell.m */,
 				5076B6891412AFC9006AE55F /* STTextField.h */,
@@ -561,6 +566,7 @@
 				5056D82F1412D8DB00E082B3 /* STNewStackViewController.m in Sources */,
 				504E4DFB143F60E300C6E232 /* STNewCardViewController.m in Sources */,
 				50C1719B1454A20600FE8E17 /* STStudyViewController.m in Sources */,
+				501BD72D145F8AB900682E30 /* STPagingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
