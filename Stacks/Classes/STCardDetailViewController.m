@@ -36,30 +36,22 @@
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    _stateLabel = [[STLabel alloc] initWithFrame:CGRectMake(68, 22, 237, 23)];
-    _stateLabel.font = [UIFont fontWithName:@"FreestyleScriptEF-Reg" size:25];
+    _cardStateView = [[STCardStateView alloc] initWithFrame:CGRectMake(15, 15, 290, 30)];
+    _cardStateView.delegate = self;
     
-    [self.view addSubview:_stateLabel];
-    
-    _flipButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 44, 30)];
-    [_flipButton setImage:[UIImage imageNamed:@"flipButton"] forState:UIControlStateNormal];
-    [_flipButton setImage:[UIImage imageNamed:@"flipButtonTapped"] forState:UIControlStateHighlighted];
-    [_flipButton setImage:[UIImage imageNamed:@"flipButtonTapped"] forState:UIControlStateDisabled];
-    [_flipButton addTarget:self action:@selector(flip) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:_flipButton];
+    [self.view addSubview:_cardStateView];
     
     _cardView = [[STCardView alloc] initWithFrame:CGRectMake(15, 60, 290, CARD_VIEW_SHORT_HEIGHT)];
     _cardView.textView.delegate = self;
     
     [self.view addSubview:_cardView];
     
-    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(flip)];
+    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:_cardStateView action:@selector(flip)];
     rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
     rightRecognizer.enabled = NO;
     [self.view addGestureRecognizer:rightRecognizer];
     
-    UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(flip)];
+    UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:_cardStateView action:@selector(flip)];
     leftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:leftRecognizer];
     
@@ -75,7 +67,7 @@
     
     [self.navigationController setToolbarHidden:YES animated:YES];
     
-    _stateLabel.text = NSLocalizedString(@"Front", nil);
+    _cardStateView.state = STCardViewStateFront;
     _cardView.state = STCardViewStateFront;
     
     [self configureView];
@@ -143,49 +135,23 @@
     }
 }
 
+- (void)cardStateViewDidChangeToState:(STCardViewState)state
+{
+    [self flip];
+}
+
 - (void)flip
 {
-    _flipButton.enabled = NO;
-    
     [_cardView flip];
     
     for (UISwipeGestureRecognizer *recognizer in [self.view gestureRecognizers]) {
         recognizer.enabled = NO;
     }
     
-    NSString *labelText;
-    CGRect shownFrame = CGRectMake(68, _stateLabel.frame.origin.y, _stateLabel.frame.size.width, _stateLabel.frame.size.height);
-    CGRect hiddenFrame = CGRectMake(15, _stateLabel.frame.origin.y, _stateLabel.frame.size.width, _stateLabel.frame.size.height);
-    
-    switch (_cardView.state) {
-        case STCardViewStateFront:
-            labelText = NSLocalizedString(@"Front", nil);
-            break;
-            
-        case STCardViewStateBack:
-            labelText = NSLocalizedString(@"Back", nil);
-            break;
-            
-        default:
-            break;
+    for (UISwipeGestureRecognizer *recognizer in [self.view gestureRecognizers]) {
+        if (recognizer.direction == (_cardView.state == STCardViewStateFront ? UISwipeGestureRecognizerDirectionLeft : UISwipeGestureRecognizerDirectionRight))
+            recognizer.enabled = YES;
     }
-    
-    [UIView animateWithDuration:0.25 animations:^(void) {
-        _stateLabel.alpha = 0.0;
-        _stateLabel.frame = hiddenFrame;
-    } completion:^(BOOL finished) {
-        _stateLabel.text = labelText;
-        [UIView animateWithDuration:0.5 animations:^(void) {
-            _stateLabel.alpha = 1.0;
-            _stateLabel.frame = shownFrame;
-        } completion:^(BOOL finished) {
-            _flipButton.enabled = YES;
-            for (UISwipeGestureRecognizer *recognizer in [self.view gestureRecognizers]) {
-                if (recognizer.direction == (_cardView.state == STCardViewStateFront ? UISwipeGestureRecognizerDirectionLeft : UISwipeGestureRecognizerDirectionRight))
-                    recognizer.enabled = YES;
-            }
-        }];
-    }];
 }
 
 - (void)configureView

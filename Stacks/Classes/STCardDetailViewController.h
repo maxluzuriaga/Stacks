@@ -11,11 +11,12 @@
 @class STCard;
 @class STCardView;
 
-@interface STCardDetailViewController : UIViewController <UITextViewDelegate> {
+#import "STCardStateView.h"
+
+@interface STCardDetailViewController : UIViewController <UITextViewDelegate, STCardStateViewDelegate> {
     STCard *_card;
     
-    UIButton *_flipButton;
-    UILabel *_stateLabel;
+    STCardStateView *_cardStateView;
     
     STCardView *_cardView;
 }
