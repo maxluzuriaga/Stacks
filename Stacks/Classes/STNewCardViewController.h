@@ -11,15 +11,19 @@
 @class STCardView;
 @class STNewCardViewController;
 
+#import "STCardStateView.h"
+
 @protocol STNewCardViewControllerDelegate
 
 - (void)newCardViewController:(STNewCardViewController *)newStackViewController didSaveWithFrontText:(NSString *)frontText backText:(NSString *)backText;
 
 @end
 
-@interface STNewCardViewController : UIViewController <UITextViewDelegate> {
-    UIButton *_flipButton;
-    UILabel *_stateLabel;
+@interface STNewCardViewController : UIViewController <UITextViewDelegate, STCardStateViewDelegate> {
+    STCardStateView *_cardStateView;
+    
+//    UIButton *_flipButton;
+//    UILabel *_stateLabel;
     
     STCardView *_cardView;
 }
