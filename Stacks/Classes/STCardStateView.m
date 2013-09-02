@@ -9,6 +9,7 @@
 #import "STCardStateView.h"
 
 #import "STLabel.h"
+#import "STFlipCardButton.h"
 
 @implementation STCardStateView
 
@@ -22,11 +23,8 @@
         _label.font = [UIFont fontWithName:@"FreestyleScriptEF-Reg" size:25];
         
         [self addSubview:_label];
-        
-        _flipButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 30)];
-        [_flipButton setImage:[UIImage imageNamed:@"flipButton"] forState:UIControlStateNormal];
-        [_flipButton setImage:[UIImage imageNamed:@"flipButtonTapped"] forState:UIControlStateHighlighted];
-        [_flipButton setImage:[UIImage imageNamed:@"flipButtonTapped"] forState:UIControlStateDisabled];
+                
+        _flipButton = [[STFlipCardButton alloc] initWithFrame:CGRectMake(0, 0, 44, 30)];
         [_flipButton addTarget:self action:@selector(flip) forControlEvents:UIControlEventTouchUpInside];
         
         [self addSubview:_flipButton];

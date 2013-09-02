@@ -173,7 +173,7 @@
         [moc performBlockAndWait:^{
             // even the post initialization needs to be done within the Block
             [moc setPersistentStoreCoordinator: coordinator];
-            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(mergeChangesFromiCloud:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:coordinator];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeChangesFromiCloud:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:coordinator];
         }];
         __managedObjectContext = moc;
     }

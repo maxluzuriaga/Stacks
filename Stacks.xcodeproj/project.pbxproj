@@ -75,6 +75,7 @@
 		50790B8513F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50790B8113F3A1BD001C68E9 /* blueButtonTappedBackground@2x.png */; };
 		50790B8C13F3A7B3001C68E9 /* STButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 50790B8B13F3A7B3001C68E9 /* STButton.m */; };
 		508E9376145F91D700687534 /* STCardStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508E9375145F91D700687534 /* STCardStateView.m */; };
+		50C01EFC149FDD5A00302A73 /* STFlipCardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C01EFB149FDD5A00302A73 /* STFlipCardButton.m */; };
 		50C1719B1454A20600FE8E17 /* STStudyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C1719A1454A20600FE8E17 /* STStudyViewController.m */; };
 		50C1719F1454AA9C00FE8E17 /* studyViewBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50C1719D1454AA9C00FE8E17 /* studyViewBackground@2x.png */; };
 		50C171A01454AA9C00FE8E17 /* studyViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50C1719E1454AA9C00FE8E17 /* studyViewBackground.png */; };
@@ -182,6 +183,8 @@
 		508E9374145F91D700687534 /* STCardStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCardStateView.h; sourceTree = "<group>"; };
 		508E9375145F91D700687534 /* STCardStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCardStateView.m; sourceTree = "<group>"; };
 		50B55F2813CBD44100DBB00A /* STCommonDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCommonDefinitions.h; sourceTree = "<group>"; };
+		50C01EFA149FDD5A00302A73 /* STFlipCardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STFlipCardButton.h; sourceTree = "<group>"; };
+		50C01EFB149FDD5A00302A73 /* STFlipCardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STFlipCardButton.m; sourceTree = "<group>"; };
 		50C171991454A20600FE8E17 /* STStudyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStudyViewController.h; sourceTree = "<group>"; };
 		50C1719A1454A20600FE8E17 /* STStudyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStudyViewController.m; sourceTree = "<group>"; };
 		50C1719D1454AA9C00FE8E17 /* studyViewBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "studyViewBackground@2x.png"; sourceTree = "<group>"; };
@@ -422,6 +425,8 @@
 				501527CC13F9A43000100EAC /* STCardView.m */,
 				500E13D513F5C88A00FF2F38 /* STEmptyDataSetView.h */,
 				500E13D613F5C88A00FF2F38 /* STEmptyDataSetView.m */,
+				50C01EFA149FDD5A00302A73 /* STFlipCardButton.h */,
+				50C01EFB149FDD5A00302A73 /* STFlipCardButton.m */,
 				50DC9F0213FCB20B001758BC /* STLabel.h */,
 				50DC9F0313FCB20B001758BC /* STLabel.m */,
 				501BD72B145F8AB900682E30 /* STPagingView.h */,
@@ -573,6 +578,7 @@
 				50C1719B1454A20600FE8E17 /* STStudyViewController.m in Sources */,
 				501BD72D145F8AB900682E30 /* STPagingView.m in Sources */,
 				508E9376145F91D700687534 /* STCardStateView.m in Sources */,
+				50C01EFC149FDD5A00302A73 /* STFlipCardButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,7 +627,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PROVISIONING_PROFILE = "4B611B03-5C04-4CBD-9FE6-5CDE08EBE876";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -642,7 +647,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "4B611B03-5C04-4CBD-9FE6-5CDE08EBE876";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -657,7 +661,7 @@
 				GCC_PREFIX_HEADER = "Stacks/Stacks-Prefix.pch";
 				INFOPLIST_FILE = "Stacks/Stacks-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4B611B03-5C04-4CBD-9FE6-5CDE08EBE876";
+				PROVISIONING_PROFILE = "BF4A1F66-6558-442F-ADFB-593740EC25A1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -671,7 +675,7 @@
 				GCC_PREFIX_HEADER = "Stacks/Stacks-Prefix.pch";
 				INFOPLIST_FILE = "Stacks/Stacks-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4B611B03-5C04-4CBD-9FE6-5CDE08EBE876";
+				PROVISIONING_PROFILE = "9C0B2F7B-D9E2-4E35-98A8-96E95865E247";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
